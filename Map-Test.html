@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <title>Map-Test</title>
     <script type="text/javascript" src="mapSource.js"></script>
     <style>
-      #map {
-        width: 500px;
-        height: 400px;
-      }
+        #map {
+            width: 500px;
+            height: 400px;
+        }
     </style>
-  </head>
-  <body>
+</head>
+
+<body>
     <div id="map"></div>
-    <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
-        async defer>
+    <script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer>
     </script>
     <form>
-      From: <input type="text" name="from" />
-      To: <input type="text" name="to" />
-      <input type="button" value="Go" onclick="duration(from.value, to.value, function(dur) {
+        From:
+        <input type="text" name="from" /> To:
+        <input type="text" name="to" />
+        <input type="button" value="Go" onclick="duration(from.value, to.value, function(dur) {
         alert(dur);
       }); showRoute(from.value, to.value, map);" />
     </form>
-  </body>
+</body>
+
 </html>

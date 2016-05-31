@@ -187,6 +187,36 @@ hr.small {
   box-sizing: border-box;
 }
 
+.email_field {
+  width: 250px;
+  height: 40px;
+  padding: 20px 10px 20px 10px;
+  border: none;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  border-radius: 3px;
+  outline: none;
+  box-sizing: border-box;
+  color: black;
+}
+
+.password_field {
+  width: 250px;
+  height: 40px;
+  padding: 20px 10px 20px 10px;
+  border: none;
+  font-size: 14px;
+  border-radius: 3px;
+  outline: none;
+  box-sizing: border-box;
+  color: black;
+}
+
+.button-login {
+  width: 250px;
+  height: 40px;
+}
+
 .button {
   background-color: green;
   border-color: green;
@@ -199,9 +229,42 @@ hr.small {
   text-align: center;
   text-decoration: none;
   border-radius: 3px;
-  border: 1px solid transparent; 
+  border: 1px solid transparent;
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   cursor: pointer;
+}
+
+.forgottenPasswordLink {
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  text-decoration: none;
+  font-weight: 300;
+  color: white;
+}
+
+.forgottenPasswordLink:hover {
+  text-decoration: underline;
+  color: white;
+}
+
+.rememberMeLabel {
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  padding-right: 50px;
+  padding-bottom: 6px;
+}
+
+.signup {
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  text-decoration: none;
+  font-weight: 300;
+  color: #6455FF;
+}
+
+.signup:hover {
+  text-decoration: underline;
+  color: #6455FF;
 }
 
 .standcontrol {
@@ -254,7 +317,7 @@ hr.small {
   .sml-space-full {
     width: 100%;
     float: left;
-    box-sizing: 
+    box-sizing:
   }
 }
 
