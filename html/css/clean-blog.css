@@ -187,7 +187,7 @@ hr.small {
   box-sizing: border-box;
 }
 
-.text_field {
+.input-box {
   width: 250px;
   height: 40px;
   padding: 20px 10px 20px 10px;
@@ -197,7 +197,6 @@ hr.small {
   border-radius: 3px;
   outline: none;
   box-sizing: border-box;
-  color: black;
 }
 
 .password_field {
@@ -227,12 +226,12 @@ hr.small {
   padding: 10px 25px 10px 25px;
   font-size: 14px;
   text-align: center;
-  text-decoration: none;
   border-radius: 3px;
   border: 1px solid transparent;
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   cursor: pointer;
 }
+
 
 .forgottenPasswordLink {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -266,6 +265,7 @@ hr.small {
   text-decoration: underline;
   color: #6455FF;
 }
+
 
 .standcontrol {
   padding-top: 30px;
