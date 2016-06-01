@@ -6,8 +6,8 @@ function getUserDetail(callback, u_id) {
   xmlHttp.onreadystatechange = function() {
     callback(xmlHttp.responseText);
   }
-  var field = "?fields=email,name,phone,paypal,rating";
-  xmlHttp.open("GET", URL_API + "_table/web_user/" + u_id + field + URL_API_KEY, true);
+  var fields = "?fields=email,name,phone,paypal,rating";
+  xmlHttp.open("GET", URL_API + "_table/web_user/" + u_id + fields + URL_API_KEY, true);
   xmlHttp.send(null);
 }
 
@@ -31,12 +31,12 @@ function userLogin(callback, email, password) {
       callback(0);
     }
   }
-  var field = "?fields=u_id,password&id_field=email";
-  xmlHttp.open("GET", URL_API + "_table/web_user/" + email + field + URL_API_KEY, true);
+  var fields = "?fields=u_id,password&id_field=email";
+  xmlHttp.open("GET", URL_API + "_table/web_user/" + email + fields + URL_API_KEY, true);
   xmlHttp.send(null);
 }
 
-function addAdress(callback, u_id, house_number, street_name, postcode, description) {
+function addAddress(callback, u_id, house_number, street_name, postcode, description) {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() {
     callback(xmlHttp.responseText);
@@ -44,4 +44,14 @@ function addAdress(callback, u_id, house_number, street_name, postcode, descript
   var resource = {u_id:u_id, house_number:house_number, street_name:street_name, postcode:postcode, description:description};
   xmlHttp.open("POST", URL_API + "_table/web_address?" + URL_API_KEY, true);
   xmlHttp.send(JSON.stringify({resource:resource}));
+}
+
+function getAddress(callback, u_id) {
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.onreadystatechange = function() {
+    callback(xmlHttp.responseText);
+  }
+  var filter = "?filter=u_id%3D" + u_id;
+  xmlHttp.open("GET", URL_API + "_table/web_address" + filter + URL_API_KEY, true);
+  xmlHttp.send(null);
 }
