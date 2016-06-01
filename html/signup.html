@@ -75,18 +75,10 @@
                     <h1>Simply sign up,</h1>
                     <h1>and start strolling!</h1>
                     <div class="standcontrol">
-                        <form action="signup.php" method="post">
+                        <form action="#" onsubmit="return validateFormOnSubmit(this);" method="post">
                             <div style="margin-bottom:10px">
-                                <input class="input-box" aria-required="true" id="First Name"
-                                    name="First Name" placeholder="First Name" type="text" value="" />
-                            </div>
-                            <div style="margin-bottom:10px">
-                                <input class="input-box" aria-required="true" id="Last Name"
-                                name="Last Name" placeholder="Last Name" type="text" value="" />
-                            </div>
-                            <div style="margin-bottom:10px">
-                                <input style="text-transform: uppercase" class="input-box" aria-required="true" id="Postcode"
-                                name="Postcode" placeholder="Postcode" type="text" value="" />
+                                <input class="input-box" aria-required="true" id="Name"
+                                    name="Full Name" placeholder="Full Name" type="text" value="" />
                             </div>
                             <div style="margin-bottom:10px">
                                 <input class="input-box" aria-required="true" id="Phone Number"
@@ -155,6 +147,22 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="js/clean-blog.min.js"></script>
+
+    <script>
+    function validateFormOnSubmit(form) {
+        userRegister(validateRegister, form.elements[2], form.elements[3], form.elements[0], form.elements[1]);
+    }
+
+    function validateRegister(response) {
+        var obj= JSON.parse(response);
+        if( /^[0-9]+/.test(obj.resource.u_id)) {
+            document.cookie="u_id";
+            alert("Signup successfull");
+            window.location="login.html";
+        } else {
+            alert("Error");
+        }
+    }
 
 </body>
 
