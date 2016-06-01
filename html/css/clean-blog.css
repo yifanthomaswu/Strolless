@@ -187,6 +187,19 @@ hr.small {
   box-sizing: border-box;
 }
 
+.input-box {
+  width: 200px;
+  height: 40px;
+  padding: 20px 10px 20px 10px;
+  border: none;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  border-radius: 3px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+
 .button {
   background-color: green;
   border-color: green;
@@ -197,12 +210,12 @@ hr.small {
   padding: 10px 25px 10px 25px;
   font-size: 14px;
   text-align: center;
-  text-decoration: none;
   border-radius: 3px;
   border: 1px solid transparent; 
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   cursor: pointer;
 }
+
 
 .standcontrol {
   padding-top: 30px;

@@ -12,7 +12,7 @@
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
     
-    <title>Strolless | Share your walk to food</title>
+    <title>Strolless | Less Walk More Food</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
@@ -53,12 +53,6 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="order.html">Order</a>
-                    </li>
-                    <li>
-                        <a href="post.html">Login</a>
-                    </li>
                     <!--<li>
                         <a href="contact.html">Help</a>
                     </li>-->
@@ -71,20 +65,12 @@
 
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header" style="background-image: url('img/bg orange.png')" >
+    <header class="intro-header" style="background-image: url('img/bg orange.png')">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <div class="site-heading">
-                        <h1>Your walk for food,</h1>
-                        <h1>worth more</h1>
-                        <hr class="small">
-                        <span class="subheading">Find people in need of food but too lazy to walk</span>
-                        <div class="standcontrol">
-                            <form action="stroll.html" method="get">
-                                <input type="submit" value="Go Stroll" class=" button button-go" data-ft="btnSearchArea">
-                            </form> 
-                        </div>
+                    <div class="page-heading">
+                        <h1>Strolless</h1>
                     </div>
                 </div>
             </div>
@@ -94,46 +80,36 @@
     <!-- Main Content -->
     <div class="container">
         <div class="row">
-            <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 padding-sml">
-                <div class="mid-space-full large-space sml-space-full">
-                    <div class="post-preview place-card" style="background-image: url('img/wasabi.jpg'); background-repeat: no-repeat; background-size: 100% 100%; background-position: center; margin-bottom: 25px">
-                        <a href="post.html">
-                            <div class="img-container">
-                                <div class="middle-text">
-                                    <h2 class="post-title">
-                                        <strong>Wasabi</strong>
-                                    </h2>
-                                </div>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="standcontrol">
+                    <form action="javascript:" method="post">
+                        <div class="row control-group">
+                            <div class="row control-group form-group control">
+                                <label>Restaurant</label>
+                                <input type="text">
                             </div>
-                        </a>
-                    </div>
+                        </div>
+                        <div class="row control-group">
+                            <div class="form-group control">
+                                <label>Order Deadline</label>
+                                <input type="time">
+                            </div>
+                        </div>
+                        <div class="row control-group">
+                            <div class="form-group control">
+                                <label>Pick Up Time</label>
+                                <input type="time" placeholder="Time Going">
+                            </div>
+                        </div>
+                        <div class="row control-group">
+                            <div class="row control-group form-group control">
+                                <label>Postcode</label>
+                                <input type="text">
+                            </div>
+                        </div>
+                        <input type="submit" style="color:white;" value="Submit" class="button button-go" data-ft="btnSearchArea">
+                    </form> 
                 </div>
-                <div class="mid-space-half large-space sml-space-full">
-                    <div class="post-preview place-card" style="background-image: url('img/byron.jpg'); background-repeat: no-repeat; background-size: 100% 100%; background-position: center; margin-bottom: 25px">
-                        <a href="post.html">
-                            <div class="img-container">
-                                <div class="middle-text">
-                                    <h2 class="post-title">
-                                        <strong>Byron</strong>
-                                    </h2>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="mid-space-half large-space sml-space-full">
-                    <div class="post-preview place-card" style="background-image: url('img/leon.jpg'); background-repeat: no-repeat; background-size: 100% 100%; background-position: top; margin-bottom: 25px">
-                        <a href="post.html">
-                            <div class="img-container">
-                                <div class="middle-text">
-                                    <h2 class="post-title">
-                                        <strong>Leon</strong>
-                                    </h2>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>        
             </div>
         </div>
     </div>
