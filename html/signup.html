@@ -36,6 +36,8 @@
 
 <body>
 
+    
+
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
         <div class="container-fluid">
@@ -48,6 +50,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="index.html">Strolless</a>
+                <p id="test"></p>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -151,14 +154,16 @@
     <!-- Custom Theme JavaScript -->
     <script src="js/clean-blog.min.js"></script>
 
+    <script src="js/pgsql.js"></script>
     <script>
     function validateFormOnSubmit(form) {
-        userRegister(validateRegister, form.elements[2], form.elements[3], form.elements[0], form.elements[1]);
+        userRegister(validateRegister, form.elements[2].value, form.elements[3].value, form.elements[0].value, form.elements[1].value);
+        return false;
     }
 
     function validateRegister(response) {
-        var obj= JSON.parse(response);
-        if( /^[0-9]+/.test(obj.resource.u_id)) {
+        document.getElementById("test").innerHTML = response;
+        if(/{"resource":\[{"u_id":/.test(response)) {
             document.cookie="u_id";
             alert("Signup successfull");
             window.location="login.html";
@@ -166,6 +171,7 @@
             alert("Error");
         }
     }
+    </script>
 
 </body>
 
