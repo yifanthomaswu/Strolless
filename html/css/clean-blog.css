@@ -200,32 +200,6 @@ hr.small {
   color: black;
 }
 
-.email_field {
-  width: 250px;
-  height: 40px;
-  padding: 20px 10px 20px 10px;
-  border: none;
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  border-radius: 3px;
-  outline: none;
-  box-sizing: border-box;
-  color: black;
-}
-
-.password_field {
-  width: 250px;
-  height: 40px;
-  padding: 20px 10px 20px 10px;
-  border: none;
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  border-radius: 3px;
-  outline: none;
-  box-sizing: border-box;
-  color: black;
-}
-
 .button-login {
   width: 250px;
   height: 40px;
