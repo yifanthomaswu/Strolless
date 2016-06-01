@@ -67,49 +67,57 @@
     <!-- Set your background image for this header on the line below. -->
     <header class="intro-header" style="background-image: url('img/bg orange.png')">
         <div class="container">
-            <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <div class="page-heading">
-                        <h1>Strolless</h1>
+                    <div class="site-heading">
+                        <h1>Tell us about your stroll</h1>
+                        <div class="standcontrol">    
+                            <form action="javascript:" method="post">
+                                <div class="row control-group">
+                                    <div class="form-group control">
+                                        <label style="color:white">Restaurant</label>
+                                        <div>
+                                            <input type="text" class="input-box">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row control-group">
+                                    <div class="form-group control">
+                                        <label style="color:white">Order Deadline</label>
+                                        <div>
+                                            <input type="time" class="input-box">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row control-group">
+                                    <div class="form-group control">
+                                        <label style="color:white">Pick Up Time</label>
+                                        <div>
+                                            <input type="time" class="input-box">
+                                        </div>
+                                    </div>
+                                        
+                                </div>
+                                <div class="row control-group">
+                                    <div class="form-group control">
+                                        <label style="color:white">Postcode</label>
+                                        <div>
+                                            <input type="text" class="search_postcode">
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="submit" style="color:white;" value="Submit" class="button button-go" data-ft="btnSearchArea">
+                            </form> 
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     </header>
 
     <!-- Main Content -->
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="standcontrol">
-                    <form action="javascript:" method="post">
-                        <div class="row control-group">
-                            <div class="row control-group form-group control">
-                                <label>Restaurant</label>
-                                <input type="text">
-                            </div>
-                        </div>
-                        <div class="row control-group">
-                            <div class="form-group control">
-                                <label>Order Deadline</label>
-                                <input type="time">
-                            </div>
-                        </div>
-                        <div class="row control-group">
-                            <div class="form-group control">
-                                <label>Pick Up Time</label>
-                                <input type="time" placeholder="Time Going">
-                            </div>
-                        </div>
-                        <div class="row control-group">
-                            <div class="row control-group form-group control">
-                                <label>Postcode</label>
-                                <input type="text">
-                            </div>
-                        </div>
-                        <input type="submit" style="color:white;" value="Submit" class="button button-go" data-ft="btnSearchArea">
-                    </form> 
-                </div>
+                
             </div>
         </div>
     </div>
