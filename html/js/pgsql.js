@@ -55,3 +55,12 @@ function getAddress(callback, u_id) {
   xmlHttp.open("GET", URL_API + "_table/web_address" + filter + URL_API_KEY, true);
   xmlHttp.send(null);
 }
+
+function getRestaurant(callback, r_id) {
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.onreadystatechange = function() {
+    callback(xmlHttp.responseText);
+  }
+  xmlHttp.open("GET", URL_API + "_table/web_restaurant/" + r_id + "?" + URL_API_KEY, true);
+  xmlHttp.send(null);
+}
