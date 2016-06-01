@@ -197,6 +197,7 @@ hr.small {
   border-radius: 3px;
   outline: none;
   box-sizing: border-box;
+  color: black;
 }
 
 .email_field {
