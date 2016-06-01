@@ -9,10 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
-
-    <title>Strolless | Less Walk More Food</title>
+    <title>Strolless | Login</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
@@ -54,14 +51,11 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="index.html">Stroll</a>
+                        <a href="index.html">Home</a>
                     </li>
                     <li>
-                        <a href="login.html">Login</a>
-                    </li>
-                    <!--<li>
                         <a href="help.html">Help</a>
-                    </li>-->
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -74,37 +68,36 @@
     <header class="intro-header" style="background-image: url('img/bg orange.png')">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <div class="page-heading">
-                        <h1>Less Walk More Food</h1>
-                        <hr class="small">
-                        <span class="subheading">Check Stroller in your location</span>
-                        <div class="standcontrol">
-                            <form action="/search/do" method="post" novalidate role="form">
-                                <div class="control">
-                                    <input id="postcode" class="search_postcode" type="text" name="postcode"
-                                    placeholder="Enter Postcode" autocomplete="true">
-                                </div>
-                                <input type="submit" value="Order" class=" button button-go" data-ft="btnSearchArea">
-                            </form>
-                        </div>
+                <div class="site-heading">
+                    <div class="standcontrol">
+                        <form action="login.php" method="post">
+                            <div style="margin-bottom:10px">
+                                <input class="email_field" aria-required="true" data-val="true" data-val-email="Please enter a valid email address" data-val-regex="Please enter a valid email address" data-val-regex-pattern="^(([^&lt;>()[\]\\.,;:\s@&quot;]+(\.[^&lt;>()[\]\\.,;:\s@&quot;]+)*)|(&quot;.+&quot;))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$"
+                                    data-val-required="Please enter your email address" id="Email" name="Email" placeholder="Email" type="email" value="" />
+                            </div>
+                            <div>
+                                <input class="password_field" aria-required="true" autocomplete="off" data-val="true" data-val-length="Please enter a password. Must be at least 4 characters long." data-val-length-max="100" data-val-length-min="4" data-val-required="Please enter a password"
+                                    id="Password" name="Password" placeholder="Password" type="password" value="" />
+                            </div>
+                            <div class="row">
+                                <input class="rememberMeCheckBox" checked="checked" id="RememberMe" name="RememberMe" type="checkbox" value="true" />
+                                <label class="rememberMeLabel" for="RememberMe">Remember me</label>
+                                <a class="forgottenPasswordLink" href="abc"><strong>Forgot password?</strong></a>
+                            </div>
+                            <div class="action">
+                                <input type="submit" value="Login" class="button button-login button-go" data-ft="btnSearchArea">
+                            </div>
+                            <strong class="rememberMeLabel">Don&#39;t have an account?
+                                <a href="signup.html" class="signup"><strong>Sign up</strong></a>
+                            </strong>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Main Content -->
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            </div>
-        </div>
-    </div>
-
-    <hr>
-
-    <!-- Footer 
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="row">
@@ -135,10 +128,11 @@
                             </a>
                         </li>
                     </ul>
+                    <p class="copyright text-muted">Copyright &copy; Your Website 2014</p>
                 </div>
             </div>
         </div>
-    </footer>-->
+    </footer>
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
