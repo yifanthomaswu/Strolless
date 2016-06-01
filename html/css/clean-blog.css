@@ -197,17 +197,6 @@ hr.small {
   border-radius: 3px;
   outline: none;
   box-sizing: border-box;
-}
-
-.password_field {
-  width: 250px;
-  height: 40px;
-  padding: 20px 10px 20px 10px;
-  border: none;
-  font-size: 14px;
-  border-radius: 3px;
-  outline: none;
-  box-sizing: border-box;
   color: black;
 }
 
