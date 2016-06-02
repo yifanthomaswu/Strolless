@@ -155,6 +155,7 @@
     <script src="js/clean-blog.min.js"></script>
 
     <script src="js/pgsql.js"></script>
+
     <script>
     function validateFormOnSubmit(form) {
         userRegister(validateRegister, form.elements[2].value, form.elements[3].value, form.elements[0].value, form.elements[1].value);
@@ -162,9 +163,9 @@
     }
 
     function validateRegister(response) {
-        document.getElementById("test").innerHTML = response;
-        if(/{"resource":\[{"u_id":/.test(response)) {
-            document.cookie="u_id";
+        var obj= JSON.parse(response);
+        if(/^[0-9]+/.test(obj.resource[0].u_id)) {
+            //createCookie('uid', obj.resource[0].u_id, 10000);
             alert("Signup successfull");
             window.location="login.html";
         } else {
