@@ -36,7 +36,7 @@
 
 <body>
 
-    
+
 
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
@@ -81,7 +81,7 @@
                     <h1>Simply sign up,</h1>
                     <h1>and start strolling!</h1>
                     <div class="standcontrol">
-                        <form action="#" onsubmit="return validateFormOnSubmit(this);" method="post">
+                        <form action="#" onsubmit="validateFormOnSubmit(this); return false;" method="post">
                             <div style="margin-bottom:10px">
                                 <input class="input-box" aria-required="true" id="Name"
                                     name="Full Name" placeholder="Full Name" type="text" value="" />
@@ -159,7 +159,6 @@
     <script>
     function validateFormOnSubmit(form) {
         userRegister(validateRegister, form.elements[2].value, form.elements[3].value, form.elements[0].value, form.elements[1].value);
-        return false;
     }
 
     function validateRegister(response) {
