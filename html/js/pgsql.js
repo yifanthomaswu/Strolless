@@ -46,12 +46,22 @@ function addAddress(callback, u_id, house_number, street_name, postcode, descrip
   xmlHttp.send(JSON.stringify({resource:resource}));
 }
 
-function getAddress(callback, u_id) {
+function getAddressByUser(callback, u_id) {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() {
     callback(xmlHttp.responseText);
   }
   var filter = "?filter=u_id%3D" + u_id;
+  xmlHttp.open("GET", URL_API + "_table/web_address" + filter + URL_API_KEY, true);
+  xmlHttp.send(null);
+}
+
+function getAddressById(callback, a_id) {
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.onreadystatechange = function() {
+    callback(xmlHttp.responseText);
+  }
+  var filter = "?filter=a_id%3D" + a_id;
   xmlHttp.open("GET", URL_API + "_table/web_address" + filter + URL_API_KEY, true);
   xmlHttp.send(null);
 }
@@ -62,5 +72,44 @@ function getRestaurant(callback, r_id) {
     callback(xmlHttp.responseText);
   }
   xmlHttp.open("GET", URL_API + "_table/web_restaurant/" + r_id + "?" + URL_API_KEY, true);
+  xmlHttp.send(null);
+}
+
+function getAllRestaurant(callback) {
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.onreadystatechange = function() {
+    callback(xmlHttp.responseText);
+  }
+  xmlHttp.open("GET", URL_API + "_table/web_restaurant?" + URL_API_KEY, true);
+  xmlHttp.send(null);
+}
+
+function addFavourite(callback, u_id, r_id) {
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.onreadystatechange = function() {
+    callback(xmlHttp.responseText);
+  }
+  var resource = {u_id:u_id, r_id:r_id};
+  xmlHttp.open("POST", URL_API + "_table/web_favourite?" + URL_API_KEY, true);
+  xmlHttp.send(JSON.stringify({resource:resource}));
+}
+
+function getFavouriteByUser(callback, u_id) {
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.onreadystatechange = function() {
+    callback(xmlHttp.responseText);
+  }
+  var filter = "?filter=u_id%3D" + u_id;
+  xmlHttp.open("GET", URL_API + "_table/web_favourite" + filter + URL_API_KEY, true);
+  xmlHttp.send(null);
+}
+
+function getFavouriteByRestaurant(callback, r_id) {
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.onreadystatechange = function() {
+    callback(xmlHttp.responseText);
+  }
+  var filter = "?filter=r_id%3D" + r_id;
+  xmlHttp.open("GET", URL_API + "_table/web_favourite" + filter + URL_API_KEY, true);
   xmlHttp.send(null);
 }
