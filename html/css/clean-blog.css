@@ -221,6 +221,17 @@ hr.small {
   cursor: pointer;
 }
 
+.password_field {
+   width: 250px;
+   height: 40px;
+   padding: 20px 10px 20px 10px;
+   border: none;
+   font-size: 14px;
+   border-radius: 3px;
+   outline: none;
+   box-sizing: border-box;
+   color: black;
+ }
 
 .forgottenPasswordLink {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
