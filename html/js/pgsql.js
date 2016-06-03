@@ -26,9 +26,7 @@ function userLogin(callback, email, password) {
   xmlHttp.onreadystatechange = function() {
     if (xmlHttp.readyState == xmlHttp.DONE && xmlHttp.status == 200) {
       console.log(xmlHttp.responseText);
-      alert(xmlHttp.responseText);
       var obj = JSON.parse(xmlHttp.responseText);
-      alert("8");
       if (password.localeCompare(obj.password) === 0) {
         callback(obj.u_id);
       } else {
