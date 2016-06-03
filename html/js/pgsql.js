@@ -139,8 +139,9 @@ function getAllStrollerNotReady(callback) {
   xmlHttp.onreadystatechange = function() {
     callback(xmlHttp.responseText);
   }
-  var filter = "?filter=ready%3Dfalse";
-  xmlHttp.open("GET", URL_API + "_table/web_stroller" + filter + URL_API_KEY, true);
+  var related = "?related=web_address_by_a_id,web_user_by_u_id,web_restaurant_by_r_id";
+  var filter = "&filter=ready%3Dfalse";
+  xmlHttp.open("GET", URL_API + "_table/web_stroller" + related + filter + URL_API_KEY, true);
   xmlHttp.send(null);
 }
 
@@ -149,8 +150,9 @@ function getStrollerById(callback, s_id) {
   xmlHttp.onreadystatechange = function() {
     callback(xmlHttp.responseText);
   }
+  var related = "?related=web_address_by_a_id,web_user_by_u_id,web_restaurant_by_r_id";
   var filter = "?filter=s_id%3D" + s_id;
-  xmlHttp.open("GET", URL_API + "_table/web_stroller" + filter + URL_API_KEY, true);
+  xmlHttp.open("GET", URL_API + "_table/web_stroller" + related + filter + URL_API_KEY, true);
   xmlHttp.send(null);
 }
 
@@ -159,8 +161,9 @@ function getStrollerByUser(callback, u_id) {
   xmlHttp.onreadystatechange = function() {
     callback(xmlHttp.responseText);
   }
+  var related = "?related=web_address_by_a_id,web_user_by_u_id,web_restaurant_by_r_id";
   var filter = "?filter=u_id%3D" + u_id;
-  xmlHttp.open("GET", URL_API + "_table/web_stroller" + filter + URL_API_KEY, true);
+  xmlHttp.open("GET", URL_API + "_table/web_stroller" + related + filter + URL_API_KEY, true);
   xmlHttp.send(null);
 }
 
@@ -169,8 +172,9 @@ function getStrollerByRestaurant(callback, r_id) {
   xmlHttp.onreadystatechange = function() {
     callback(xmlHttp.responseText);
   }
+  var related = "?related=web_address_by_a_id,web_user_by_u_id,web_restaurant_by_r_id";
   var filter = "?filter=r_id%3D" + r_id;
-  xmlHttp.open("GET", URL_API + "_table/web_stroller" + filter + URL_API_KEY, true);
+  xmlHttp.open("GET", URL_API + "_table/web_stroller" + related + filter + URL_API_KEY, true);
   xmlHttp.send(null);
 }
 
