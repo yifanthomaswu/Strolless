@@ -48,6 +48,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="index.html">Strolless</a>
+                <p id="test"></p>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -71,7 +72,7 @@
                     <div class="site-heading">
                         <h1>Tell us about your stroll</h1>
                         <div class="standcontrol">    
-                            <form action="javascript:" method="post">
+                            <form action="#" onsubmit="validateFormOnSubmit(this); return false;" method="post">
                                 <div class="row control-group">
                                     <div class="form-group control">
                                         <label style="color:white">Restaurant</label>
@@ -168,6 +169,34 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="js/clean-blog.min.js"></script>
+
+    <script src="js/pgsql.js"></script>
+
+    <script>
+    function validateFormOnSubmit(form) {
+        var deadline = new Date();
+        deadline.setHours(form.elements[1].value.split(':')[0]);
+        deadline.setMinutes(form.elements[1].value.split(':')[1]);
+        var pickup = new Date();
+        pickup.setHours(form.elements[2].value.split(':')[0]);
+        pickup.setMinutes(form.elements[2].value.split(':')[1]);
+        alert(readCookie('uid'));
+        addStroller(validateStroll, readCookie('uid'), 2, 3, deadline, pickup);
+    }
+
+    function validateStroll(response) {
+        var obj= JSON.parse(response);
+        document.getElementById("test").innerHTML = readCookie('uid');
+        // if(response != 0) {
+        //    // createCookie('uid', response, 10000);
+        //     alert("Login successfull");
+        //     window.location="index.html";
+        // } else {
+        //     alert("Wrong Login");
+        //     window.location="login.html"
+        // }
+    }
+    </script>
 
 </body>
 

@@ -74,7 +74,7 @@
             <div class="row">
                 <div class="site-heading">
                     <div class="standcontrol">
-                        <form action="#" onsubmit="return validateFormOnSubmit(this);" method="post">
+                        <form action="#" onsubmit="validateFormOnSubmit(this); return false;" method="post">
                             <div style="margin-bottom:10px">
                                 <input class="input-box" aria-required="true" data-val="true" data-val-email="Please enter a valid email address" data-val-regex="Please enter a valid email address" data-val-regex-pattern="^(([^&lt;>()[\]\\.,;:\s@&quot;]+(\.[^&lt;>()[\]\\.,;:\s@&quot;]+)*)|(&quot;.+&quot;))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$"
                                     data-val-required="Please enter your email address" id="Email" name="Email" placeholder="Email" type="email" value="" />
@@ -152,14 +152,13 @@
     <script>
     function validateFormOnSubmit(form) {
         userLogin(validateLogin, form.elements[0].value, form.elements[1].value);
-        return false;
     }
 
     function validateLogin(response) {
         var obj= JSON.parse(response);
-        //document.getElementById("test").innerHTML = response;
+        //document.getElementById("test").innerHTML = readCookie(uid);
         if(response != 0) {
-            createCookie('uid', response, 10000);
+            createCookie('uid', obj, 1);
             alert("Login successfull");
             window.location="index.html";
         } else {
