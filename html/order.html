@@ -151,7 +151,7 @@
 
     <script src="js/mapSource.js"></script>
 
-    <script src="https://maps.googleapis.com/maps/api/js?callback=init" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFPZskQN3KvDgx3j333wyrDl5WnQdIznI&callback=init" async defer></script>
 
     <script src="js/pgsql.js"></script>
 
@@ -160,15 +160,10 @@
         postcode = form.postcode.value;
         getAllStrollerNotReady(sortByDistance);
     }
-
     function sortByDistance(response) {
         var obj = JSON.parse(response);
-        obj.resource.sort(function(a, b) {
-            var a2 = duration(postcode, a.web_address_by_a_id.postcode, function(val) {return val;});
-            var b2 = duration(postcode, b.web_address_by_a_id.postcode, function(val) {return val;});
-            return a2-b2;
-        });
-        obj.resource.forEach(function(entry) {alert("Postcode: " + entry.web_address_by_a_id.postcode)});
+        var array = new Array();
+        //TODO sort array by duration from postcode
     }
     </script>
 
