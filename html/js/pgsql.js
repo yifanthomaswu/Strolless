@@ -143,7 +143,7 @@ function getAllStrollerNotReady(callback) {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() {
     callback(xmlHttp.responseText);
-  }
+  };
   var filter = "?filter=ready%3Dfalse";
   xmlHttp.open("GET", URL_API + "_table/web_stroller" + filter + URL_API_KEY, true);
   xmlHttp.send(null);
