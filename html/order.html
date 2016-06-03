@@ -80,7 +80,7 @@
                         <hr class="small">
                         <span class="subheading">Check Stroller in your location</span>
                         <div class="standcontrol">
-                            <form action="#" onsubmit="return validateFormOnSubmit(this);" method="post" role="form">
+                            <form action="#" onsubmit="validateFormOnSubmit(this); return false;" method="post" role="form">
                                 <div class="control">
                                     <input id="postcode" class="search_postcode" type="text" name="postcode"
                                     placeholder="Enter Postcode" autocomplete="true">
@@ -149,36 +149,21 @@
     <!-- Custom Theme JavaScript -->
     <script src="js/clean-blog.min.js"></script>
 
-    <script src="js/pgsql.js"></script>
-
     <script src="js/mapSource.js"></script>
 
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFPZskQN3KvDgx3j333wyrDl5WnQdIznI&callback=init" async defer></script>
+
+    <script src="js/pgsql.js"></script>
+
     <script>
-    var postcode = "";
     function validateFormOnSubmit(form) {
         postcode = form.postcode.value;
-        getAddressById(sortByDistance, getAllStrollerNotReady(giveA_ID));
+        getAllStrollerNotReady(sortByDistance);
     }
-
-    function giveA_ID(response) {
-        var obj = JSON.parse(response);
-        return obj.resources.a_id;
-    }
-
     function sortByDistance(response) {
-        if(postcode == "") {
-            alert("Error in \"sortByDistance\"");
-            return false;
-        }
         var obj = JSON.parse(response);
-        obj.resources.sort(function(a, b) {
-            var a2 = duration(postcode, a.postcode, function(val) {return val;});
-            var b2 = duration(postcode, b.postcode, function(val) {return val;});
-            return a2-b2;
-        });
-        for (r in obj.resources) {
-            alert("Postcode: " + r.postcode);
-        }
+        var array = new Array();
+        //TODO sort array by duration from postcode
     }
     </script>
 
