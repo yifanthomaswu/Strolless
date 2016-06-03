@@ -76,12 +76,10 @@
                     <div class="standcontrol">
                         <form action="#" onsubmit="validateFormOnSubmit(this); return false;" method="post">
                             <div style="margin-bottom:10px">
-                                <input class="input-box" aria-required="true" data-val="true" data-val-email="Please enter a valid email address" data-val-regex="Please enter a valid email address" data-val-regex-pattern="^(([^&lt;>()[\]\\.,;:\s@&quot;]+(\.[^&lt;>()[\]\\.,;:\s@&quot;]+)*)|(&quot;.+&quot;))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$"
-                                    data-val-required="Please enter your email address" id="Email" name="Email" placeholder="Email" type="email" value="" />
+                                <input class="input-box" required id="Email" name="Email" placeholder="Email" type="email" />
                             </div>
                             <div>
-                                <input class="input-box" aria-required="true" autocomplete="off" data-val="true" data-val-length="Please enter a password. Must be at least 4 characters long." data-val-length-max="100" data-val-length-min="4" data-val-required="Please enter a password"
-                                    id="Password" name="Password" placeholder="Password" type="password" value="" />
+                                <input class="input-box" required autocomplete="off" id="Password" name="Password" placeholder="Password" type="password" />
                             </div>
                             <div class="row">
                                 <input class="rememberMeCheckBox" checked="checked" id="RememberMe" name="RememberMe" type="checkbox" value="true" />
@@ -89,7 +87,7 @@
                                 <a class="forgottenPasswordLink" href="abc"><strong>Forgot password?</strong></a>
                             </div>
                             <div class="action">
-                                <input type="submit" value="Login" class="button button-login button-go" data-ft="btnSearchArea">
+                                <input type="submit" value="Login" class="button button-login button-go">
                             </div>
                             <strong class="rememberMeLabel">Don&#39;t have an account?
                                 <a href="signup.html" class="signup"><strong>Sign up</strong></a>
@@ -165,6 +163,11 @@
             alert("Wrong Login");
             window.location="login.html"
         }
+    }
+
+    function checkEmail(email) {
+        var regex="^(([^&lt;>()[\]\\.,;:\s@&quot;]+(\.[^&lt;>()[\]\\.,;:\s@&quot;]+)*)|(&quot;.+&quot;))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$";
+        return regex.test(email);
     }
     </script>
 

@@ -80,7 +80,7 @@
                         <hr class="small">
                         <span class="subheading">Check Stroller in your location</span>
                         <div class="standcontrol">
-                            <form action="/search/do" method="post" novalidate role="form">
+                            <form action="/search/do" onsubmit="return validateFormOnSubmit(this)" method="post" role="form">
                                 <div class="control">
                                     <input id="postcode" class="search_postcode" type="text" name="postcode"
                                     placeholder="Enter Postcode" autocomplete="true">
@@ -104,7 +104,7 @@
 
     <hr>
 
-    <!-- Footer 
+    <!-- Footer
     <footer>
         <div class="container">
             <div class="row">
@@ -148,6 +148,12 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="js/clean-blog.min.js"></script>
+
+    <script>
+    function validateFormOnSubmit(form) {
+        
+    }
+    </script>
 
 </body>
 
