@@ -74,7 +74,7 @@
             <div class="row">
                 <div class="site-heading">
                     <div class="standcontrol">
-                        <form action="#" onsubmit="return validateFormOnSubmit(this);" method="post">
+                        <form action="#" onsubmit="validateFormOnSubmit(this); return false;" method="post">
                             <div style="margin-bottom:10px">
                                 <input class="input-box" required id="Email" name="Email" placeholder="Email" type="email" />
                             </div>
@@ -149,16 +149,15 @@
 
     <script>
     function validateFormOnSubmit(form) {
-        userLogin(validateLogin, form.Email.value, form.Password.value);
-        //return true;
+        userLogin(validateLogin, form.elements[0].value, form.elements[1].value);
     }
 
     function validateLogin(response) {
         var obj= JSON.parse(response);
-        //document.getElementById("test").innerHTML = response;
+        //document.getElementById("test").innerHTML = readCookie(uid);
         if(response != 0) {
-            createCookie('uid', response, 10000);
-            alert("Login successful");
+            createCookie('uid', obj, 1);
+            alert("Login successfull");
             window.location="index.html";
         } else {
             alert("Wrong Login");
