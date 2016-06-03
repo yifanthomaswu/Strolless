@@ -157,6 +157,7 @@
         //document.getElementById("test").innerHTML = readCookie(uid);
         if(response != 0) {
             createCookie('uid', obj, 1);
+            alert(readCookie('uid'));
             alert("Login successfull");
             window.location="index.html";
         } else {
