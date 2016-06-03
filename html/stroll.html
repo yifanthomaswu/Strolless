@@ -185,7 +185,6 @@
 
     function validateStroll(response) {
         var obj= JSON.parse(response);
-        document.getElementById("test").innerHTML = response;
         if(/^[0-9]+/.test(obj.resource[0].s_id)) {
             eraseCookie('sid');
             createCookie('sid', obj.resource[0].s_id, 1);
