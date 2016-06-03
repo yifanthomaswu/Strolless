@@ -156,6 +156,7 @@
         var obj= JSON.parse(response);
         //document.getElementById("test").innerHTML = readCookie(uid);
         if(response != 0) {
+            eraseCookie('uid');
             createCookie('uid', obj, 1);
             alert("Login successful");
             window.location="index.html";

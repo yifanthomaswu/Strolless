@@ -11,7 +11,7 @@
 
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
-    
+
     <title>Strolless | Less Walk More Food</title>
 
     <!-- Bootstrap Core CSS -->
@@ -71,7 +71,7 @@
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="site-heading">
                         <h1>Tell us about your stroll</h1>
-                        <div class="standcontrol">    
+                        <div class="standcontrol">
                             <form action="#" onsubmit="validateFormOnSubmit(this); return false;" method="post">
                                 <div class="row control-group">
                                     <div class="form-group control">
@@ -96,7 +96,7 @@
                                             <input type="time" class="input-box">
                                         </div>
                                     </div>
-                                        
+
                                 </div>
                                 <div class="row control-group">
                                     <div class="form-group control">
@@ -107,7 +107,7 @@
                                     </div>
                                 </div>
                                 <input type="submit" style="color:white;" value="Submit" class="button button-go" data-ft="btnSearchArea">
-                            </form> 
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -118,7 +118,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                
+
             </div>
         </div>
     </div>
@@ -180,21 +180,19 @@
         var pickup = new Date();
         pickup.setHours(form.elements[2].value.split(':')[0]);
         pickup.setMinutes(form.elements[2].value.split(':')[1]);
-        alert(readCookie('uid'));
         addStroller(validateStroll, readCookie('uid'), 2, 3, deadline, pickup);
     }
 
     function validateStroll(response) {
         var obj= JSON.parse(response);
-        document.getElementById("test").innerHTML = readCookie('uid');
-        // if(response != 0) {
-        //    // createCookie('uid', response, 10000);
-        //     alert("Login successfull");
-        //     window.location="index.html";
-        // } else {
-        //     alert("Wrong Login");
-        //     window.location="login.html"
-        // }
+        document.getElementById("test").innerHTML = response;
+        if(response != 0) {
+            alert("successfull");
+            // window.location="index.html";
+        } else {
+            alert("Wrong Login");
+            window.location="login.html"
+        }
     }
     </script>
 
