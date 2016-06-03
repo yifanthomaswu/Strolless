@@ -175,10 +175,10 @@
     <script>
     function validateFormOnSubmit(form) {
         var deadline = new Date();
-        deadline.setHours(form.elements[1].value.split(':')[0]);
+        deadline.setUTCHours(form.elements[1].value.split(':')[0]);
         deadline.setMinutes(form.elements[1].value.split(':')[1]);
         var pickup = new Date();
-        pickup.setHours(form.elements[2].value.split(':')[0]);
+        pickup.setUTCHours(form.elements[2].value.split(':')[0]);
         pickup.setMinutes(form.elements[2].value.split(':')[1]);
         addStroller(validateStroll, readCookie('uid'), 2, 3, deadline, pickup);
     }

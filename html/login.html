@@ -154,7 +154,7 @@
 
     function validateLogin(response) {
         var obj= JSON.parse(response);
-        //document.getElementById("test").innerHTML = readCookie(uid);
+        // document.getElementById("test").innerHTML = response;
         if(response != 0) {
             eraseCookie('uid');
             createCookie('uid', obj, 1);
