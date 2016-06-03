@@ -11,7 +11,7 @@
 
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
-
+    
     <title>Strolless | Less Walk More Food</title>
 
     <!-- Bootstrap Core CSS -->
@@ -70,44 +70,11 @@
         <div class="container">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="site-heading">
-                        <h1>Tell us about your stroll</h1>
-                        <div class="standcontrol">
+                        <h1>Press Ready to let the Patron know</h1>
+                        <div class="standcontrol">    
                             <form action="#" onsubmit="validateFormOnSubmit(this); return false;" method="post">
-                                <div class="row control-group">
-                                    <div class="form-group control">
-                                        <label style="color:white">Restaurant</label>
-                                        <div>
-                                            <input type="text" class="input-box">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row control-group">
-                                    <div class="form-group control">
-                                        <label style="color:white">Order Deadline</label>
-                                        <div>
-                                            <input type="time" class="input-box">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row control-group">
-                                    <div class="form-group control">
-                                        <label style="color:white">Pick Up Time</label>
-                                        <div>
-                                            <input type="time" class="input-box">
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="row control-group">
-                                    <div class="form-group control">
-                                        <label style="color:white">Postcode</label>
-                                        <div>
-                                            <input type="text" class="search_postcode">
-                                        </div>
-                                    </div>
-                                </div>
-                                <input type="submit" style="color:white;" value="Submit" class="button button-go" data-ft="btnSearchArea">
-                            </form>
+                                <input type="submit" style="color:white;" value="Ready" class="button button-go" data-ft="btnSearchArea">
+                            </form> 
                         </div>
                     </div>
                 </div>
@@ -118,7 +85,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-
+                
             </div>
         </div>
     </div>
@@ -174,26 +141,11 @@
 
     <script>
     function validateFormOnSubmit(form) {
-        var deadline = new Date();
-        deadline.setUTCHours(form.elements[1].value.split(':')[0]);
-        deadline.setMinutes(form.elements[1].value.split(':')[1]);
-        var pickup = new Date();
-        pickup.setUTCHours(form.elements[2].value.split(':')[0]);
-        pickup.setMinutes(form.elements[2].value.split(':')[1]);
-        addStroller(validateStroll, readCookie('uid'), 2, 3, deadline, pickup);
+        setStrollerReady(validateStroll, readCookie('sid'));
     }
 
     function validateStroll(response) {
-        var obj= JSON.parse(response);
-        document.getElementById("test").innerHTML = response;
-        if(/^[0-9]+/.test(obj.resource[0].s_id)) {
-            eraseCookie('sid');
-            createCookie('sid', obj.resource[0].s_id, 1);
-            alert("successfull");
-            window.location="ready.html";
-        } else {
-            alert("error");
-            window.location="stroll.html"
+        alert("Thanks for informing");
         }
     }
     </script>
