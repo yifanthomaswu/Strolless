@@ -48,7 +48,6 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="index.html">Strolless</a>
-                <p id="test"></p>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -164,15 +163,12 @@
 
     function sortByDistance(response) {
         var obj = JSON.parse(response);
-        //document.getElementById("test").innerHTML = response;
         obj.resource.sort(function(a, b) {
             var a2 = duration(postcode, a.web_address_by_a_id.postcode, function(val) {return val;});
             var b2 = duration(postcode, b.web_address_by_a_id.postcode, function(val) {return val;});
             return a2-b2;
         });
-        //foreach (var r in obj.resource) {
-            obj.resource.forEach(function(entry) {alert("Postcode: " + entry.web_address_by_a_id.postcode)});
-        //}
+        obj.resource.forEach(function(entry) {alert("Postcode: " + entry.web_address_by_a_id.postcode)});
     }
     </script>
 
