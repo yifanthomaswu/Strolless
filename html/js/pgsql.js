@@ -5,7 +5,8 @@ var HTTP_OK = 200;
 function getUserDetail(callback, u_id) {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() {
-    if (xmlHttp.readyState == xmlHttp.DONE && xmlHttp.status == HTTP_OK) {
+    console.log(xmlHttp.responseText);
+    if (xmlHttp.readyState == XMLHttpRequest.DONE && xmlHttp.status == HTTP_OK) {
       callback(xmlHttp.responseText);
     }
   };
@@ -17,7 +18,8 @@ function getUserDetail(callback, u_id) {
 function userRegister(callback, email, password, name, phone) {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() {
-    if (xmlHttp.readyState == xmlHttp.DONE && xmlHttp.status == HTTP_OK) {
+    console.log(xmlHttp.responseText);
+    if (xmlHttp.readyState == XMLHttpRequest.DONE && xmlHttp.status == HTTP_OK) {
       callback(xmlHttp.responseText);
     }
   };
@@ -29,7 +31,7 @@ function userRegister(callback, email, password, name, phone) {
 function userLogin(callback, email, password) {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() {
-    if (xmlHttp.readyState == xmlHttp.DONE && xmlHttp.status == HTTP_OK) {
+    if (xmlHttp.readyState == XMLHttpRequest.DONE && xmlHttp.status == HTTP_OK) {
       console.log(xmlHttp.responseText);
       var obj = JSON.parse(xmlHttp.responseText);
       if (password.localeCompare(obj.password) === 0) {
@@ -47,7 +49,8 @@ function userLogin(callback, email, password) {
 function addAddress(callback, u_id, house_number, street_name, postcode, description) {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() {
-    if (xmlHttp.readyState == xmlHttp.DONE && xmlHttp.status == HTTP_OK) {
+    console.log(xmlHttp.responseText);
+    if (xmlHttp.readyState == XMLHttpRequest.DONE && xmlHttp.status == HTTP_OK) {
       callback(xmlHttp.responseText);
     }
   };
@@ -59,7 +62,8 @@ function addAddress(callback, u_id, house_number, street_name, postcode, descrip
 function getAddressById(callback, a_id) {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() {
-    if (xmlHttp.readyState == xmlHttp.DONE && xmlHttp.status == HTTP_OK) {
+    console.log(xmlHttp.responseText);
+    if (xmlHttp.readyState == XMLHttpRequest.DONE && xmlHttp.status == HTTP_OK) {
       callback(xmlHttp.responseText);
     }
   };
@@ -71,7 +75,8 @@ function getAddressById(callback, a_id) {
 function getAddressByUser(callback, u_id) {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() {
-    if (xmlHttp.readyState == xmlHttp.DONE && xmlHttp.status == HTTP_OK) {
+    console.log(xmlHttp.responseText);
+    if (xmlHttp.readyState == XMLHttpRequest.DONE && xmlHttp.status == HTTP_OK) {
       callback(xmlHttp.responseText);
     }
   };
@@ -83,7 +88,8 @@ function getAddressByUser(callback, u_id) {
 function getRestaurantById(callback, r_id) {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() {
-    if (xmlHttp.readyState == xmlHttp.DONE && xmlHttp.status == HTTP_OK) {
+    console.log(xmlHttp.responseText);
+    if (xmlHttp.readyState == XMLHttpRequest.DONE && xmlHttp.status == HTTP_OK) {
       callback(xmlHttp.responseText);
     }
   };
@@ -94,7 +100,8 @@ function getRestaurantById(callback, r_id) {
 function getAllRestaurant(callback) {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() {
-    if (xmlHttp.readyState == xmlHttp.DONE && xmlHttp.status == HTTP_OK) {
+    console.log(xmlHttp.responseText);
+    if (xmlHttp.readyState == XMLHttpRequest.DONE && xmlHttp.status == HTTP_OK) {
       callback(xmlHttp.responseText);
     }
   };
@@ -105,7 +112,8 @@ function getAllRestaurant(callback) {
 function addFavourite(callback, u_id, r_id) {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() {
-    if (xmlHttp.readyState == xmlHttp.DONE && xmlHttp.status == HTTP_OK) {
+    console.log(xmlHttp.responseText);
+    if (xmlHttp.readyState == XMLHttpRequest.DONE && xmlHttp.status == HTTP_OK) {
       callback(xmlHttp.responseText);
     }
   };
@@ -117,7 +125,8 @@ function addFavourite(callback, u_id, r_id) {
 function getFavouriteByUser(callback, u_id) {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() {
-    if (xmlHttp.readyState == xmlHttp.DONE && xmlHttp.status == HTTP_OK) {
+    console.log(xmlHttp.responseText);
+    if (xmlHttp.readyState == XMLHttpRequest.DONE && xmlHttp.status == HTTP_OK) {
       callback(xmlHttp.responseText);
     }
   };
@@ -129,7 +138,8 @@ function getFavouriteByUser(callback, u_id) {
 function getFavouriteByRestaurant(callback, r_id) {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() {
-    if (xmlHttp.readyState == xmlHttp.DONE && xmlHttp.status == HTTP_OK) {
+    console.log(xmlHttp.responseText);
+    if (xmlHttp.readyState == XMLHttpRequest.DONE && xmlHttp.status == HTTP_OK) {
       callback(xmlHttp.responseText);
     }
   };
@@ -141,7 +151,8 @@ function getFavouriteByRestaurant(callback, r_id) {
 function addStroller(callback, u_id, a_id, r_id, deadline, pickup) {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() {
-    if (xmlHttp.readyState == xmlHttp.DONE && xmlHttp.status == HTTP_OK) {
+    console.log(xmlHttp.responseText);
+    if (xmlHttp.readyState == XMLHttpRequest.DONE && xmlHttp.status == HTTP_OK) {
       callback(xmlHttp.responseText);
     }
   };
@@ -153,7 +164,8 @@ function addStroller(callback, u_id, a_id, r_id, deadline, pickup) {
 function setStrollerReady(callback, s_id) {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() {
-    if (xmlHttp.readyState == xmlHttp.DONE && xmlHttp.status == HTTP_OK) {
+    console.log(xmlHttp.responseText);
+    if (xmlHttp.readyState == XMLHttpRequest.DONE && xmlHttp.status == HTTP_OK) {
       callback(xmlHttp.responseText);
     }
   };
@@ -165,7 +177,8 @@ function setStrollerReady(callback, s_id) {
 function getAllStrollerNotReady(callback) {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() {
-    if (xmlHttp.readyState == xmlHttp.DONE && xmlHttp.status == HTTP_OK) {
+    console.log(xmlHttp.responseText);
+    if (xmlHttp.readyState == XMLHttpRequest.DONE && xmlHttp.status == HTTP_OK) {
       callback(xmlHttp.responseText);
     }
   };
@@ -178,7 +191,8 @@ function getAllStrollerNotReady(callback) {
 function getStrollerById(callback, s_id) {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() {
-    if (xmlHttp.readyState == xmlHttp.DONE && xmlHttp.status == HTTP_OK) {
+    console.log(xmlHttp.responseText);
+    if (xmlHttp.readyState == XMLHttpRequest.DONE && xmlHttp.status == HTTP_OK) {
       callback(xmlHttp.responseText);
     }
   };
@@ -191,7 +205,8 @@ function getStrollerById(callback, s_id) {
 function getStrollerByUser(callback, u_id) {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() {
-    if (xmlHttp.readyState == xmlHttp.DONE && xmlHttp.status == HTTP_OK) {
+    console.log(xmlHttp.responseText);
+    if (xmlHttp.readyState == XMLHttpRequest.DONE && xmlHttp.status == HTTP_OK) {
       callback(xmlHttp.responseText);
     }
   };
@@ -204,7 +219,8 @@ function getStrollerByUser(callback, u_id) {
 function getStrollerByRestaurant(callback, r_id) {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() {
-    if (xmlHttp.readyState == xmlHttp.DONE && xmlHttp.status == HTTP_OK) {
+    console.log(xmlHttp.responseText);
+    if (xmlHttp.readyState == XMLHttpRequest.DONE && xmlHttp.status == HTTP_OK) {
       callback(xmlHttp.responseText);
     }
   };
@@ -217,7 +233,8 @@ function getStrollerByRestaurant(callback, r_id) {
 function addOrder(callback, u_id, s_id, food) {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() {
-    if (xmlHttp.readyState == xmlHttp.DONE && xmlHttp.status == HTTP_OK) {
+    console.log(xmlHttp.responseText);
+    if (xmlHttp.readyState == XMLHttpRequest.DONE && xmlHttp.status == HTTP_OK) {
       callback(xmlHttp.responseText);
     }
   };
@@ -229,7 +246,8 @@ function addOrder(callback, u_id, s_id, food) {
 function getOrderById(callback, u_id, s_id) {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() {
-    if (xmlHttp.readyState == xmlHttp.DONE && xmlHttp.status == HTTP_OK) {
+    console.log(xmlHttp.responseText);
+    if (xmlHttp.readyState == XMLHttpRequest.DONE && xmlHttp.status == HTTP_OK) {
       callback(xmlHttp.responseText);
     }
   };
@@ -241,7 +259,8 @@ function getOrderById(callback, u_id, s_id) {
 function getOrderByUser(callback, u_id) {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() {
-    if (xmlHttp.readyState == xmlHttp.DONE && xmlHttp.status == HTTP_OK) {
+    console.log(xmlHttp.responseText);
+    if (xmlHttp.readyState == XMLHttpRequest.DONE && xmlHttp.status == HTTP_OK) {
       callback(xmlHttp.responseText);
     }
   };
@@ -253,7 +272,8 @@ function getOrderByUser(callback, u_id) {
 function getOrderByStroller(callback, s_id) {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() {
-    if (xmlHttp.readyState == xmlHttp.DONE && xmlHttp.status == HTTP_OK) {
+    console.log(xmlHttp.responseText);
+    if (xmlHttp.readyState == XMLHttpRequest.DONE && xmlHttp.status == HTTP_OK) {
       callback(xmlHttp.responseText);
     }
   };
