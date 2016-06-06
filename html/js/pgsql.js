@@ -197,7 +197,7 @@ function getStrollerById(callback, s_id) {
     }
   };
   var related = "?related=web_address_by_a_id,web_user_by_u_id,web_restaurant_by_r_id";
-  var filter = "?filter=s_id%3D" + s_id;
+  var filter = "&filter=s_id%3D" + s_id;
   xmlHttp.open("GET", URL_API + "_table/web_stroller" + related + filter + URL_API_KEY, true);
   xmlHttp.send(null);
 }
@@ -211,7 +211,7 @@ function getStrollerByUser(callback, u_id) {
     }
   };
   var related = "?related=web_address_by_a_id,web_user_by_u_id,web_restaurant_by_r_id";
-  var filter = "?filter=u_id%3D" + u_id;
+  var filter = "&filter=u_id%3D" + u_id;
   xmlHttp.open("GET", URL_API + "_table/web_stroller" + related + filter + URL_API_KEY, true);
   xmlHttp.send(null);
 }
@@ -225,7 +225,7 @@ function getStrollerByRestaurant(callback, r_id) {
     }
   };
   var related = "?related=web_address_by_a_id,web_user_by_u_id,web_restaurant_by_r_id";
-  var filter = "?filter=r_id%3D" + r_id;
+  var filter = "&filter=r_id%3D" + r_id;
   xmlHttp.open("GET", URL_API + "_table/web_stroller" + related + filter + URL_API_KEY, true);
   xmlHttp.send(null);
 }
