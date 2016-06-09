@@ -82,7 +82,7 @@
                                 <label class="rememberMeLabel" for="RememberMe">Remember me</label>
                                 <input class="rememberMeCheckBox" checked="checked" id="RememberMe" name="RememberMe" type="checkbox" value="true" />
                             </div>
-                                <a class="forgottenPasswordLink" href="abc"><strong>Forgot password?</strong></a>
+                                <a href='#' id="forgotPass" class="forgottenPasswordLink"><strong>Forgot password?</strong></a>
                             <div class="action">
                                 <input type="submit" value="Login" class="button button-login button-go">
                             </div>
@@ -95,6 +95,30 @@
             </div>
         </div>
     </header>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times</span>
+      <h2>Reset Password</h2>
+    </div>
+    <div class="modal-body">
+      <p>Enter your email address to reset your password:</p>
+      <div style="margin-bottom:25px">
+		  <input class="input-box" required autocomplete="off" id="ResetPassword" name="Email" placeholder="Email" type="email" />
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="action">
+		  <input id="ResetButton" type="submit" value="Reset Password" class="button button-login button-go">
+      </div>
+    </div>
+  </div>
+
+</div>
 
     <!-- Footer -->
     <footer>
@@ -175,6 +199,41 @@
         return regex.test(email);
     }
     </script>
+    
+    <script>
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the link that opens the modal
+var lin = document.getElementById('forgotPass');
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the link, open the modal 
+lin.onclick = foo;
+
+function foo() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+var button = document.getElementById('ResetButton');
+button.onclick = function () {
+	var email = document.getElementById('ResetPassword').value;
+	alert("'" + email + "'");
+}
+</script>
 
 
 </body>
