@@ -80,7 +80,7 @@
                 <div class="site-heading">
                     <h1>Orders</h1>
                     <div class="standcontrol">
-
+                        <div id="w"><div>
                     </div>
                 </div>
             </div>
@@ -148,17 +148,17 @@
             var para = document.createElement("P");
             var t = document.createTextNode("Name" + obj.resource[i].web_user_by_u_id.name);
             para.appendChild(t);
-            document.getElementById("standcontrol").appendChild(para);
+            document.getElementById("w").appendChild(para);
 
             var para = document.createElement("P");
             var t = document.createTextNode("Phone" + obj.resource[i].web_user_by_u_id.phone);
             para.appendChild(t);
-            document.getElementById("standcontrol").appendChild(para);
+            document.getElementById("w").appendChild(para);
 
             var para = document.createElement("P");
-            var t = document.createTextNode("food" + obj.resource[i].food);
+            var t = document.createTextNode("Food" + obj.resource[i].food);
             para.appendChild(t);
-            document.getElementById("standcontrol").appendChild(para);
+            document.getElementById("w").appendChild(para);
         };
     }
 
