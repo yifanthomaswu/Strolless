@@ -101,7 +101,7 @@
       </section>
 
       <section id="address" class="hidden">
-        <form action="#" onsubmit="validateFormOnSubmit(this); return false;" method="post">
+        <form action="#address" onsubmit="validateFormOnSubmit(this); return false;" method="post">
             <div class="row control-group">
                 <div class="form-group control">
                     <label style="color:white">House number</label>
@@ -287,6 +287,7 @@
     }
 
     function validateStroll(response) {
+        window.location="user-profile.html#stroll";
         alert("Thanks for informing");
     }
 
