@@ -57,7 +57,7 @@
                         <a href="index.html">Stroll</a>
                     </li>
                     <li>
-                        <a href="login.html">Login</a>
+                        <a href="login.html" id="homepageLogin">Login</a>
                     </li>
                     <!--<li>
                         <a href="help.html">Help</a>
@@ -156,6 +156,12 @@
     <script src="js/pgsql.js"></script>
 
     <script>
+    var uid = readCookie('uid');
+    if(uid != "") {
+        document.getElementById("homepageLogin").href = "profile.html";
+        document.getElementById("homepageLogin").innerHTML = "Profile";
+    }
+
     function validateFormOnSubmit(form) {
         var postcode = form.postcode.value;
         getAllStrollerNotReady(function(response) {

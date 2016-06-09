@@ -12,7 +12,7 @@
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
 
-    <title>Strolless | Less Walk More Food</title>
+    <title>Strolless | Login</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
@@ -22,8 +22,8 @@
 
     <!-- Custom Fonts -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -51,13 +51,16 @@
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="contact.html">Help</a>
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="help.html">Help</a>
                     </li>
                 </ul>
-            </div>-->
+            </div>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
@@ -67,64 +70,36 @@
     <!-- Set your background image for this header on the line below. -->
     <header class="intro-header" style="background-image: url('img/bg orange.png')">
         <div class="container">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <div class="site-heading">
-                        <h1>Tell us about your stroll</h1>
-                        <div class="standcontrol">
-                            <form action="#" onsubmit="validateFormOnSubmit(this); return false;" method="post">
-                                <div class="row control-group">
-                                    <div class="form-group control">
-                                        <label style="color:white">Restaurant</label>
-                                        <div>
-                                            <input type="text" class="input-box">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row control-group">
-                                    <div class="form-group control">
-                                        <label style="color:white">Order Deadline</label>
-                                        <div>
-                                            <input type="time" class="input-box">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row control-group">
-                                    <div class="form-group control">
-                                        <label style="color:white">Pick Up Time</label>
-                                        <div>
-                                            <input type="time" class="input-box">
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="row control-group">
-                                    <div class="form-group control">
-                                        <label style="color:white">Postcode</label>
-                                        <div>
-                                            <input type="text" class="search_postcode">
-                                        </div>
-                                    </div>
-                                </div>
-                                <input type="submit" style="color:white;" value="Submit" class="button button-go" data-ft="btnSearchArea">
-                            </form>
-                        </div>
+            <div class="row">
+                <div class="site-heading">
+                    <h1>Login before you can Stroll</h1>
+                    <div class="standcontrol">
+                        <form action="#" onsubmit="validateFormOnSubmit(this); return false;" method="post">
+                            <div style="margin-bottom:10px">
+                                <input class="input-box" required id="Email" name="Email" placeholder="Email" type="email" />
+                            </div>
+                            <div>
+                                <input class="input-box" required autocomplete="off" id="Password" name="Password" placeholder="Password" type="password" />
+                            </div>
+                            <div class="row">
+                                <label class="rememberMeLabel" for="RememberMe">Remember me</label>
+                                <input class="rememberMeCheckBox" checked="checked" id="RememberMe" name="RememberMe" type="checkbox" value="true" />
+                            </div>
+                                <a class="forgottenPasswordLink" href="abc"><strong>Forgot password?</strong></a>
+                            <div class="action">
+                                <input type="submit" value="Login" class="button button-login button-go">
+                            </div>
+                            <strong class="rememberMeLabel">Don&#39;t have an account?
+                                <a href="signup.html" class="signup"><strong>Sign up</strong></a>
+                            </strong>
+                        </form>
                     </div>
                 </div>
             </div>
+        </div>
     </header>
 
-    <!-- Main Content -->
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-
-            </div>
-        </div>
-    </div>
-
-    <hr>
-
-    <!-- Footer
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="row">
@@ -155,10 +130,11 @@
                             </a>
                         </li>
                     </ul>
+                    <p class="copyright text-muted">Copyright &copy; Your Website 2014</p>
                 </div>
             </div>
         </div>
-    </footer>-->
+    </footer>
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
@@ -173,28 +149,31 @@
 
     <script>
     function validateFormOnSubmit(form) {
-        var deadline = new Date();
-        deadline.setUTCHours(form.elements[1].value.split(':')[0]);
-        deadline.setMinutes(form.elements[1].value.split(':')[1]);
-        var pickup = new Date();
-        pickup.setUTCHours(form.elements[2].value.split(':')[0]);
-        pickup.setMinutes(form.elements[2].value.split(':')[1]);
-        addStroller(validateStroll, readCookie('uid'), 2, 3, deadline, pickup);
+        userLogin(validateLogin, form.elements[0].value, form.elements[1].value);
     }
 
-    function validateStroll(response) {
+    function validateLogin(response) {
         var obj= JSON.parse(response);
-        if(/^[0-9]+/.test(obj.resource[0].s_id)) {
-            eraseCookie('sid');
-            createCookie('sid', obj.resource[0].s_id, 1);
-            alert("successfull");
-            window.location="ready.html";
+        // document.getElementById("test").innerHTML = response;
+        if(response != 0) {
+            eraseCookie('uid');
+            createCookie('uid', obj, 1);
+            alert("Login successful");
+            window.location="stroll.html";
+            document.getElementById("homepageLogin").href = "profile.html";
+            document.getElementById("homepageLogin").innerHTML = "Profile";
         } else {
-            alert("error");
-            window.location="stroll.html"
+            alert("Wrong Login");
+            window.location="login-stroll.html"
         }
     }
+
+    function checkEmail(email) {
+        var regex="^(([^&lt;>()[\]\\.,;:\s@&quot;]+(\.[^&lt;>()[\]\\.,;:\s@&quot;]+)*)|(&quot;.+&quot;))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$";
+        return regex.test(email);
+    }
     </script>
+
 
 </body>
 
