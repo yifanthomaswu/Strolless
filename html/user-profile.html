@@ -93,7 +93,7 @@
       </nav>
 
       <section id="info">
-        <p id="email"><span>E-mail Address: </span></p>
+        <p id="email"><span>E-mail: </span></p>
 
         <p id="name"><span>Name: </span></p>
 
@@ -206,9 +206,9 @@
     getUserDetail(displayInfo, readCookie('uid'));
     function displayInfo(response) {
         var obj= JSON.parse(response);
-        document.getElementById("email").innerHTML = "<span>E-mail Address</span>" + obj.email;
+        document.getElementById("email").innerHTML = "<span>E-mail</span>" + obj.email;
         document.getElementById("name").innerHTML = "<span>Name</span>" + obj.name;
-        document.getElementById("phone").innerHTML = "<span>E-mail Address</span>" + obj.phone;
+        document.getElementById("phone").innerHTML = "<span>Phone</span>" + obj.phone;
     }
 
     getAddressByUser(displayAddress, readCookie('uid'));
