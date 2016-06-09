@@ -258,12 +258,12 @@
             document.getElementById("stroll").appendChild(para);
 
             var para = document.createElement("P");
-            var t = document.createTextNode("Order Deadline" + obj.resource[i].deadline);
+            var t = document.createTextNode("Order Deadline" + obj.resource[i].deadline.slice(0, -3));
             para.appendChild(t);
             document.getElementById("stroll").appendChild(para);
 
             var para = document.createElement("P");
-            var t = document.createTextNode("Pick Up Time" + obj.resource[i].pickup);
+            var t = document.createTextNode("Pick Up Time" + obj.resource[i].pickup.slice(0, -3));
             para.appendChild(t);
             document.getElementById("stroll").appendChild(para);
 
@@ -271,6 +271,34 @@
             var t = document.createTextNode("Ready"+ obj.resource[i].ready);
             para.appendChild(t);
             document.getElementById("stroll").appendChild(para);
+        };
+    }
+
+    getOrderByUser(displayOrder, readCookie('uid'));
+    function displayOrder(response) {
+        var obj= JSON.parse(response);
+        for (var i = 0; i < obj.resource.length; i++) {
+            getRestaurantById(function(response) {
+                var para = document.createElement("P");
+                var t = document.createTextNode("Restaurant" + JSON.parse(response).name);
+                para.appendChild(t);
+                document.getElementById("order").appendChild(para);
+            }, obj.resource[i].web_stroller_by_s_id.r_id);
+
+            var para = document.createElement("P");
+            var t = document.createTextNode("Food" + obj.resource[i].food);
+            para.appendChild(t);
+            document.getElementById("order").appendChild(para);
+
+            var para = document.createElement("P");
+            var t = document.createTextNode("Pick Up Time" + obj.resource[i].web_stroller_by_s_id.pickup.slice(0, -3));
+            para.appendChild(t);
+            document.getElementById("order").appendChild(para);
+
+            var para = document.createElement("P");
+            var t = document.createTextNode("Ready"+ obj.resource[i].web_stroller_by_s_id.ready);
+            para.appendChild(t);
+            document.getElementById("order").appendChild(para);
         };
     }
 
