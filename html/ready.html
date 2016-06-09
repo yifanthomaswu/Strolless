@@ -140,11 +140,16 @@
     <script src="js/pgsql.js"></script>
 
     <script>
+    var sid = readCookie('sid');
+    if (sid == null) {
+        window.location="index.html";
+    };
     function validateFormOnSubmit(form) {
-        setStrollerReady(validateStroll, readCookie('sid'));
+        setStrollerReady(validateStroll, sid);
     }
 
     function validateStroll(response) {
+        eraseCookie('sid');
         alert("Thanks for informing");
     }
     </script>

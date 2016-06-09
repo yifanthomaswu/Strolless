@@ -101,7 +101,7 @@
       </section>
 
       <section id="address" class="hidden">
-        <form action="#" onsubmit="validateFormOnSubmit(this); return false;" method="post">
+        <form action="#address" onsubmit="validateFormOnSubmit(this); return false;" method="post">
             <div class="row control-group">
                 <div class="form-group control">
                     <label style="color:white">House number</label>
@@ -203,7 +203,11 @@
     <script src="js/pgsql.js"></script>
 
     <script>
-    getUserDetail(displayInfo, readCookie('uid'));
+    var uid = readCookie('uid');
+    if (uid == null) {
+        window.location="index.html";
+    };
+    getUserDetail(displayInfo, uid);
     function displayInfo(response) {
         var obj= JSON.parse(response);
         document.getElementById("email").innerHTML = "<span>E-mail</span>" + obj.email;
@@ -211,7 +215,7 @@
         document.getElementById("phone").innerHTML = "<span>Phone</span>" + obj.phone;
     }
 
-    getAddressByUser(displayAddress, readCookie('uid'));
+    getAddressByUser(displayAddress, uid);
     function displayAddress(response) {
         var obj= JSON.parse(response);
         for (var i = 0; i < obj.resource.length; i++) {
@@ -237,7 +241,7 @@
         };
     }
     function validateFormOnSubmit(form) {
-        addAddress(validateAddress, readCookie('uid'), form.elements[0].value, form.elements[1].value, form.elements[2].value, form.elements[3].value);
+        addAddress(validateAddress, uid, form.elements[0].value, form.elements[1].value, form.elements[2].value, form.elements[3].value);
     }
     function validateAddress(response) {
         var obj= JSON.parse(response);
@@ -248,7 +252,7 @@
         }
     }
 
-    getStrollerByUser(displayStroll, readCookie('uid'));
+    getStrollerByUser(displayStroll, uid);
     function displayStroll(response) {
         var obj= JSON.parse(response);
         for (var i = 0; i < obj.resource.length; i++) {
@@ -268,13 +272,45 @@
             document.getElementById("stroll").appendChild(para);
 
             var para = document.createElement("P");
-            var t = document.createTextNode("Ready"+ obj.resource[i].ready);
+            var t = document.createTextNode("House number" + obj.resource[i].web_address_by_a_id.house_number);
             para.appendChild(t);
             document.getElementById("stroll").appendChild(para);
+
+            var para = document.createElement("P");
+            var t = document.createTextNode("Street name" + obj.resource[i].web_address_by_a_id.street_name);
+            para.appendChild(t);
+            document.getElementById("stroll").appendChild(para);
+
+            var para = document.createElement("P");
+            var t = document.createTextNode("Postcode" + obj.resource[i].web_address_by_a_id.postcode);
+            para.appendChild(t);
+            document.getElementById("stroll").appendChild(para);
+
+            var para = document.createElement("P");
+            var t = document.createTextNode("Description"+ obj.resource[i].web_address_by_a_id.description);
+            para.appendChild(t);
+            document.getElementById("stroll").appendChild(para);
+
+            if (!obj.resource[i].ready) {
+                var btn = document.createElement("BUTTON");
+                var att = document.createAttribute("value");
+                att.value = obj.resource[i].s_id;
+                btn.setAttributeNode(att);
+                btn.onclick = function() {
+                    setStrollerReady(validateStroll, this.value);
+                };
+                var t = document.createTextNode("Ready");
+                btn.appendChild(t);
+                document.getElementById("stroll").appendChild(btn);
+            };
         };
     }
 
-    getOrderByUser(displayOrder, readCookie('uid'));
+    function validateStroll(response) {
+        alert("Thanks for informing");
+    }
+
+    getOrderByUser(displayOrder, uid);
     function displayOrder(response) {
         var obj= JSON.parse(response);
         for (var i = 0; i < obj.resource.length; i++) {
@@ -295,10 +331,40 @@
             para.appendChild(t);
             document.getElementById("order").appendChild(para);
 
-            var para = document.createElement("P");
-            var t = document.createTextNode("Ready"+ obj.resource[i].web_stroller_by_s_id.ready);
-            para.appendChild(t);
-            document.getElementById("order").appendChild(para);
+            if (obj.resource[i].web_stroller_by_s_id.ready) {
+                var para = document.createElement("P");
+                var t = document.createTextNode("Ready!");
+                para.appendChild(t);
+                document.getElementById("order").appendChild(para);
+            } else {
+                var para = document.createElement("P");
+                var t = document.createTextNode("Not yet!");
+                para.appendChild(t);
+                document.getElementById("order").appendChild(para);
+            };
+
+            getAddressById(function(response) {
+                var obj= JSON.parse(response);
+                var para = document.createElement("P");
+                var t = document.createTextNode("House number" + obj.resource[0].house_number);
+                para.appendChild(t);
+                document.getElementById("order").appendChild(para);
+
+                var para = document.createElement("P");
+                var t = document.createTextNode("Street name" + obj.resource[0].street_name);
+                para.appendChild(t);
+                document.getElementById("order").appendChild(para);
+
+                var para = document.createElement("P");
+                var t = document.createTextNode("Postcode" + obj.resource[0].postcode);
+                para.appendChild(t);
+                document.getElementById("order").appendChild(para);
+
+                var para = document.createElement("P");
+                var t = document.createTextNode("Description"+ obj.resource[0].description);
+                para.appendChild(t);
+                document.getElementById("order").appendChild(para);
+            }, obj.resource[i].web_stroller_by_s_id.a_id);
         };
     }
 
