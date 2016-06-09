@@ -271,6 +271,26 @@
             para.appendChild(t);
             document.getElementById("stroll").appendChild(para);
 
+            var para = document.createElement("P");
+            var t = document.createTextNode("House number" + obj.resource[i].web_address_by_a_id.house_number);
+            para.appendChild(t);
+            document.getElementById("stroll").appendChild(para);
+
+            var para = document.createElement("P");
+            var t = document.createTextNode("Street name" + obj.resource[i].web_address_by_a_id.street_name);
+            para.appendChild(t);
+            document.getElementById("stroll").appendChild(para);
+
+            var para = document.createElement("P");
+            var t = document.createTextNode("Postcode" + obj.resource[i].web_address_by_a_id.postcode);
+            para.appendChild(t);
+            document.getElementById("stroll").appendChild(para);
+
+            var para = document.createElement("P");
+            var t = document.createTextNode("Description"+ obj.resource[i].web_address_by_a_id.description);
+            para.appendChild(t);
+            document.getElementById("stroll").appendChild(para);
+
             if (!obj.resource[i].ready) {
                 var btn = document.createElement("BUTTON");
                 var att = document.createAttribute("value");
@@ -287,7 +307,6 @@
     }
 
     function validateStroll(response) {
-        window.location="user-profile.html#stroll";
         alert("Thanks for informing");
     }
 
@@ -323,6 +342,29 @@
                 para.appendChild(t);
                 document.getElementById("order").appendChild(para);
             };
+
+            getAddressById(function(response) {
+                var obj= JSON.parse(response);
+                var para = document.createElement("P");
+                var t = document.createTextNode("House number" + obj.resource[0].house_number);
+                para.appendChild(t);
+                document.getElementById("order").appendChild(para);
+
+                var para = document.createElement("P");
+                var t = document.createTextNode("Street name" + obj.resource[0].street_name);
+                para.appendChild(t);
+                document.getElementById("order").appendChild(para);
+
+                var para = document.createElement("P");
+                var t = document.createTextNode("Postcode" + obj.resource[0].postcode);
+                para.appendChild(t);
+                document.getElementById("order").appendChild(para);
+
+                var para = document.createElement("P");
+                var t = document.createTextNode("Description"+ obj.resource[0].description);
+                para.appendChild(t);
+                document.getElementById("order").appendChild(para);
+            }, obj.resource[i].web_stroller_by_s_id.a_id);
         };
     }
 
