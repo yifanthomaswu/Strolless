@@ -82,8 +82,7 @@
                         <div class="standcontrol">
                             <form action="#" onsubmit="validateFormOnSubmit(this); return false;" method="post" role="form">
                                 <div class="control">
-                                    <input id="postcode" class="search_postcode" type="text" name="postcode"
-                                    placeholder="Enter Postcode" autocomplete="true">
+                                    <input id="postcode" class="search_postcode" type="text" name="postcode" placeholder="Enter Postcode" autocomplete="true">
                                 </div>
                                 <input type="submit" value="Order" class=" button button-go" data-ft="btnSearchArea">
                             </form>
@@ -156,41 +155,46 @@
     <script src="js/pgsql.js"></script>
 
     <script>
-    var uid = readCookie('uid');
-    if(uid != "") {
-        document.getElementById("homepageLogin").href = "profile.html";
-        document.getElementById("homepageLogin").innerHTML = "Profile";
-    }
+        var uid = readCookie('uid');
+        if (uid != "") {
+            document.getElementById("homepageLogin").href = "profile.html";
+            document.getElementById("homepageLogin").innerHTML = "Profile";
+        }
 
-    function validateFormOnSubmit(form) {
-        var postcode = form.postcode.value;
-        getAllStrollerNotReady(function(response) {
-            var obj = JSON.parse(response);
-            var postcodes = [];
-            for (var i = 0; i < obj.resource.length; i++) {
-                postcodes.push(obj.resource[i].web_address_by_a_id.postcode + " " +
-                               obj.resource[i].web_address_by_a_id.street_name + " " +
-                               obj.resource[i].web_address_by_a_id.house_number);
-            }
-            duration2(postcode, postcodes, handleMatrix);
-        });
-    }
+        function validateFormOnSubmit(form) {
+            var postcode = form.postcode.value;
+            getAllStrollerNotReady(function(response) {
+                localStorage.setItem("_response", btoa(response));
+                var obj = JSON.parse(response);
+                var postcodes = [];
+                for (var i = 0; i < obj.resource.length; i++) {
+                    postcodes.push(obj.resource[i].web_address_by_a_id.postcode
+                        /* + " " +
+                                                       obj.resource[i].web_address_by_a_id.street_name + " " +
+                                                       obj.resource[i].web_address_by_a_id.house_number*/
+                    );
+                }
+                duration2(postcode, postcodes, handleMatrix);
+            });
+        }
 
-    function handleMatrix(response, status) {
-        var destinations = response.destinationAddresses;
-        if (status == google.maps.DistanceMatrixStatus.OK) {
-            var results = response.rows[0].elements;
-            for (var i = 0; i < results.length; i++) {
-                results[i].destination = destinations[i];
-            }
-            results.sort(function(a,b) {
-                return a.duration.value-b.duration.value;
-            })
-            for (var i = 0; i < results.length; i++) {
-                alert("Nr. "+i+" to "+results[i].destination+" takes "+results[i].duration.value+" seconds.");
+        function handleMatrix(response, status) {
+            var destinations = response.destinationAddresses;
+            if (status === google.maps.DistanceMatrixStatus.OK) {
+                var results = response.rows[0].elements;
+                for (var i = 0; i < results.length; i++) {
+                    results[i].destination = destinations[i];
+                }
+                results.sort(function(a, b) {
+                        return a.duration.value - b.duration.value;
+                    })
+                    /*for (var i = 0; i < results.length; i++) {
+                        alert("Nr. "+i+" to "+results[i].destination+" takes "+results[i].duration.value+" seconds.");
+                    }*/
+                localStorage.setItem("_results", btoa(JSON.stringify(results)));
+                window.location = "stroller-list.html";
             }
         }
-    }
     </script>
 
 </body>

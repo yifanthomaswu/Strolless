@@ -200,6 +200,12 @@ hr.small {
   color: black;
 }
 
+.list-group-item-text {
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 11px;
+    color: black;
+}
+
 .button-login {
   width: 250px;
   height: 40px;
