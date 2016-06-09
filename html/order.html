@@ -157,13 +157,25 @@
 
     <script>
     function validateFormOnSubmit(form) {
-        postcode = form.postcode.value;
-        getAllStrollerNotReady(sortByDistance);
-    }
-    function sortByDistance(response) {
-        var obj = JSON.parse(response);
-        var array = new Array();
-        //TODO sort array by duration from postcode
+        var postcode = form.postcode.value;
+        getAllStrollerNotReady(function(response) {
+            var obj = JSON.parse(response);
+            duration2(postcode, obj, function(response, status) {
+                var destinations = response.destinationAddresses;
+                if (status == gogle.maps.DistanceMatrixStatus.OK) {
+                    var results = response.rows[0].elements;
+                    for (var i = 0; i < array.length; i++) {
+                        array[i].destination = destinations[i];
+                    }
+                    results.sort(function(a,b) {
+                        return a.duration-b.duration;
+                    })
+                    for (var i = 0; i < array.length; i++) {
+                        alert("Nr. "+i+" to "+array[i].destination+" takes "+(array[i].duration/60)+" minutes.");
+                    }
+                }
+            });
+        });
     }
     </script>
 
