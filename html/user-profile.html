@@ -207,6 +207,7 @@
     if (uid == null) {
         window.location="index.html";
     };
+
     getUserDetail(displayInfo, uid);
     function displayInfo(response) {
         var obj= JSON.parse(response);
@@ -290,6 +291,19 @@
             var t = document.createTextNode("Description"+ obj.resource[i].web_address_by_a_id.description);
             para.appendChild(t);
             document.getElementById("stroll").appendChild(para);
+
+            var btn = document.createElement("BUTTON");
+            var att = document.createAttribute("value");
+            att.value = obj.resource[i].s_id;
+            btn.setAttributeNode(att);
+            btn.onclick = function() {
+                eraseCookie('sid');
+                createCookie('sid', this.value);
+                window.location="stroll-order.html";
+            };
+            var t = document.createTextNode("View orders");
+            btn.appendChild(t);
+            document.getElementById("stroll").appendChild(btn);
 
             if (!obj.resource[i].ready) {
                 var btn = document.createElement("BUTTON");

@@ -251,7 +251,7 @@ function getOrderById(callback, u_id, s_id) {
       callback(xmlHttp.responseText);
     }
   };
-  var related = "?related=web_stroller_by_s_id";
+  var related = "?related=web_stroller_by_s_id,web_user_by_u_id";
   var filter = "&filter=(u_id%3D" + u_id + ")AND(s_id%3D" + s_id+ ")";
   xmlHttp.open("GET", URL_API + "_table/web_order" + related + filter + URL_API_KEY, true);
   xmlHttp.send(null);
@@ -265,7 +265,7 @@ function getOrderByUser(callback, u_id) {
       callback(xmlHttp.responseText);
     }
   };
-  var related = "?related=web_stroller_by_s_id";
+  var related = "?related=web_stroller_by_s_id,web_user_by_u_id";
   var filter = "&filter=u_id%3D" + u_id;
   xmlHttp.open("GET", URL_API + "_table/web_order" + related + filter + URL_API_KEY, true);
   xmlHttp.send(null);
@@ -279,7 +279,7 @@ function getOrderByStroller(callback, s_id) {
       callback(xmlHttp.responseText);
     }
   };
-  var related = "?related=web_stroller_by_s_id";
+  var related = "?related=web_stroller_by_s_id,web_user_by_u_id";
   var filter = "&filter=s_id%3D" + s_id;
   xmlHttp.open("GET", URL_API + "_table/web_order" + related + filter + URL_API_KEY, true);
   xmlHttp.send(null);
