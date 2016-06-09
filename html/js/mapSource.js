@@ -31,8 +31,7 @@ function duration2(origin, destinations, callback) {
         origins: [origin],
         destinations: destinations,
         travelMode: google.maps.TravelMode.WALKING,
-        region: "GB",
-        unitSystem: UnitSystem,
+        region: "GB"
     }, callback);
 }
 
