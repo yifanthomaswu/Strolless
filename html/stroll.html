@@ -76,7 +76,8 @@
                                     <div class="form-group control">
                                         <label style="color:white">Restaurant</label>
                                         <div>
-                                            <input type="text" class="input-box">
+                                              <select id="restaurant">
+                                              </select>
                                         </div>
                                     </div>
                                 </div>
@@ -99,9 +100,10 @@
                                 </div>
                                 <div class="row control-group">
                                     <div class="form-group control">
-                                        <label style="color:white">Postcode</label>
+                                        <label style="color:white">Address</label>
                                         <div>
-                                            <input type="text" class="search_postcode">
+                                              <select id="address">
+                                              </select>
                                         </div>
                                     </div>
                                 </div>
@@ -172,6 +174,39 @@
     <script src="js/pgsql.js"></script>
 
     <script>
+    var uid = readCookie('uid');
+    if (uid == null) {
+        window.location="index.html";
+    };
+
+    getAllRestaurant(restaurantForm);
+    function restaurantForm(response) {
+        var obj= JSON.parse(response);
+        for (var i = 0; i < obj.resource.length; i++) {
+            var opt = document.createElement("OPTION");
+            var att = document.createAttribute("value");
+            att.value = obj.resource[i].r_id;
+            opt.setAttributeNode(att);
+            var t = document.createTextNode(obj.resource[i].name);
+            opt.appendChild(t);
+            document.getElementById("restaurant").appendChild(opt);
+        };
+    }
+
+    getAddressByUser(addressForm, uid);
+    function addressForm(response) {
+        var obj= JSON.parse(response);
+        for (var i = 0; i < obj.resource.length; i++) {
+            var opt = document.createElement("OPTION");
+            var att = document.createAttribute("value");
+            att.value = obj.resource[i].a_id;
+            opt.setAttributeNode(att);
+            var t = document.createTextNode(obj.resource[i].description);
+            opt.appendChild(t);
+            document.getElementById("address").appendChild(opt);
+        };
+    }
+
     function validateFormOnSubmit(form) {
         var deadline = new Date();
         deadline.setUTCHours(form.elements[1].value.split(':')[0]);
@@ -179,7 +214,7 @@
         var pickup = new Date();
         pickup.setUTCHours(form.elements[2].value.split(':')[0]);
         pickup.setMinutes(form.elements[2].value.split(':')[1]);
-        addStroller(validateStroll, readCookie('uid'), 2, 3, deadline, pickup);
+        addStroller(validateStroll, uid, parseInt(form.elements[3].value), parseInt(form.elements[0].value), deadline, pickup);
     }
 
     function validateStroll(response) {
