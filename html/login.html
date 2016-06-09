@@ -48,7 +48,6 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="index.html">Strolless</a>
-                <p id="test"></p>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -56,9 +55,6 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a href="index.html">Home</a>
-                    </li>
-                    <li>
-                        <a href="help.html">Help</a>
                     </li>
                 </ul>
             </div>
@@ -154,14 +150,11 @@
 
     function validateLogin(response) {
         var obj= JSON.parse(response);
-        // document.getElementById("test").innerHTML = response;
         if(response != 0) {
             eraseCookie('uid');
             createCookie('uid', obj, 1);
             alert("Login successful");
             window.location="index.html";
-            document.getElementById("homepageLogin").href = "profile.html";
-            document.getElementById("homepageLogin").innerHTML = "Profile";
         } else {
             alert("Wrong Login");
             window.location="login.html"
