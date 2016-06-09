@@ -273,15 +273,17 @@
 
             if (!obj.resource[i].ready) {
                 var btn = document.createElement("BUTTON");
-                btn.addEventListener("click", validateFormOnSubmit());
+                var att = document.createAttribute("value");
+                att.value = obj.resource[i].s_id;
+                btn.setAttributeNode(att);
+                btn.onclick = function() {
+                    setStrollerReady(validateStroll, this.value);
+                };
                 var t = document.createTextNode("Ready");
                 btn.appendChild(t);
                 document.getElementById("stroll").appendChild(btn);
             };
         };
-    }
-    function validateFormOnSubmit() {
-        setStrollerReady(validateStroll, readCookie('sid'));
     }
 
     function validateStroll(response) {
