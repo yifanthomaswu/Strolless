@@ -159,7 +159,7 @@
     function displayOrders(response) {
         document.getElementById("w").innerHTML = "";
         var obj = JSON.parse(response);
-        if (new Date(obj.resource[0].web_stroller_by_s_id.deadline) <= new Date()) {
+        if (!obj.resource[0].web_stroller_by_s_id.ready && new Date(obj.resource[0].web_stroller_by_s_id.deadline) <= new Date()) {
             document.getElementById("Ready").disabled = false;
         };
         for (var i = 0; i < obj.resource.length; i++) {
@@ -179,6 +179,9 @@
             document.getElementById("w").appendChild(para);
         };
     }
+    setInterval(function() {
+      getOrderByStroller(displayOrders, sid);
+    }, 5000);
     </script>
 
 </body>
