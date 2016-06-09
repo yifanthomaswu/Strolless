@@ -65,10 +65,11 @@
 
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header" style="background-image: url('img/bg orange.png')">
+    <header class="intro-header" style="background-image: url('img/blue-orange-p.png')">
         <div class="container">
             <div class="row">
                 <div class="site-heading">
+                    <h1 id="fromstroll"></h1>
                     <div class="standcontrol">
                         <form action="#" onsubmit="validateFormOnSubmit(this); return false;" method="post">
                             <div style="margin-bottom:10px">
@@ -144,6 +145,14 @@
     <script src="js/pgsql.js"></script>
 
     <script>
+    if(readCookie('stroll') == 1) {
+        eraseCookie('stroll');
+        document.getElementById("fromstroll").innerHTML = "Sign in before Stroll";
+    } else {
+        document.getElementById("fromstroll").innerHTML = "Sign in to Strolless";
+    }
+
+
     function validateFormOnSubmit(form) {
         userLogin(validateLogin, form.elements[0].value, form.elements[1].value);
     }

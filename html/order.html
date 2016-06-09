@@ -71,7 +71,7 @@
 
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header" style="background-image: url('img/bg orange.png')">
+    <header class="intro-header" style="background-image: url('img/bg orange.jpg')">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -156,8 +156,8 @@
 
     <script>
         var uid = readCookie('uid');
-        if (uid != "") {
-            document.getElementById("homepageLogin").href = "profile.html";
+        if (uid != null) {
+            document.getElementById("homepageLogin").href = "user-profile.html";
             document.getElementById("homepageLogin").innerHTML = "Profile";
         }
 
