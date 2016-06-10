@@ -711,7 +711,7 @@ body {
     color: white;
 }
 
-.modal-body {padding: 2px 16px;}
+.modal-body {padding: 2px 16px; text-align:center;}
 
 .modal-footer {
     padding: 2px 16px;

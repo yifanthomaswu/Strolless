@@ -299,7 +299,12 @@
                 att.value = s_id;
                 btn.setAttributeNode(att);
                 btn.onclick = function() {
-                    addOrder(validateOrder, readCookie('uid'), this.value, document.getElementById("food").value);
+                    var uid = readCookie('uid');
+                    if (uid == null) {
+                        createCookie('order', 1, 1);
+                        window.location="login.html";
+                    };
+                    addOrder(validateOrder, uid, this.value, document.getElementById("food").value);
                 };
                 var t = document.createTextNode("Order");
                 el_div1.appendChild(el_div);
