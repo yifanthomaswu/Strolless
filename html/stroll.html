@@ -75,7 +75,7 @@
                                 <div class="row control-group">
                                     <div class="form-group control">
                                         <label style="color:white">Restaurant</label>
-                                        <div>
+                                        <div class="styled-select">
                                               <select id="restaurant">
                                               </select>
                                         </div>
@@ -101,7 +101,7 @@
                                 <div class="row control-group">
                                     <div class="form-group control">
                                         <label style="color:white">Address</label>
-                                        <div>
+                                        <div class="styled-select">
                                               <select id="address">
                                               </select>
                                         </div>
@@ -198,9 +198,7 @@
         var obj= JSON.parse(response);
         for (var i = 0; i < obj.resource.length; i++) {
             var opt = document.createElement("OPTION");
-            var att = document.createAttribute("value");
-            att.value = obj.resource[i].a_id;
-            opt.setAttributeNode(att);
+            var att = opt.setAttribute("value", obj.resource[i].a_id);
             var t = document.createTextNode(obj.resource[i].description);
             opt.appendChild(t);
             document.getElementById("address").appendChild(opt);
