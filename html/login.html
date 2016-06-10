@@ -170,9 +170,14 @@
     <script src="js/pgsql.js"></script>
 
     <script>
+    var order = 0;
     if(readCookie('stroll') == 1) {
         eraseCookie('stroll');
         document.getElementById("fromstroll").innerHTML = "Sign in before Stroll";
+    } else if(readCookie('order') == 1) {
+        eraseCookie('order');
+        order = 1
+        document.getElementById("fromstroll").innerHTML = "Sign in before Order";
     } else {
         document.getElementById("fromstroll").innerHTML = "Sign in to Strolless";
     }
@@ -188,7 +193,11 @@
             eraseCookie('uid');
             createCookie('uid', obj, 1);
             alert("Login successful");
-            window.location="index.html";
+            if(order == 1){
+                window.location="order.html";
+            } else {
+                window.location="index.html";
+            }
         } else {
             alert("Wrong Login");
             window.location="login.html"
@@ -200,7 +209,7 @@
         return regex.test(email);
     }
     </script>
-    
+
     <script>
 // Get the modal
 var modal = document.getElementById('myModal');
@@ -211,7 +220,7 @@ var lin = document.getElementById('forgotPass');
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks the link, open the modal 
+// When the user clicks the link, open the modal
 lin.onclick = foo;
 
 function foo() {
@@ -253,12 +262,12 @@ function isUser(response) {
 		user = obj.resource[0];
 		document.getElementById('TaskLine').innerHTML = "In what town was your first job?";
 		document.getElementById('InBox').placeholder = 'Answer';
-		
+
 	}
 }
 function checkEmail(email) {
 	//validate email entry
-    getUserByEmail(isUser, email);	
+    getUserByEmail(isUser, email);
 }
 function checkAnswer(answer){
 	if (user.answer === answer)
