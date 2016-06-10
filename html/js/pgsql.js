@@ -2,6 +2,7 @@ var URL_API = "https://146.169.45.96/api/v2/g1527136_u/";
 var URL_API_KEY = "&api_key=7627afb9f57cc676069ff7970f9d9c5597b11ca5994a1bd8e6d1ac13245bb36c";
 var HTTP_OK = 200;
 var ORDER_REFRESH_RATE = 2000;  		//Order page refresh rate, milliseconds.
+var AT = '%40';							//HTML encoding for '@'
 
 function getUserDetail(callback, u_id) {
   var xmlHttp = new XMLHttpRequest();
@@ -323,5 +324,32 @@ function checkOrder(u_id, ready_func) {
 	    setTimeout(function () { checkOrder(u_id, ready_func); }, ORDER_REFRESH_RATE);
 	}
   }, u_id);
+}
+
+function getUserByEmail(callback, email) {
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.onreadystatechange = function() {
+    console.log(xmlHttp.responseText);
+    if (xmlHttp.readyState == XMLHttpRequest.DONE && xmlHttp.status == HTTP_OK) {
+      callback(xmlHttp.responseText);
+    }
+  };
+  var HTMLemail = email.replace("@", AT);
+  var filter = "?filter=email%3D" + HTMLemail;
+  xmlHttp.open("GET", URL_API + "_table/web_user" + filter + URL_API_KEY, true);
+  xmlHttp.send(null);
+}
+
+function changePasswordForUser(callback, u_id, password) {
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.onreadystatechange = function() {
+    console.log(xmlHttp.responseText);
+    if (xmlHttp.readyState == XMLHttpRequest.DONE && xmlHttp.status == HTTP_OK) {
+      callback(xmlHttp.responseText);
+    }
+  };
+  var resource = {password:password};
+  xmlHttp.open("PUT", URL_API + "_table/web_user/" + u_id + URL_API_KEY, true);
+  xmlHttp.send(JSON.stringify({resource:resource}));
 }
   

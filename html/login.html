@@ -106,14 +106,15 @@
       <h2>Reset Password</h2>
     </div>
     <div class="modal-body">
-      <p>Enter your email address to reset your password:</p>
+      <p id="TaskLine">Enter your email address to reset your password:</p>
       <div style="margin-bottom:25px">
-		  <input class="input-box" required autocomplete="off" id="ResetPassword" name="Email" placeholder="Email" type="email" />
+		  <p id="WrongInput" style="color:red; font-size:15px; display:none"></p>
+		  <input class="input-box" required autocomplete="off" id="InBox" name="Email" placeholder="Email" type="email" />
       </div>
     </div>
     <div class="modal-footer">
       <div class="action">
-		  <input id="ResetButton" type="submit" value="Reset Password" class="button button-login button-go">
+		  <input id="ResetButton" type="submit" value="Next" class="button button-login button-go">
       </div>
     </div>
   </div>
@@ -169,9 +170,14 @@
     <script src="js/pgsql.js"></script>
 
     <script>
+    var order = 0;
     if(readCookie('stroll') == 1) {
         eraseCookie('stroll');
         document.getElementById("fromstroll").innerHTML = "Sign in before Stroll";
+    } else if(readCookie('order') == 1) {
+        eraseCookie('order');
+        order = 1
+        document.getElementById("fromstroll").innerHTML = "Sign in before Order";
     } else {
         document.getElementById("fromstroll").innerHTML = "Sign in to Strolless";
     }
@@ -187,7 +193,11 @@
             eraseCookie('uid');
             createCookie('uid', obj, 1);
             alert("Login successful");
-            window.location="index.html";
+            if(order == 1){
+                window.location="order.html";
+            } else {
+                window.location="index.html";
+            }
         } else {
             alert("Wrong Login");
             window.location="login.html"
@@ -223,10 +233,71 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+var emailOK = false;
+var answerOK = false;
+var user = null;
+
+function print(response) {
+	var obj= JSON.parse(response);
+	alert(obj.resource[0].email);
+}
+function isUser(response) {
+	var obj= JSON.parse(response);
+	if (obj.resource.length === 0)
+	{
+		document.getElementById('WrongInput').innerHTML = "Please enter correct email address";
+		document.getElementById('WrongInput').style.display = 'block';
+		document.getElementById('InBox').value = '';
+	}
+	else
+	{
+		document.getElementById('WrongInput').style.display = 'none';
+		document.getElementById('InBox').value = '';
+		emailOK = true;
+		user = obj.resource[0];
+		document.getElementById('TaskLine').innerHTML = "In what town was your first job?";
+		document.getElementById('InBox').placeholder = 'Answer';
+
+	}
+}
+function checkEmail(email) {
+	//validate email entry
+    getUserByEmail(isUser, email);
+}
+function checkAnswer(answer){
+	if (user.answer === answer)
+	{
+		document.getElementById('WrongInput').style.display = 'none';
+		document.getElementById('InBox').value = '';
+		answerOK = true;
+		document.getElementById('TaskLine').innerHTML = "Please enter new password:";
+		document.getElementById('InBox').placeholder = 'New Password';
+		document.getElementById('ResetButton').value = "Reset Password";
+	}
+	else
+	{
+		document.getElementById('WrongInput').innerHTML = "Please enter correct answer";
+		document.getElementById('WrongInput').style.display = 'block';
+		document.getElementById('InBox').value = '';
+	}
+}
+function resetPassword(newPass) {
+changePasswordForUser(print, 5, "BBB");
+}
 var button = document.getElementById('ResetButton');
 button.onclick = function () {
-	var email = document.getElementById('ResetPassword').value;
-	alert("'" + email + "'");
+	if (!emailOK) {
+		var email = document.getElementById('InBox').value;
+		checkEmail(email);
+		return;
+	}
+	if (!answerOK) {
+		var answer = document.getElementById('InBox').value;
+		checkAnswer(answer);
+		return;
+	}
+	var newPass = document.getElementById('InBox').value;
+	resetPassword(newPass);
 }
 </script>
 
