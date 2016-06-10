@@ -219,6 +219,11 @@ hr.small {
     color: black;
 }
 
+.map {
+  width: 300px;
+  height: 300px;
+}
+
 .button-login {
   width: 250px;
   height: 40px;
@@ -721,7 +726,7 @@ body {
 
 /* Add Animation */
 @-webkit-keyframes slideIn {
-    from {bottom: -300px; opacity: 0} 
+    from {bottom: -300px; opacity: 0}
     to {bottom: 0; opacity: 1}
 }
 
@@ -731,11 +736,11 @@ body {
 }
 
 @-webkit-keyframes fadeIn {
-    from {opacity: 0} 
+    from {opacity: 0}
     to {opacity: 1}
 }
 
 @keyframes fadeIn {
-    from {opacity: 0} 
+    from {opacity: 0}
     to {opacity: 1}
 }

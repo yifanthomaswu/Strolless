@@ -1,31 +1,5 @@
-var map;
-var directionsService;
 
-/*
- * Takes two postcodes and a callback-function
- *
- * calls callback-function with duration (sec) to get from
- * first to second postcode bz foot.
- */
-
-function duration(postCode1, postCode2, callback) {
-    var directionsRequest = {
-        origin: postCode1,
-        destination: postCode2,
-        travelMode: google.maps.TravelMode.WALKING,
-        region: "GB"
-    };
-    directionsService.route(directionsRequest, function(result, status) {
-        if (status == google.maps.DirectionsStatus.OK) {
-            dur = (result.routes[0].legs[0].duration.value);
-            callback(dur);
-        } else {
-            callback(-1);
-        }
-    });
-}
-
-function duration2(origin, destinations, callback) {
+function duration(origin, destinations, callback) {
     var service = new google.maps.DistanceMatrixService();
     service.getDistanceMatrix({
         origins: [origin],
@@ -51,16 +25,5 @@ function showRoute(postCode1, postCode2, map) {
         }
     });
 }
-
-function init() {
-    /*var mapDiv = document.getElementById('map');
-    map = new google.maps.Map(mapDiv, {
-      center: {lat: 51.498672, lng: -0.179381},
-      zoom: 15
-    });*/
-    directionsService = new google.maps.DirectionsService();
-}
-
-
 
 //https://developers.google.com/maps/documentation/javascript/3.exp/reference
