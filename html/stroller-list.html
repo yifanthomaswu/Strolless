@@ -21,9 +21,9 @@
     <link href="css/clean-blog.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -70,37 +70,7 @@
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="site-heading">
                     <div class="standcontrol">
-                        <div id="resultList" class="list-group">
-                            <a href="#" class="list-group-item">
-                                <h4 class="list-group-item-heading">Dominos Pizza</h4>
-                                <p class="list-group-item-text">
-                                    Stroller: Peter Jackson
-                                    <br /> Postcode: SW7 1AW
-                                    <br /> Duration: 4 minutes
-                                    <br /> Wait for: 10 minutes
-                                    <br />
-                                </p>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <h4 class="list-group-item-heading">Burger King</h4>
-                                <p class="list-group-item-text">
-                                    Stroller: Bob Andrews
-                                    <br /> Postcode: SW6 4BC
-                                    <br /> Duration: 5 minutes
-                                    <br /> Wait for: 11 minutes
-                                    <br />
-                                </p>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <h4 class="list-group-item-heading">McDonald's</h4>
-                                <p class="list-group-item-text">
-                                    Stroller: Peter Jackson
-                                    <br /> Postcode: SW7 3WA
-                                    <br /> Duration: 1 minutes
-                                    <br /> Wait for: 20 minutes
-                                    <br />
-                                </p>
-                            </a>
+                        <div id="resultList">
                         </div>
                     </div>
                 </div>
@@ -164,6 +134,8 @@
     <!-- Custom Theme JavaScript -->
     <script src="js/clean-blog.min.js"></script>
 
+    <script src="js/pgsql.js"></script>
+
     <script>
         function getPostCode(address) {
             var postCode = address.substring(address.indexOf(" London ") + 8, address.indexOf(" London ") + 15);
@@ -175,42 +147,96 @@
 
         window.onload = function() {
             var results = localStorage.getItem("_results");
-            if (!results) return false;
+            if (!results) window.location="order.html";
             localStorage.removeItem("_results");
             results = JSON.parse(atob(results));
 
             var obj = localStorage.getItem("_response");
-            if (!obj) return false;
+            if (!obj) window.location="order.html";
             localStorage.removeItem("_response");
             obj = JSON.parse(atob(obj));
 
             var listHTML = "";
             for (var i = 0; i < results.length; i++) {
-                var restaurant, stroller, pickup;
+                var restaurant, stroller, pickup, deadline, address, description, s_id;
                 var destPostCode = getPostCode(results[i].destination);
                 for (var j = 0; j < obj.resource.length; j++) {
                     if (obj.resource[j].web_address_by_a_id.postcode == destPostCode) {
                         restaurant = obj.resource[j].web_restaurant_by_r_id.name;
                         stroller = obj.resource[j].web_user_by_u_id.name;
                         pickup = obj.resource[j].pickup;
+                        deadline = obj.resource[j].deadline;
+                        address = obj.resource[j].web_address_by_a_id.house_number + ", " +
+                                  obj.resource[j].web_address_by_a_id.street_name + ", " +
+                                  obj.resource[j].web_address_by_a_id.postcode;
+                        description = obj.resource[j].web_address_by_a_id.description;
+                        s_id = obj.resource[j].s_id;
                     }
                 }
-                listHTML += "<a href=\"#\" class=\"list-group-item\">";
-                listHTML += "<h4 class=\"list-group-item-heading\">";
-                listHTML += restaurant;
-                listHTML += "</h4><p class=\"list-group-item-text\">Stroller: ";
-                listHTML +=
-                    stroller;
-                listHTML += "<br />Address: ";
-                listHTML += results[i].destination;
-                listHTML += "<br />Pickup: ";
-                listHTML += pickup;
-                listHTML += "<br />Duration  : ";
-                listHTML += results[i].duration.text;
-                listHTML +=
-                    "<br /></p></a>";
+                var para = document.createElement("P");
+                var t = document.createTextNode("Restaurant" + restaurant);
+                para.appendChild(t);
+                document.getElementById("resultList").appendChild(para);
+
+                var para = document.createElement("P");
+                var t = document.createTextNode("Order Deadline" + deadline.slice(0, -3));
+                para.appendChild(t);
+                document.getElementById("resultList").appendChild(para);
+
+                var para = document.createElement("P");
+                var t = document.createTextNode("Pick Up Time" + pickup.slice(0, -3));
+                para.appendChild(t);
+                document.getElementById("resultList").appendChild(para);
+
+                var para = document.createElement("P");
+                var t = document.createTextNode("Stroller" + stroller);
+                para.appendChild(t);
+                document.getElementById("resultList").appendChild(para);
+
+                var para = document.createElement("P");
+                var t = document.createTextNode("Address" + address);
+                para.appendChild(t);
+                document.getElementById("resultList").appendChild(para);
+
+                var para = document.createElement("P");
+                var t = document.createTextNode("Description" + description);
+                para.appendChild(t);
+                document.getElementById("resultList").appendChild(para);
+
+                var para = document.createElement("P");
+                var t = document.createTextNode("Duration" + results[i].duration.text);
+                para.appendChild(t);
+                document.getElementById("resultList").appendChild(para);
+
+                var btn = document.createElement("BUTTON");
+                var att = document.createAttribute("value");
+                att.value = s_id;
+                btn.setAttributeNode(att);
+                btn.onclick = function() {
+                    eraseCookie('sid_o');
+                    createCookie('sid_o', this.value);
+                    window.location="new-order.html";
+                };
+                var t = document.createTextNode("Order!");
+                btn.appendChild(t);
+                document.getElementById("resultList").appendChild(btn);
+
+                // listHTML += "<a href=\"#\" class=\"list-group-item\">";
+                // listHTML += "<h4 class=\"list-group-item-heading\">";
+                // listHTML += restaurant;
+                // listHTML += "</h4><p class=\"list-group-item-text\">Stroller: ";
+                // listHTML +=
+                //     stroller;
+                // listHTML += "<br />Address: ";
+                // listHTML += results[i].destination;
+                // listHTML += "<br />Pickup: ";
+                // listHTML += pickup;
+                // listHTML += "<br />Duration  : ";
+                // listHTML += results[i].duration.text;
+                // listHTML +=
+                //     "<br /></p></a>";
             }
-            document.getElementById("resultList").innerHTML = listHTML;
+            // document.getElementById("resultList").innerHTML = listHTML;
         }
     </script>
 
