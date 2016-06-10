@@ -221,6 +221,22 @@ hr.small {
   cursor: pointer;
 }
 
+.button-info {
+  display: inline-block;
+  padding: 10px 25px 10px 25px;
+  font-size: 14px;
+  text-align: center;
+  border-radius: 3px;
+  border: 1px solid transparent;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  cursor: pointer;
+  background-color: green;
+  border-color: green;
+  margin-bottom: 5px;
+}
+
+
+
 .password_field {
    width: 250px;
    height: 40px;
@@ -277,6 +293,38 @@ hr.small {
   color: #6455FF;
 }
 
+.profiletabs {
+  display: block;
+  float: left;
+  background-color: white;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.infotable {
+  display: table;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-align: left;
+
+}
+
+.inforow {
+  display: table-row;
+}
+
+.inforowspace {
+  margin-bottom: 10px;
+}
+
+.info {
+  display: table-cell;
+  padding-right: 20px;
+}
+
+.addresscon {
+  padding-top: 60px;
+  padding-bottom: 10px;
+  margin-left: 120px;
+}
 
 .standcontrol {
   padding-top: 30px;
