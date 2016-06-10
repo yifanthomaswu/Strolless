@@ -17,7 +17,7 @@ function getUserDetail(callback, u_id) {
   xmlHttp.send(null);
 }
 
-function userRegister(callback, email, password, name, phone) {
+function userRegister(callback, email, password, name, phone, answer) {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() {
     console.log(xmlHttp.responseText);
@@ -25,7 +25,7 @@ function userRegister(callback, email, password, name, phone) {
       callback(xmlHttp.responseText);
     }
   };
-  var resource = {email:email, password:password, name:name, phone:phone};
+  var resource = {email:email, password:password, name:name, phone:phone, answer:answer};
   xmlHttp.open("POST", URL_API + "_table/web_user?" + URL_API_KEY, true);
   xmlHttp.send(JSON.stringify({resource:resource}));
 }
@@ -352,4 +352,4 @@ function changePasswordForUser(callback, u_id, password) {
   xmlHttp.open("PUT", URL_API + "_table/web_user/" + u_id + "?"+ URL_API_KEY, true);
   xmlHttp.send(JSON.stringify(resource));
 }
-  
+

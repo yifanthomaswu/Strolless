@@ -170,13 +170,12 @@
 
     <script>
     function validateFormOnSubmit(form) {
-        userRegister(validateRegister, form.Email.value, form.Password.value, form.FullName.value, form.Phone.value);
+        userRegister(validateRegister, form.elements[1].value, form.elements[3].value, form.elements[0].value, form.elements[2].value, form.elements[5].value);
     }
 
     function validateRegister(response) {
         var obj= JSON.parse(response);
         if(/^[0-9]+/.test(obj.resource[0].u_id)) {
-            //createCookie('uid', obj.resource[0].u_id, 10000);
             alert("Signup successful");
             window.location="login.html";
         } else {
