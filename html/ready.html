@@ -73,8 +73,9 @@
                         <h1>Press Ready to let the Patron know</h1>
                         <div class="standcontrol">
                             <form action="#" onsubmit="validateFormOnSubmit(this); return false;" method="post">
-                                <input type="submit" style="color:white;" value="Ready" class="button button-go" data-ft="btnSearchArea">
+                                <input type="submit" style="color:white;" value="Ready" class="button button-go" data-ft="btnSearchArea" id="Ready" disabled>
                             </form>
+                            <div id="w"><div>
                         </div>
                     </div>
                 </div>
@@ -151,7 +152,36 @@
     function validateStroll(response) {
         eraseCookie('sid');
         alert("Thanks for informing");
+        window.location="index.html";
     }
+
+    getOrderByStroller(displayOrders, sid);
+    function displayOrders(response) {
+        document.getElementById("w").innerHTML = "";
+        var obj = JSON.parse(response);
+        if (!obj.resource[0].web_stroller_by_s_id.ready && new Date(obj.resource[0].web_stroller_by_s_id.deadline) <= new Date()) {
+            document.getElementById("Ready").disabled = false;
+        };
+        for (var i = 0; i < obj.resource.length; i++) {
+            var para = document.createElement("P");
+            var t = document.createTextNode("Name" + obj.resource[i].web_user_by_u_id.name);
+            para.appendChild(t);
+            document.getElementById("w").appendChild(para);
+
+            var para = document.createElement("P");
+            var t = document.createTextNode("Phone" + obj.resource[i].web_user_by_u_id.phone);
+            para.appendChild(t);
+            document.getElementById("w").appendChild(para);
+
+            var para = document.createElement("P");
+            var t = document.createTextNode("Food" + obj.resource[i].food);
+            para.appendChild(t);
+            document.getElementById("w").appendChild(para);
+        };
+    }
+    setInterval(function() {
+      getOrderByStroller(displayOrders, sid);
+    }, 5000);
     </script>
 
 </body>

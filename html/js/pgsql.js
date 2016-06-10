@@ -1,6 +1,7 @@
 var URL_API = "https://146.169.45.96/api/v2/g1527136_u/";
 var URL_API_KEY = "&api_key=7627afb9f57cc676069ff7970f9d9c5597b11ca5994a1bd8e6d1ac13245bb36c";
 var HTTP_OK = 200;
+var ORDER_REFRESH_RATE = 2000;  		//Order page refresh rate, milliseconds.
 
 function getUserDetail(callback, u_id) {
   var xmlHttp = new XMLHttpRequest();
@@ -311,3 +312,16 @@ function readCookie(name) {
 function eraseCookie(name) {
   document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
+
+function checkOrder(u_id, ready_func) {
+  getOrderByUser(function (response) {
+	var obj= JSON.parse(response);
+  	for (var i = 0; i < obj.resource.length; i++) {
+  	  if (obj.resource[i].web_stroller_by_s_id.ready === true)
+   	    ready_func(obj.resource[i]);
+	  else
+	    setTimeout(function () { checkOrder(u_id, ready_func); }, ORDER_REFRESH_RATE);
+	}
+  }, u_id);
+}
+  
