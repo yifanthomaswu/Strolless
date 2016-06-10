@@ -65,7 +65,7 @@
 
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header" style="background-image: url('img/bg orange.png')">
+    <header class="intro-header" style="background-image: url('img/bg orange.jpg')">
         <div class="container">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="site-heading">
@@ -184,43 +184,118 @@
                         s_id = obj.resource[j].s_id;
                     }
                 }
-                var para = document.createElement("P");
-                var t = document.createTextNode("Restaurant" + restaurant);
-                para.appendChild(t);
-                document.getElementById("resultList").appendChild(para);
+
 
                 var para = document.createElement("P");
-                var t = document.createTextNode("Order Deadline" + deadline.slice(0, -3));
-                para.appendChild(t);
-                document.getElementById("resultList").appendChild(para);
+                var paraClass = para.setAttribute('class', 'infotable');
+                var el_div1 = document.createElement('div');
+                var el_div1Class = el_div1.setAttribute('class','inforowspace');
+                var el_div = document.createElement('div');
+                var el_divClass = el_div.setAttribute('class', 'inforow');
+                var el_span = document.createElement('span');
+                var el_spanClass = el_span.setAttribute('class', 'info');
+                var el_span1 = document.createElement('span');
+                var el_spanClass1 = el_span1.setAttribute('class', 'info');
+                var t = document.createTextNode("Restaurant");
+                var t1 = document.createTextNode(restaurant);
+                para.appendChild(el_div1);
+                el_div1.appendChild(el_div);
+                el_div.appendChild(el_span);
+                el_span.appendChild(t);
+                el_span1.appendChild(t1);
+                el_div.appendChild(el_span1);
 
-                var para = document.createElement("P");
-                var t = document.createTextNode("Pick Up Time" + pickup.slice(0, -3));
-                para.appendChild(t);
-                document.getElementById("resultList").appendChild(para);
+                var el_div = document.createElement('div');
+                var el_divClass = el_div.setAttribute('class', 'inforow');
+                var el_span = document.createElement('span');
+                var el_spanClass = el_span.setAttribute('class', 'info');
+                var el_span1 = document.createElement('span');
+                var el_spanClass1 = el_span1.setAttribute('class', 'info');
+                var t = document.createTextNode("Order Deadline");
+                var t1 = document.createTextNode(deadline.slice(0, -3));
+                el_div1.appendChild(el_div);
+                el_div.appendChild(el_span);
+                el_span.appendChild(t);
+                el_span1.appendChild(t1);
+                el_div.appendChild(el_span1);
 
-                var para = document.createElement("P");
-                var t = document.createTextNode("Stroller" + stroller);
-                para.appendChild(t);
-                document.getElementById("resultList").appendChild(para);
+                var el_div = document.createElement('div');
+                var el_divClass = el_div.setAttribute('class', 'inforow');
+                var el_span = document.createElement('span');
+                var el_spanClass = el_span.setAttribute('class', 'info');
+                var el_span1 = document.createElement('span');
+                var el_spanClass1 = el_span1.setAttribute('class', 'info');
+                var t = document.createTextNode("Pick Up Time");
+                var t1 = document.createTextNode(pickup.slice(0, -3));
+                el_div1.appendChild(el_div);
+                el_div.appendChild(el_span);
+                el_span.appendChild(t);
+                el_span1.appendChild(t1);
+                el_div.appendChild(el_span1);
 
-                var para = document.createElement("P");
-                var t = document.createTextNode("Address" + address);
-                para.appendChild(t);
-                document.getElementById("resultList").appendChild(para);
+                var el_div = document.createElement('div');
+                var el_divClass = el_div.setAttribute('class', 'inforow');
+                var el_span = document.createElement('span');
+                var el_spanClass = el_span.setAttribute('class', 'info');
+                var el_span1 = document.createElement('span');
+                var el_spanClass1 = el_span1.setAttribute('class', 'info');
+                var t = document.createTextNode("Stroller");
+                var t1 = document.createTextNode(stroller);
+                el_div1.appendChild(el_div);
+                el_div.appendChild(el_span);
+                el_span.appendChild(t);
+                el_span1.appendChild(t1);
+                el_div.appendChild(el_span1);
 
-                var para = document.createElement("P");
-                var t = document.createTextNode("Description" + description);
-                para.appendChild(t);
-                document.getElementById("resultList").appendChild(para);
+                var el_div = document.createElement('div');
+                var el_divClass = el_div.setAttribute('class', 'inforow');
+                var el_span = document.createElement('span');
+                var el_spanClass = el_span.setAttribute('class', 'info');
+                var el_span1 = document.createElement('span');
+                var el_spanClass1 = el_span1.setAttribute('class', 'info');
+                var t = document.createTextNode("Address");
+                var t1 = document.createTextNode(address);
+                el_div1.appendChild(el_div);
+                el_div.appendChild(el_span);
+                el_span.appendChild(t);
+                el_span1.appendChild(t1);
+                el_div.appendChild(el_span1);
 
-                var para = document.createElement("P");
-                var t = document.createTextNode("Duration" + results[i].duration.text);
-                para.appendChild(t);
-                document.getElementById("resultList").appendChild(para);
+                var el_div = document.createElement('div');
+                var el_divClass = el_div.setAttribute('class', 'inforow');
+                var el_span = document.createElement('span');
+                var el_spanClass = el_span.setAttribute('class', 'info');
+                var el_span1 = document.createElement('span');
+                var el_spanClass1 = el_span1.setAttribute('class', 'info');
+                var t = document.createTextNode("Description");
+                var t1 = document.createTextNode(description);
+                el_div1.appendChild(el_div);
+                el_div.appendChild(el_span);
+                el_span.appendChild(t);
+                el_span1.appendChild(t1);
+                el_div.appendChild(el_span1);
 
+                var el_div = document.createElement('div');
+                var el_divClass = el_div.setAttribute('class', 'inforow');
+                var el_span = document.createElement('span');
+                var el_spanClass = el_span.setAttribute('class', 'info');
+                var el_span1 = document.createElement('span');
+                var el_spanClass1 = el_span1.setAttribute('class', 'info');
+                var t = document.createTextNode("Duration");
+                var t1 = document.createTextNode(results[i].duration.text);
+                el_div1.appendChild(el_div);
+                el_div.appendChild(el_span);
+                el_span.appendChild(t);
+                el_span1.appendChild(t1);
+                el_div.appendChild(el_span1);
+
+                var el_div = document.createElement('div');
+                var el_divClass = el_div.setAttribute('class', 'inforow');
+                var el_span = document.createElement('span');
+                var el_spanClass = el_span.setAttribute('class', 'info');
                 var btn = document.createElement("BUTTON");
                 var att = document.createAttribute("value");
+                var btn_class = btn.setAttribute('class', 'button-info')
                 att.value = s_id;
                 btn.setAttributeNode(att);
                 btn.onclick = function() {
@@ -231,9 +306,13 @@
                     };
                     addOrder(validateOrder, uid, this.value, document.getElementById("food").value);
                 };
-                var t = document.createTextNode("Order!");
+                var t = document.createTextNode("Order");
+                el_div1.appendChild(el_div);
+                el_div.appendChild(el_span);
+                el_span.appendChild(btn);
                 btn.appendChild(t);
-                document.getElementById("resultList").appendChild(btn);
+
+                document.getElementById("resultList").appendChild(para);
 
                 // listHTML += "<a href=\"#\" class=\"list-group-item\">";
                 // listHTML += "<h4 class=\"list-group-item-heading\">";

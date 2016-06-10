@@ -106,7 +106,7 @@
       <h2>Reset Password</h2>
     </div>
     <div class="modal-body">
-      <p id="TaskLine">Enter your email address to reset your password:</p>
+      <p id="TaskLine"></p>
       <div style="margin-bottom:25px">
 		  <p id="WrongInput" style="color:red; font-size:15px; display:none"></p>
 		  <input class="input-box" required autocomplete="off" id="InBox" name="Email" placeholder="Email" type="email" />
@@ -219,6 +219,8 @@ var span = document.getElementsByClassName("close")[0];
 lin.onclick = foo;
 
 function foo() {
+	document.getElementById('TaskLine').innerHTML = "Enter your email address to reset your password:";
+	document.getElementById('ResetButton').value = "Next";
     modal.style.display = "block";
 }
 
@@ -239,8 +241,9 @@ var user = null;
 
 function print(response) {
 	var obj= JSON.parse(response);
-	alert(obj.resource[0].email);
+	alert(response);
 }
+function nothing() {}
 function isUser(response) {
 	var obj= JSON.parse(response);
 	if (obj.resource.length === 0)
@@ -282,7 +285,12 @@ function checkAnswer(answer){
 	}
 }
 function resetPassword(newPass) {
-changePasswordForUser(print, 5, "BBB");
+	changePasswordForUser(nothing, user.u_id, newPass);
+	alert("Password reset successful");
+	document.getElementById('InBox').value = '';
+	modal.style.display = "none";
+	emailOK = false;
+	answerOK = false;
 }
 var button = document.getElementById('ResetButton');
 button.onclick = function () {

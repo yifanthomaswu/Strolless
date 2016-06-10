@@ -349,7 +349,7 @@ function changePasswordForUser(callback, u_id, password) {
     }
   };
   var resource = {password:password};
-  xmlHttp.open("PUT", URL_API + "_table/web_user/" + u_id + URL_API_KEY, true);
-  xmlHttp.send(JSON.stringify({resource:resource}));
+  xmlHttp.open("PUT", URL_API + "_table/web_user/" + u_id + "?"+ URL_API_KEY, true);
+  xmlHttp.send(JSON.stringify(resource));
 }
   
