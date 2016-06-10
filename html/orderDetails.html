@@ -115,20 +115,22 @@
         }
 
         window.onload = function() {
-            var orderID = readCookie('order');
+            var sid = readCookie('sid_o');
             var uid = readCookie('uid');
             if (orderID == null || uid == null) {
                 //window.location = "index.html"
             } else {
                 getAddressByUser(function(response) {
-                    var obj = JSON.parse(response);
-                    var postcode1 = obj.resource[0].postcode
-                    getOrderById
-                }, uid)
-                if (map != null) {
-                    showRoute(PC1, PC2, map);
-                }
-
+                    var u_obj = JSON.parse(response);
+                    var postcode1 = u_obj.resource[0].postcode
+                    getStrollerById(function(response2) {
+                        var s_obj = JSON.parse(response2);
+                        var postcode2 = s_obj.resource[0].web_address_by_a_id.postcode;
+                        if (map != null) {
+                            showRoute(postcode1, postcode2, map);
+                        }
+                    }, sid);
+                }, uid);
                 /*var para = document.createElement("P");
                 var t = document.createTextNode("Restaurant" + restaurant);
                 para.appendChild(t);
