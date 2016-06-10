@@ -69,7 +69,18 @@
         <div class="container">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="site-heading">
+                    <h1>Find Strollers</h1>
                     <div class="standcontrol">
+                        <form>
+                            <div class="row control-group">
+                                <div class="form-group control">
+                                    <label style="color:white">Food</label>
+                                    <div>
+                                        <input type="text" class="input-box" id="food">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                         <div id="resultList">
                         </div>
                     </div>
@@ -213,9 +224,7 @@
                 att.value = s_id;
                 btn.setAttributeNode(att);
                 btn.onclick = function() {
-                    eraseCookie('sid_o');
-                    createCookie('sid_o', this.value);
-                    window.location="new-order.html";
+                    addOrder(validateOrder, readCookie('uid'), this.value, document.getElementById("food").value);
                 };
                 var t = document.createTextNode("Order!");
                 btn.appendChild(t);
@@ -237,6 +246,10 @@
                 //     "<br /></p></a>";
             }
             // document.getElementById("resultList").innerHTML = listHTML;
+        }
+        function validateOrder(response) {
+            alert("Thanks for ordering");
+            window.location="order.html";
         }
     </script>
 
