@@ -69,72 +69,19 @@
         <div class="container">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="site-heading">
-                    <h1>Find Strollers</h1>
+                    <h1>Your Order</h1>
                     <div class="standcontrol">
                         <form>
-                            <div class="row control-group">
-                                <div class="form-group control">
-                                    <label style="color:white">Food</label>
-                                    <div>
-                                        <input type="text" class="input-box" id="food">
-                                    </div>
-                                </div>
-                            </div>
+                            <p id="restaurant">Restaurant: </p>
+                            <p id="meals">Meals: </p>
                         </form>
-                        <div id="resultList">
+                        <div id="map">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </header>
-
-    <!-- Main Content -->
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-
-            </div>
-        </div>
-    </div>
-
-    <hr>
-
-    <!-- Footer
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <ul class="list-inline text-center">
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>-->
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
@@ -157,33 +104,12 @@
         }
 
         window.onload = function() {
-            var results = localStorage.getItem("_results");
-            if (!results) window.location="order.html";
-            localStorage.removeItem("_results");
-            results = JSON.parse(atob(results));
+            var orderID = readCookie('order');
+            if (orderID == null) {
+                //window.location = "index.html"
+            } else {
 
-            var obj = localStorage.getItem("_response");
-            if (!obj) window.location="order.html";
-            localStorage.removeItem("_response");
-            obj = JSON.parse(atob(obj));
 
-            var listHTML = "";
-            for (var i = 0; i < results.length; i++) {
-                var restaurant, stroller, pickup, deadline, address, description, s_id;
-                var destPostCode = getPostCode(results[i].destination);
-                for (var j = 0; j < obj.resource.length; j++) {
-                    if (obj.resource[j].web_address_by_a_id.postcode == destPostCode) {
-                        restaurant = obj.resource[j].web_restaurant_by_r_id.name;
-                        stroller = obj.resource[j].web_user_by_u_id.name;
-                        pickup = obj.resource[j].pickup;
-                        deadline = obj.resource[j].deadline;
-                        address = obj.resource[j].web_address_by_a_id.house_number + ", " +
-                                  obj.resource[j].web_address_by_a_id.street_name + ", " +
-                                  obj.resource[j].web_address_by_a_id.postcode;
-                        description = obj.resource[j].web_address_by_a_id.description;
-                        s_id = obj.resource[j].s_id;
-                    }
-                }
                 var para = document.createElement("P");
                 var t = document.createTextNode("Restaurant" + restaurant);
                 para.appendChild(t);
@@ -253,7 +179,8 @@
             // document.getElementById("resultList").innerHTML = listHTML;
         }
         function validateOrder(response) {
-            window.location="orderDetails.html";
+            alert("Thanks for ordering");
+            window.location="order.html";
         }
     </script>
 
