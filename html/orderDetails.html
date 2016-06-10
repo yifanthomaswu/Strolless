@@ -70,12 +70,17 @@
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="site-heading">
                     <h1>Your Order</h1>
-                    <div class="standcontrol">
+                    <div class="form-group control">
                         <form>
                             <p id="restaurant">Restaurant: </p>
                             <p id="meals">Meals: </p>
+                            <div class="styled-select">
+                                  <select id="meal_select"></select>
+                            </div>
+                            <input type="button" value="Add to Order" class="button button-go"/>
                         </form>
-                        <div id="map">
+                        <div id="map" class="map">
+
                         </div>
                     </div>
                 </div>
@@ -94,23 +99,39 @@
 
     <script src="js/pgsql.js"></script>
 
+    <script src="js/mapSource.js"></script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFPZskQN3KvDgx3j333wyrDl5WnQdIznI&callback=init" async defer></script>
+
     <script>
-        function getPostCode(address) {
-            var postCode = address.substring(address.indexOf(" London ") + 8, address.indexOf(" London ") + 15);
-            if(postCode.slice(-1) == ",") {
-                postCode = postCode.slice(0, -1);
-            }
-            return postCode;
+        var map;
+
+        function init() {
+            var mapDiv = document.getElementById('map');
+            map = new google.maps.Map(mapDiv, {
+              center: {lat: 51.498672, lng: -0.179381},
+              zoom: 15
+            });
         }
 
         window.onload = function() {
-            var orderID = readCookie('order');
-            if (orderID == null) {
+            var sid = readCookie('sid_o');
+            var uid = readCookie('uid');
+            if (orderID == null || uid == null) {
                 //window.location = "index.html"
             } else {
-
-
-                var para = document.createElement("P");
+                getAddressByUser(function(response) {
+                    var u_obj = JSON.parse(response);
+                    var postcode1 = u_obj.resource[0].postcode
+                    getStrollerById(function(response2) {
+                        var s_obj = JSON.parse(response2);
+                        var postcode2 = s_obj.resource[0].web_address_by_a_id.postcode;
+                        if (map != null) {
+                            showRoute(postcode1, postcode2, map);
+                        }
+                    }, sid);
+                }, uid);
+                /*var para = document.createElement("P");
                 var t = document.createTextNode("Restaurant" + restaurant);
                 para.appendChild(t);
                 document.getElementById("resultList").appendChild(para);
@@ -160,7 +181,7 @@
                 var t = document.createTextNode("Order!");
                 btn.appendChild(t);
                 document.getElementById("resultList").appendChild(btn);
-
+*/
                 // listHTML += "<a href=\"#\" class=\"list-group-item\">";
                 // listHTML += "<h4 class=\"list-group-item-heading\">";
                 // listHTML += restaurant;
