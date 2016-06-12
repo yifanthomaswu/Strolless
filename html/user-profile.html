@@ -521,32 +521,35 @@
             el_span1.appendChild(t1);
             el_div.appendChild(el_span1);
             // document.getElementById("order").appendChild(para);
-
+            
+            
+            var el_div = document.createElement('div');
+            el_div.setAttribute('class', 'inforow');
+            var el_span = document.createElement('span');
+            el_span.setAttribute('class', 'info');
+            el_span.setAttribute('id', 'Status_Stro_' + obj.resource[i].web_stroller_by_s_id.s_id);
+            var el_span1 = document.createElement('span');
+            el_span1.setAttribute('class', 'info');
+            el_div1.appendChild(el_div);
+            el_div.appendChild(el_span);
+            
             if (obj.resource[i].web_stroller_by_s_id.ready) {
-                var el_div = document.createElement('div');
-                var el_divClass = el_div.setAttribute('class', 'inforow');
-                var el_span = document.createElement('span');
-                var el_spanClass = el_span.setAttribute('class', 'info');
-                var el_span1 = document.createElement('span');
-                var el_spanClass1 = el_span1.setAttribute('class', 'info');
                 var t = document.createTextNode("Ready!");
-                el_div1.appendChild(el_div);
-                el_div.appendChild(el_span);
-                el_span.appendChild(t);
-                // document.getElementById("order").appendChild(para);
             } else {
-                var el_div = document.createElement('div');
-                var el_divClass = el_div.setAttribute('class', 'inforow');
-                var el_span = document.createElement('span');
-                var el_spanClass = el_span.setAttribute('class', 'info');
-                var el_span1 = document.createElement('span');
-                var el_spanClass1 = el_span1.setAttribute('class', 'info');
                 var t = document.createTextNode("Not Yet");
-                el_div1.appendChild(el_div);
-                el_div.appendChild(el_span);
-                el_span.appendChild(t);
-                // document.getElementById("order").appendChild(para);
             };
+            
+            el_span.appendChild(t);
+            
+            checkOrder(obj.resource[i].u_id,  function (response) {
+				var m = document.getElementById('Status_Stro_' + response.web_stroller_by_s_id.s_id).innerHTML;
+				if (m === "Not Yet")
+				{
+					document.getElementById('Status_Stro_' + response.web_stroller_by_s_id.s_id).setAttribute('style','color:red; font-size:30px;');
+					document.getElementById('Status_Stro_' + response.web_stroller_by_s_id.s_id).innerHTML = 'Ready!';
+					alert("ready");
+					}
+			});
 
             getAddressById(function(response) {
                 var obj= JSON.parse(response);
