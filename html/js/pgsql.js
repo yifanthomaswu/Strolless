@@ -317,12 +317,16 @@ function eraseCookie(name) {
 function checkOrder(u_id, ready_func) {
   getOrderByUser(function (response) {
 	var obj= JSON.parse(response);
-  	for (var i = 0; i < obj.resource.length; i++) {
-  	  if (obj.resource[i].web_stroller_by_s_id.ready === true)
-   	    ready_func(obj.resource[i]);
-	  else
-	    setTimeout(function () { checkOrder(u_id, ready_func); }, ORDER_REFRESH_RATE);
-	}
+	var length = obj.resource.length;
+	var count = 0;
+  	for (var i = 0; i < length; i++) {
+  	  if (obj.resource[i].web_stroller_by_s_id.ready === true) {
+		  count++;
+		  ready_func(obj.resource[i]);
+	  }
+    }
+    if (count != length)
+		setTimeout(function () { checkOrder(u_id, ready_func); }, ORDER_REFRESH_RATE);
   }, u_id);
 }
 

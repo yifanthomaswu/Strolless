@@ -205,6 +205,7 @@
     <!-- Custom Theme JavaScript -->
     <script src="js/clean-blog.min.js"></script>
 
+	<!-- Include PostgreSQL functions -->
     <script src="js/pgsql.js"></script>
 
     <script>
@@ -541,7 +542,7 @@
             
             el_span.appendChild(t);
             
-            checkOrder(obj.resource[i].u_id,  function (response) {
+            checkOrder(uid,  function (response) {
 				var m = document.getElementById('Status_Stro_' + response.web_stroller_by_s_id.s_id).innerHTML;
 				if (m === "Not Yet")
 				{
@@ -613,7 +614,9 @@
                 document.getElementById("order").appendChild(para);
             }, obj.resource[i].web_stroller_by_s_id.a_id);
         };
+        
     }
+    
 
     $(function(){
       $('#profiletabs ul li a').on('click', function(e){
