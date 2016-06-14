@@ -173,7 +173,7 @@
 				newSpan.setAttribute('class','info');
 				newP.setAttribute('class','info');
 				var newItem = document.createTextNode(obj.resource[i].name);
-				var newPrice = document.createTextNode('£' + obj.resource[i].price);
+				var newPrice = document.createTextNode('£' + asP(obj.resource[i].price));
 				newP.appendChild(newPrice);
 				newSpan.appendChild(newItem);
 				newDiv.appendChild(newSpan);
@@ -240,6 +240,7 @@
 				var offset = num - basket[i].amount;
 				offset *= price;
 				basket[0] += offset;
+				basket[0] = (basket[0] * 10) / 10;
 				
 				if (num === 0) {
 					//REMOVE ITEM
@@ -267,7 +268,7 @@
 			newP.setAttribute('class','info');
 			var newItem = document.createTextNode(basket[i].name + ' x' + basket[i].amount);
 			var total = basket[i].amount * basket[i].cost;
-			var newPrice = document.createTextNode('£' + total);
+			var newPrice = document.createTextNode('£' + asP(total));
 			newP.appendChild(newPrice);
 			newSpan.appendChild(newItem);
 			newDiv.appendChild(newSpan);
@@ -282,12 +283,16 @@
 		newSpan.setAttribute('class','info');
 		newP.setAttribute('class','info');
 		var newItem = document.createTextNode('Total');
-		var newPrice = document.createTextNode('£' + basket[0]);
+		var newPrice = document.createTextNode('£' + asP(basket[0]));
 		newP.appendChild(newPrice);
 		newSpan.appendChild(newItem);
 		newDiv.appendChild(newSpan);
 		newDiv.appendChild(newP);
 		document.getElementById('basket').appendChild(newDiv);
+	}
+	
+	function asP (price) {
+		return (price/100).toFixed(2);
 	}
 	
 	function nott () {}
