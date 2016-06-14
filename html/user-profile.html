@@ -540,18 +540,6 @@
             el_span1.appendChild(t1);
             el_div.appendChild(el_span1);
 
-            getUserDetail(function (response) {
-                var obj = JSON.parse(response);
-                var elements = document.getElementsByClassName("stroller" + obj.u_id);
-                for(var i=0; i<elements.length; i++) {
-                    elements[i].innerHTML = obj.name;
-                };
-                var elements = document.getElementsByClassName("phone" + obj.u_id);
-                for(var i=0; i<elements.length; i++) {
-                    elements[i].innerHTML = obj.phone;
-                };
-            }, obj.resource[i].web_stroller_by_s_id.u_id);
-
             var el_div = document.createElement('div');
             var el_divClass = el_div.setAttribute('class', 'inforow');
             var el_span = document.createElement('span');
@@ -609,8 +597,57 @@
             } else {
                 var t = document.createTextNode("Not Yet");
             };
-
             el_span.appendChild(t);
+
+            if (!obj.resource[i].rated) {
+                var el_div = document.createElement('div');
+                var el_divClass = el_div.setAttribute('class', 'inforow');
+                var el_span = document.createElement('span');
+                var el_spanClass = el_span.setAttribute('class', 'info');
+                var btn = document.createElement("BUTTON");
+                var att = document.createAttribute("value");
+                var btn_class = btn.setAttribute('class', 'button-info')
+                att.value = obj.resource[i].web_stroller_by_s_id.u_id;
+                btn.setAttributeNode(att);
+                btn.onclick = function() {
+                    getUserDetail(rateGood, this.value);
+                };
+                var t = document.createTextNode("Good");
+                el_div1.appendChild(el_div);
+                el_div.appendChild(el_span);
+                el_span.appendChild(btn);
+                btn.appendChild(t);
+
+                var el_div = document.createElement('div');
+                var el_divClass = el_div.setAttribute('class', 'inforow');
+                var el_span = document.createElement('span');
+                var el_spanClass = el_span.setAttribute('class', 'info');
+                var btn = document.createElement("BUTTON");
+                var att = document.createAttribute("value");
+                var btn_class = btn.setAttribute('class', 'button-info')
+                att.value = obj.resource[i].web_stroller_by_s_id.u_id;
+                btn.setAttributeNode(att);
+                btn.onclick = function() {
+                    getUserDetail(ratePoor, this.value);
+                };
+                var t = document.createTextNode("Poor");
+                el_div1.appendChild(el_div);
+                el_div.appendChild(el_span);
+                el_span.appendChild(btn);
+                btn.appendChild(t);
+            };
+
+            getUserDetail(function (response) {
+                var obj = JSON.parse(response);
+                var elements = document.getElementsByClassName("stroller" + obj.u_id);
+                for(var i=0; i<elements.length; i++) {
+                    elements[i].innerHTML = obj.name;
+                };
+                var elements = document.getElementsByClassName("phone" + obj.u_id);
+                for(var i=0; i<elements.length; i++) {
+                    elements[i].innerHTML = obj.phone;
+                };
+            }, obj.resource[i].web_stroller_by_s_id.u_id);
 
             document.getElementById("order").appendChild(para);
 
@@ -625,6 +662,20 @@
             // });
         };
 
+    }
+
+    function rateGood (response) {
+        var obj = JSON.parse(response);
+        upRate(checkRate, obj.u_id, obj.rating);
+    }
+
+    function ratePoor (response) {
+        var obj = JSON.parse(response);
+        upRate(checkRate, obj.u_id, obj.rating);
+    }
+
+    function checkRate (response) {
+        alert("rated");
     }
 
 
