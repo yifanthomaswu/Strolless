@@ -384,3 +384,46 @@ function changePasswordForUser(callback, u_id, password) {
   xmlHttp.open("PUT", URL_API + "_table/web_user/" + u_id + "?"+ URL_API_KEY, true);
   xmlHttp.send(JSON.stringify(resource));
 }
+
+function getMenuByRestaurant(r_id, callback) {
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.onreadystatechange = function() {
+    console.log(xmlHttp.responseText);
+    if (xmlHttp.readyState == XMLHttpRequest.DONE && xmlHttp.status == HTTP_OK) {
+      callback(xmlHttp.responseText);
+    }
+  };
+  var fields = "?fields=m_id%2C%20name%2C%20price%2C%20catalog";
+  var order = "&order=m_id&group=m_id";
+  xmlHttp.open("GET", URL_API + "_table/web_menu" + fields + order + URL_API_KEY, true);
+  xmlHttp.send(null);
+}
+
+function getCategoriesOrdered(r_id, callback) {
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.onreadystatechange = function() {
+    console.log(xmlHttp.responseText);
+    if (xmlHttp.readyState == XMLHttpRequest.DONE && xmlHttp.status == HTTP_OK) {
+      callback(xmlHttp.responseText);
+    }
+  };
+  var fields = "?fields=catalog";
+  var order = "&order=m_id&group=m_id";
+  xmlHttp.open("GET", URL_API + "_table/web_menu" + fields + order + URL_API_KEY, true);
+  xmlHttp.send(null);
+}
+
+function getItemsByCatalogFromRest (r_id, catalog, callback) {
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.onreadystatechange = function() {
+    console.log(xmlHttp.responseText);
+    if (xmlHttp.readyState == XMLHttpRequest.DONE && xmlHttp.status == HTTP_OK) {
+      callback(xmlHttp.responseText);
+    }
+  };
+  var fields = "?fields=name%2C%20price";
+  var order = "&order=m_id&group=m_id";
+  var filter = "&filter=(r_id%3D" + r_id +")AND(catalog%3D" + catalog + ")";
+  xmlHttp.open("GET", URL_API + "_table/web_menu" + fields + filter + order + URL_API_KEY, true);
+  xmlHttp.send(null);
+}
