@@ -114,8 +114,8 @@
         window.location="index.html";
     };
     
-    function category(name, catalog) {
-		return {name:name, catalog:catalog};
+    function item(name, num) {
+		return {name:name, amount:num};
 	}
     
     function ale(response) {
@@ -165,11 +165,12 @@
 				newSpan.setAttribute('class','info');
 				newP.setAttribute('class','info');
 				var newItem = document.createTextNode(obj.resource[i].name);
-				var newPrice = document.createTextNode(obj.resource[i].price);
+				var newPrice = document.createTextNode('£' + obj.resource[i].price);
 				newP.appendChild(newPrice);
 				newSpan.appendChild(newItem);
 				newDiv.appendChild(newSpan);
 				newDiv.appendChild(newP);
+				addChoice(newDiv, obj.resource[i].m_id);
 				newSection.appendChild(newDiv);
 			}
 		});
@@ -189,6 +190,63 @@
 			document.getElementById('catMenu').appendChild(newLi);
 		}
 	}
+	
+	function addChoice (div, m_id) {
+		var newForm = document.createElement('form');
+		var newSelect = document.createElement('select');
+		newSelect.setAttribute('id','mySelect' + m_id);
+		newSelect.setAttribute('onchange','addToBasket(' + m_id + ')');
+		var newOption = document.createElement('option');
+		var newChoice = document.createTextNode(0);
+		newOption.appendChild(newChoice);
+		newSelect.appendChild(newOption);
+		newOption = document.createElement('option');
+		newChoice = document.createTextNode(1);
+		newOption.appendChild(newChoice);
+		newSelect.appendChild(newOption);
+		newOption = document.createElement('option');
+		newChoice = document.createTextNode(2);
+		newOption.appendChild(newChoice);
+		newSelect.appendChild(newOption);
+		newForm.appendChild(newSelect);
+		div.appendChild(newForm);
+	}
+	
+	var basket = [0.00];
+	function addToBasket (m_id) {
+		var num = document.getElementById('mySelect' + m_id).selectedIndex;
+		getItemNPById (m_id, function (response) {
+			obj = JSON.parse(response);
+			modify(obj.name, num, obj.price);
+			alert(basket[0] + ' ' + basket.length);
+		});
+	}
+	
+	function modify (name, num, price) {
+		for (var i = 1; i < basket.length; i++) {
+			if (basket[i].name === name)
+			{
+				//ITEM EXISTS ALREADY
+				var offset = num - basket[i].amount;
+				offset *= price;
+				basket[0] += offset;
+				
+				if (num === 0) {
+					//REMOVE ITEM
+					basket.splice(i,1);
+				}
+				else {
+					//CHANGE ITEM AMOUNT
+					basket[i].amount = num;
+				}
+				return;
+			}
+		}
+		//NO ITEM FOUND
+		basket[0] += price * num;
+		basket.push(item(name, num));
+	}	
+	
 	function nott () {}
 	//getItemsByCatalogFromRest(3, 'Wraps', ale);
 	//setTimeout(createSection('Wraps', false), 2000);

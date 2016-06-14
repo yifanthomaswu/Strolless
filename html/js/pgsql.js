@@ -421,9 +421,24 @@ function getItemsByCatalogFromRest (r_id, catalog, callback) {
       callback(xmlHttp.responseText);
     }
   };
-  var fields = "?fields=name%2C%20price";
+  var fields = "?fields=m_id%2C%20name%2C%20price";
   var order = "&order=m_id&group=m_id";
   var filter = "&filter=(r_id%3D" + r_id +")AND(catalog%3D" + catalog + ")";
   xmlHttp.open("GET", URL_API + "_table/web_menu" + fields + filter + order + URL_API_KEY, true);
   xmlHttp.send(null);
 }
+
+function getItemNPById (m_id, callback) {
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.onreadystatechange = function() {
+    console.log(xmlHttp.responseText);
+    if (xmlHttp.readyState == XMLHttpRequest.DONE && xmlHttp.status == HTTP_OK) {
+      callback(xmlHttp.responseText);
+    }
+  };
+  var fields = "?fields=name%2C%20price";
+  xmlHttp.open("GET", URL_API + "_table/web_menu/" + m_id + fields + URL_API_KEY, true);
+  xmlHttp.send(null);
+}
+
+
