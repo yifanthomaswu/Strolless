@@ -234,13 +234,12 @@
 	
 	function modify (m_id, name, num, price) {
 		for (var i = 1; i < basket.length; i++) {
-			if (basket[i].name === name)
+			if (basket[i].mid == m_id)
 			{
 				//ITEM EXISTS ALREADY
 				var offset = num - basket[i].amount;
-				offset *= price;
+				offset *= basket[i].cost;
 				basket[0] += offset;
-				basket[0] = (basket[0] * 10) / 10;
 				
 				if (num === 0) {
 					//REMOVE ITEM
@@ -262,18 +261,26 @@
 		for (var i = 1; i < basket.length; i++) {
 			var newDiv = document.createElement('div');
 			var newSpan = document.createElement('span');
+			var newSpanC = document.createElement('span');
 			var newP = document.createElement('p');
 			newDiv.setAttribute('class','inforow');
 			newSpan.setAttribute('class','info');
+			newSpanC.setAttribute('class','close');
+			newSpanC.setAttribute('id','close' + basket[i].mid);
+			newSpanC.onclick = function() {
+				removeFromBasketById(this.id);
+			};
 			newP.setAttribute('class','info');
 			var newItem = document.createTextNode(basket[i].name + ' x' + basket[i].amount);
 			var total = basket[i].amount * basket[i].cost;
 			var newPrice = document.createTextNode('£' + asP(total));
+			var newItemC = document.createTextNode('x');
 			newP.appendChild(newPrice);
 			newSpan.appendChild(newItem);
 			newDiv.appendChild(newSpan);
 			newDiv.appendChild(newP);
-			//Remove button? Choice button?
+			newSpanC.appendChild(newItemC);
+			newDiv.appendChild(newSpanC);
 			document.getElementById('basket').appendChild(newDiv);
 		}
 		var newDiv = document.createElement('div');
@@ -293,6 +300,14 @@
 	
 	function asP (price) {
 		return (price/100).toFixed(2);
+	}
+	
+	function removeFromBasketById(elemN) {
+		var mid = elemN.substring(5, elemN.length);
+		modify(mid, null, 0, null);
+		document.getElementById('mySelect' + mid).selectedIndex = 0;
+		$('#basket').empty();
+		drawBasket();
 	}
 	
 	function nott () {}
