@@ -104,6 +104,10 @@
                                 <span class="info">Phone </span>
                                 <p id="phone" class="info"></p>
                                 </div>
+                                <div class="inforow">
+                                <span class="info">Rating </span>
+                                <p id="rating" class="info"></p>
+                                </div>
                             </section>
 
                             <section id="address" class="hidden">
@@ -216,16 +220,23 @@
 
     getUserDetail(displayInfo, uid);
     function displayInfo(response) {
-        var obj= JSON.parse(response);
+        var obj = JSON.parse(response);
         document.getElementById("email").innerHTML = obj.email;
         document.getElementById("name").innerHTML = obj.name;
         document.getElementById("phone").innerHTML = obj.phone;
+        var rating = parseInt(obj.rating);
+        if (rating > 100) {
+            rating = 100;
+        } else if (rating < 0) {
+            rating = 0;
+        };
+        document.getElementById("rating").innerHTML = rating / 10;
     }
 
     getAddressByUser(displayAddress, uid);
     function displayAddress(response) {
-        var obj= JSON.parse(response);
-        
+        var obj = JSON.parse(response);
+
         for (var i = 0; i < obj.resource.length; i++) {
             var para = document.createElement("P");
             var paraClass = para.setAttribute('class', 'infotable');
@@ -297,7 +308,7 @@
         addAddress(validateAddress, uid, form.elements[0].value, form.elements[1].value, form.elements[2].value, form.elements[3].value);
     }
     function validateAddress(response) {
-        var obj= JSON.parse(response);
+        var obj = JSON.parse(response);
         if(/^[0-9]+/.test(obj.resource[0].a_id)) {
             alert("successfull");
         } else {
@@ -307,7 +318,7 @@
 
     getStrollerByUser(displayStroll, uid);
     function displayStroll(response) {
-        var obj= JSON.parse(response);
+        var obj = JSON.parse(response);
         for (var i = 0; i < obj.resource.length; i++) {
             var para = document.createElement("P");
             var paraClass = para.setAttribute('class', 'infotable');
@@ -365,23 +376,8 @@
             var el_spanClass = el_span.setAttribute('class', 'info');
             var el_span1 = document.createElement('span');
             var el_spanClass1 = el_span1.setAttribute('class', 'info');
-            var t = document.createTextNode("House number");
-            var t1 = document.createTextNode(obj.resource[i].web_address_by_a_id.house_number);
-            el_div1.appendChild(el_div);
-            el_div.appendChild(el_span);
-            el_span.appendChild(t);
-            el_span1.appendChild(t1);
-            el_div.appendChild(el_span1);
-            // document.getElementById("stroll").appendChild(para);
-
-            var el_div = document.createElement('div');
-            var el_divClass = el_div.setAttribute('class', 'inforow');
-            var el_span = document.createElement('span');
-            var el_spanClass = el_span.setAttribute('class', 'info');
-            var el_span1 = document.createElement('span');
-            var el_spanClass1 = el_span1.setAttribute('class', 'info');
-            var t = document.createTextNode("Street name");
-            var t1 = document.createTextNode(obj.resource[i].web_address_by_a_id.street_name);
+            var t = document.createTextNode("Address");
+            var t1 = document.createTextNode(obj.resource[i].web_address_by_a_id.house_number + ", " + obj.resource[i].web_address_by_a_id.street_name);
             el_div1.appendChild(el_div);
             el_div.appendChild(el_span);
             el_span.appendChild(t);
@@ -408,21 +404,6 @@
             var el_divClass = el_div.setAttribute('class', 'inforow');
             var el_span = document.createElement('span');
             var el_spanClass = el_span.setAttribute('class', 'info');
-            var el_span1 = document.createElement('span');
-            var el_spanClass1 = el_span1.setAttribute('class', 'info');
-            var t = document.createTextNode("Description");
-            var t1 = document.createTextNode(obj.resource[i].web_address_by_a_id.description);
-            el_div1.appendChild(el_div);
-            el_div.appendChild(el_span);
-            el_span.appendChild(t);
-            el_span1.appendChild(t1);
-            el_div.appendChild(el_span1);
-            // document.getElementById("stroll").appendChild(para);
-
-            var el_div = document.createElement('div');
-            var el_divClass = el_div.setAttribute('class', 'inforow');
-            var el_span = document.createElement('span');
-            var el_spanClass = el_span.setAttribute('class', 'info');
             var btn = document.createElement("BUTTON");
             var att = document.createAttribute("value");
             var btn_class = btn.setAttribute('class', 'button-info')
@@ -438,7 +419,7 @@
             el_div.appendChild(el_span);
             el_span.appendChild(btn);
             btn.appendChild(t);
-            
+
 
             if (!obj.resource[i].ready) {
                 var el_div = document.createElement('div');
@@ -469,28 +450,30 @@
 
     getOrderByUser(displayOrder, uid);
     function displayOrder(response) {
-        var obj= JSON.parse(response);
+        var obj = JSON.parse(response);
         for (var i = 0; i < obj.resource.length; i++) {
             var para = document.createElement("P");
             var paraClass = para.setAttribute('class', 'infotable');
             var el_div1 = document.createElement('div');
             var el_div1Class = el_div1.setAttribute('class','inforowspace');
+            para.appendChild(el_div1);
+
+            var el_div = document.createElement('div');
+            var el_divClass = el_div.setAttribute('class', 'inforow');
+            var el_span = document.createElement('span');
+            var el_spanClass = el_span.setAttribute('class', 'info');
+            var el_span1 = document.createElement('span');
+            el_span1.setAttribute('id', obj.resource[i].web_stroller_by_s_id.r_id);
+            var el_spanClass1 = el_span1.setAttribute('class', 'info');
+            var t = document.createTextNode("Restaurant");
+            var t1 = document.createTextNode("");
+            el_div1.appendChild(el_div);
+            el_div.appendChild(el_span);
+            el_span.appendChild(t);
+            el_span1.appendChild(t1);
+            el_div.appendChild(el_span1);
             getRestaurantById(function(response) {
-                var el_div = document.createElement('div');
-                var el_divClass = el_div.setAttribute('class', 'inforow');
-                var el_span = document.createElement('span');
-                var el_spanClass = el_span.setAttribute('class', 'info');
-                var el_span1 = document.createElement('span');
-                var el_spanClass1 = el_span1.setAttribute('class', 'info');
-                var t = document.createTextNode("Restaurant");
-                var t1 = document.createTextNode(JSON.parse(response).name);
-                para.appendChild(el_div1);
-                el_div1.appendChild(el_div);
-                el_div.appendChild(el_span);
-                el_span.appendChild(t);
-                el_span1.appendChild(t1);
-                el_div.appendChild(el_span1);
-                // document.getElementById("order").appendChild(para);
+                document.getElementById(JSON.parse(response).r_id).innerHTML = JSON.parse(response).name;
             }, obj.resource[i].web_stroller_by_s_id.r_id);
 
             var el_div = document.createElement('div');
@@ -522,8 +505,80 @@
             el_span1.appendChild(t1);
             el_div.appendChild(el_span1);
             // document.getElementById("order").appendChild(para);
-            
-            
+
+
+            var el_div = document.createElement('div');
+            var el_divClass = el_div.setAttribute('class', 'inforow');
+            var el_span = document.createElement('span');
+            var el_spanClass = el_span.setAttribute('class', 'info');
+            var el_span1 = document.createElement('span');
+            el_span1.setAttribute('id', "stroller" + obj.resource[i].web_stroller_by_s_id.u_id);
+            var el_spanClass1 = el_span1.setAttribute('class', 'info');
+            var t = document.createTextNode("Stroller");
+            var t1 = document.createTextNode(obj.name);
+            el_div1.appendChild(el_div);
+            el_div.appendChild(el_span);
+            el_span.appendChild(t);
+            el_span1.appendChild(t1);
+            el_div.appendChild(el_span1);
+
+            var el_div = document.createElement('div');
+            var el_divClass = el_div.setAttribute('class', 'inforow');
+            var el_span = document.createElement('span');
+            var el_spanClass = el_span.setAttribute('class', 'info');
+            var el_span1 = document.createElement('span');
+            el_span1.setAttribute('id', "phone" + obj.resource[i].web_stroller_by_s_id.u_id);
+            var el_spanClass1 = el_span1.setAttribute('class', 'info');
+            var t = document.createTextNode("Phone");
+            var t1 = document.createTextNode(obj.phone);
+            el_div1.appendChild(el_div);
+            el_div.appendChild(el_span);
+            el_span.appendChild(t);
+            el_span1.appendChild(t1);
+            el_div.appendChild(el_span1);
+
+            getUserDetail(function (response) {
+                var obj = JSON.parse(response);
+                document.getElementById("stroller" + obj.u_id).innerHTML = obj.name;
+                document.getElementById("phone" + obj.u_id).innerHTML = obj.phone;
+            }, obj.resource[i].web_stroller_by_s_id.u_id);
+
+            var el_div = document.createElement('div');
+            var el_divClass = el_div.setAttribute('class', 'inforow');
+            var el_span = document.createElement('span');
+            var el_spanClass = el_span.setAttribute('class', 'info');
+            var el_span1 = document.createElement('span');
+            el_span1.setAttribute('id', "address" + obj.resource[i].web_stroller_by_s_id.a_id);
+            var el_spanClass1 = el_span1.setAttribute('class', 'info');
+            var t = document.createTextNode("Address");
+            var t1 = document.createTextNode("");
+            el_div1.appendChild(el_div);
+            el_div.appendChild(el_span);
+            el_span.appendChild(t);
+            el_span1.appendChild(t1);
+            el_div.appendChild(el_span1);
+
+            var el_div = document.createElement('div');
+            var el_divClass = el_div.setAttribute('class', 'inforow');
+            var el_span = document.createElement('span');
+            var el_spanClass = el_span.setAttribute('class', 'info');
+            var el_span1 = document.createElement('span');
+            el_span1.setAttribute('id', "postcode" + obj.resource[i].web_stroller_by_s_id.a_id);
+            var el_spanClass1 = el_span1.setAttribute('class', 'info');
+            var t = document.createTextNode("Postcode");
+            var t1 = document.createTextNode("");
+            el_div1.appendChild(el_div);
+            el_div.appendChild(el_span);
+            el_span.appendChild(t);
+            el_span1.appendChild(t1);
+            el_div.appendChild(el_span1);
+
+            getAddressById(function(response) {
+                var obj = JSON.parse(response);
+                document.getElementById("address" + obj.resource[0].a_id).innerHTML = obj.resource[0].house_number + ", " + obj.resource[0].street_name;
+                document.getElementById("postcode" + obj.resource[0].a_id).innerHTML = obj.resource[0].postcode;
+            }, obj.resource[i].web_stroller_by_s_id.a_id);
+
             var el_div = document.createElement('div');
             el_div.setAttribute('class', 'inforow');
             var el_span = document.createElement('span');
@@ -533,90 +588,30 @@
             el_span1.setAttribute('class', 'info');
             el_div1.appendChild(el_div);
             el_div.appendChild(el_span);
-            
+
             if (obj.resource[i].web_stroller_by_s_id.ready) {
                 var t = document.createTextNode("Ready!");
             } else {
                 var t = document.createTextNode("Not Yet");
             };
-            
+
             el_span.appendChild(t);
-            
+
+            document.getElementById("order").appendChild(para);
+
             checkOrder(uid,  function (response) {
-				var m = document.getElementById('Status_Stro_' + response.web_stroller_by_s_id.s_id).innerHTML;
-				if (m === "Not Yet")
-				{
-					document.getElementById('Status_Stro_' + response.web_stroller_by_s_id.s_id).setAttribute('style','color:red; font-size:30px;');
-					document.getElementById('Status_Stro_' + response.web_stroller_by_s_id.s_id).innerHTML = 'Ready!';
-					alert("ready");
-					}
-			});
-
-            getAddressById(function(response) {
-                var obj= JSON.parse(response);
-
-                var el_div = document.createElement('div');
-                var el_divClass = el_div.setAttribute('class', 'inforow');
-                var el_span = document.createElement('span');
-                var el_spanClass = el_span.setAttribute('class', 'info');
-                var el_span1 = document.createElement('span');
-                var el_spanClass1 = el_span1.setAttribute('class', 'info');
-                var t = document.createTextNode("House number");
-                var t1 = document.createTextNode(obj.resource[0].house_number);
-                el_div1.appendChild(el_div);
-                el_div.appendChild(el_span);
-                el_span.appendChild(t);
-                el_span1.appendChild(t1);
-                el_div.appendChild(el_span1);
-
-                var el_div = document.createElement('div');
-                var el_divClass = el_div.setAttribute('class', 'inforow');
-                var el_span = document.createElement('span');
-                var el_spanClass = el_span.setAttribute('class', 'info');
-                var el_span1 = document.createElement('span');
-                var el_spanClass1 = el_span1.setAttribute('class', 'info');
-                var t = document.createTextNode("Street name");
-                var t1 = document.createTextNode(obj.resource[0].street_name);
-                el_div1.appendChild(el_div);
-                el_div.appendChild(el_span);
-                el_span.appendChild(t);
-                el_span1.appendChild(t1);
-                el_div.appendChild(el_span1);
-
-                var el_div = document.createElement('div');
-                var el_divClass = el_div.setAttribute('class', 'inforow');
-                var el_span = document.createElement('span');
-                var el_spanClass = el_span.setAttribute('class', 'info');
-                var el_span1 = document.createElement('span');
-                var el_spanClass1 = el_span1.setAttribute('class', 'info');
-                var t = document.createTextNode("Postcode");
-                var t1 = document.createTextNode(obj.resource[0].postcode);
-                el_div1.appendChild(el_div);
-                el_div.appendChild(el_span);
-                el_span.appendChild(t);
-                el_span1.appendChild(t1);
-                el_div.appendChild(el_span1);
-
-
-                var el_div = document.createElement('div');
-                var el_divClass = el_div.setAttribute('class', 'inforow');
-                var el_span = document.createElement('span');
-                var el_spanClass = el_span.setAttribute('class', 'info');
-                var el_span1 = document.createElement('span');
-                var el_spanClass1 = el_span1.setAttribute('class', 'info');
-                var t = document.createTextNode("Description");
-                var t1 = document.createTextNode(obj.resource[0].description);
-                el_div1.appendChild(el_div);
-                el_div.appendChild(el_span);
-                el_span.appendChild(t);
-                el_span1.appendChild(t1);
-                el_div.appendChild(el_span1);
-                document.getElementById("order").appendChild(para);
-            }, obj.resource[i].web_stroller_by_s_id.a_id);
+                var m = document.getElementById('Status_Stro_' + response.web_stroller_by_s_id.s_id).innerHTML;
+                if (m === "Not Yet")
+                {
+                    document.getElementById('Status_Stro_' + response.web_stroller_by_s_id.s_id).setAttribute('style','color:red; font-size:30px;');
+                    document.getElementById('Status_Stro_' + response.web_stroller_by_s_id.s_id).innerHTML = 'Ready!';
+                    alert("ready");
+                    }
+            });
         };
-        
+
     }
-    
+
 
     $(function(){
       $('#profiletabs ul li a').on('click', function(e){

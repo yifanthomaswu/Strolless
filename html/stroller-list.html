@@ -169,7 +169,7 @@
 
             var listHTML = "";
             for (var i = 0; i < results.length; i++) {
-                var restaurant, stroller, pickup, deadline, address, description, s_id;
+                var restaurant, stroller, pickup, deadline, address, s_id, postcode;
                 var destPostCode = getPostCode(results[i].destination);
                 for (var j = 0; j < obj.resource.length; j++) {
                     if (obj.resource[j].web_address_by_a_id.postcode == destPostCode) {
@@ -178,9 +178,8 @@
                         pickup = obj.resource[j].pickup;
                         deadline = obj.resource[j].deadline;
                         address = obj.resource[j].web_address_by_a_id.house_number + ", " +
-                                  obj.resource[j].web_address_by_a_id.street_name + ", " +
-                                  obj.resource[j].web_address_by_a_id.postcode;
-                        description = obj.resource[j].web_address_by_a_id.description;
+                                  obj.resource[j].web_address_by_a_id.street_name;
+                        postcode = obj.resource[j].web_address_by_a_id.postcode;
                         s_id = obj.resource[j].s_id;
                     }
                 }
@@ -267,8 +266,8 @@
                 var el_spanClass = el_span.setAttribute('class', 'info');
                 var el_span1 = document.createElement('span');
                 var el_spanClass1 = el_span1.setAttribute('class', 'info');
-                var t = document.createTextNode("Description");
-                var t1 = document.createTextNode(description);
+                var t = document.createTextNode("Postcode");
+                var t1 = document.createTextNode(postcode);
                 el_div1.appendChild(el_div);
                 el_div.appendChild(el_span);
                 el_span.appendChild(t);
@@ -306,7 +305,10 @@
                     };
                     eraseCookie('sid_o');
                     createCookie('sid_o', this.value, 1);
-                    addOrder(validateOrder, uid, this.value, document.getElementById("food").value);
+                    if (document.getElementById("food").value != "") {
+                        addOrder(validateOrder, uid, this.value, document.getElementById("food").value);
+                    };
+
                 };
                 var t = document.createTextNode("Order");
                 el_div1.appendChild(el_div);

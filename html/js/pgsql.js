@@ -12,9 +12,37 @@ function getUserDetail(callback, u_id) {
       callback(xmlHttp.responseText);
     }
   };
-  var fields = "?fields=email,name,phone,paypal,rating";
+  var fields = "?fields=u_id,email,name,phone,paypal,rating";
   xmlHttp.open("GET", URL_API + "_table/web_user/" + u_id + fields + URL_API_KEY, true);
   xmlHttp.send(null);
+}
+
+function upRate(callback, u_id, rating) {
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.onreadystatechange = function() {
+    console.log(xmlHttp.responseText);
+    if (xmlHttp.readyState == XMLHttpRequest.DONE && xmlHttp.status == HTTP_OK) {
+      callback(xmlHttp.responseText);
+    }
+  };
+  rating += 1;
+  var resource = {rating:rating};
+  xmlHttp.open("PUT", URL_API + "_table/web_user/" + u_id + "?"+ URL_API_KEY, true);
+  xmlHttp.send(JSON.stringify(resource));
+}
+
+function downRate(callback, u_id, rating) {
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.onreadystatechange = function() {
+    console.log(xmlHttp.responseText);
+    if (xmlHttp.readyState == XMLHttpRequest.DONE && xmlHttp.status == HTTP_OK) {
+      callback(xmlHttp.responseText);
+    }
+  };
+  rating -= 1;
+  var resource = {rating:rating};
+  xmlHttp.open("PUT", URL_API + "_table/web_user/" + u_id + "?"+ URL_API_KEY, true);
+  xmlHttp.send(JSON.stringify(resource));
 }
 
 function userRegister(callback, email, password, name, phone, answer) {
@@ -176,7 +204,7 @@ function setStrollerReady(callback, s_id) {
   xmlHttp.send(JSON.stringify({resource:resource}));
 }
 
-function getAllStrollerNotReady(callback) {
+function getAllStrollerNotReady(callback, u_id) {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() {
     console.log(xmlHttp.responseText);
@@ -185,7 +213,7 @@ function getAllStrollerNotReady(callback) {
     }
   };
   var related = "?related=web_address_by_a_id,web_user_by_u_id,web_restaurant_by_r_id";
-  var filter = "&filter=ready%3Dfalse";
+  var filter = "&filter=(u_id%3C%3E" + u_id + ")AND(ready%3Dfalse)";
   xmlHttp.open("GET", URL_API + "_table/web_stroller" + related + filter + URL_API_KEY, true);
   xmlHttp.send(null);
 }
