@@ -463,8 +463,8 @@
             var el_span = document.createElement('span');
             var el_spanClass = el_span.setAttribute('class', 'info');
             var el_span1 = document.createElement('span');
-            el_span1.setAttribute('id', obj.resource[i].web_stroller_by_s_id.r_id);
-            var el_spanClass1 = el_span1.setAttribute('class', 'info');
+            el_span1.setAttribute('class', obj.resource[i].web_stroller_by_s_id.r_id);
+            // var el_spanClass1 = el_span1.setAttribute('class', 'info');
             var t = document.createTextNode("Restaurant");
             var t1 = document.createTextNode("");
             el_div1.appendChild(el_div);
@@ -473,7 +473,10 @@
             el_span1.appendChild(t1);
             el_div.appendChild(el_span1);
             getRestaurantById(function(response) {
-                document.getElementById(JSON.parse(response).r_id).innerHTML = JSON.parse(response).name;
+                var elements = document.getElementsByClassName(JSON.parse(response).r_id);
+                for(var i=0; i<elements.length; i++) {
+                    elements[i].innerHTML = JSON.parse(response).name;
+                };
             }, obj.resource[i].web_stroller_by_s_id.r_id);
 
             var el_div = document.createElement('div');
@@ -512,8 +515,8 @@
             var el_span = document.createElement('span');
             var el_spanClass = el_span.setAttribute('class', 'info');
             var el_span1 = document.createElement('span');
-            el_span1.setAttribute('id', "stroller" + obj.resource[i].web_stroller_by_s_id.u_id);
-            var el_spanClass1 = el_span1.setAttribute('class', 'info');
+            el_span1.setAttribute('class', "stroller" + obj.resource[i].web_stroller_by_s_id.u_id);
+            // var el_spanClass1 = el_span1.setAttribute('class', 'info');
             var t = document.createTextNode("Stroller");
             var t1 = document.createTextNode(obj.name);
             el_div1.appendChild(el_div);
@@ -527,8 +530,8 @@
             var el_span = document.createElement('span');
             var el_spanClass = el_span.setAttribute('class', 'info');
             var el_span1 = document.createElement('span');
-            el_span1.setAttribute('id', "phone" + obj.resource[i].web_stroller_by_s_id.u_id);
-            var el_spanClass1 = el_span1.setAttribute('class', 'info');
+            el_span1.setAttribute('class', "phone" + obj.resource[i].web_stroller_by_s_id.u_id);
+            // var el_spanClass1 = el_span1.setAttribute('class', 'info');
             var t = document.createTextNode("Phone");
             var t1 = document.createTextNode(obj.phone);
             el_div1.appendChild(el_div);
@@ -539,8 +542,14 @@
 
             getUserDetail(function (response) {
                 var obj = JSON.parse(response);
-                document.getElementById("stroller" + obj.u_id).innerHTML = obj.name;
-                document.getElementById("phone" + obj.u_id).innerHTML = obj.phone;
+                var elements = document.getElementsByClassName("stroller" + obj.u_id);
+                for(var i=0; i<elements.length; i++) {
+                    elements[i].innerHTML = obj.name;
+                };
+                var elements = document.getElementsByClassName("phone" + obj.u_id);
+                for(var i=0; i<elements.length; i++) {
+                    elements[i].innerHTML = obj.phone;
+                };
             }, obj.resource[i].web_stroller_by_s_id.u_id);
 
             var el_div = document.createElement('div');
@@ -548,8 +557,8 @@
             var el_span = document.createElement('span');
             var el_spanClass = el_span.setAttribute('class', 'info');
             var el_span1 = document.createElement('span');
-            el_span1.setAttribute('id', "address" + obj.resource[i].web_stroller_by_s_id.a_id);
-            var el_spanClass1 = el_span1.setAttribute('class', 'info');
+            el_span1.setAttribute('class', "address" + obj.resource[i].web_stroller_by_s_id.a_id);
+            // var el_spanClass1 = el_span1.setAttribute('class', 'info');
             var t = document.createTextNode("Address");
             var t1 = document.createTextNode("");
             el_div1.appendChild(el_div);
@@ -563,8 +572,8 @@
             var el_span = document.createElement('span');
             var el_spanClass = el_span.setAttribute('class', 'info');
             var el_span1 = document.createElement('span');
-            el_span1.setAttribute('id', "postcode" + obj.resource[i].web_stroller_by_s_id.a_id);
-            var el_spanClass1 = el_span1.setAttribute('class', 'info');
+            el_span1.setAttribute('class', "postcode" + obj.resource[i].web_stroller_by_s_id.a_id);
+            // var el_spanClass1 = el_span1.setAttribute('class', 'info');
             var t = document.createTextNode("Postcode");
             var t1 = document.createTextNode("");
             el_div1.appendChild(el_div);
@@ -575,8 +584,14 @@
 
             getAddressById(function(response) {
                 var obj = JSON.parse(response);
-                document.getElementById("address" + obj.resource[0].a_id).innerHTML = obj.resource[0].house_number + ", " + obj.resource[0].street_name;
-                document.getElementById("postcode" + obj.resource[0].a_id).innerHTML = obj.resource[0].postcode;
+                var elements = document.getElementsByClassName("address" + obj.resource[0].a_id);
+                for(var i=0; i<elements.length; i++) {
+                    elements[i].innerHTML = obj.resource[0].house_number + ", " + obj.resource[0].street_name;
+                };
+                var elements = document.getElementsByClassName("postcode" + obj.resource[0].a_id);
+                for(var i=0; i<elements.length; i++) {
+                    elements[i].innerHTML = obj.resource[0].postcode;
+                };
             }, obj.resource[i].web_stroller_by_s_id.a_id);
 
             var el_div = document.createElement('div');
@@ -599,15 +614,15 @@
 
             document.getElementById("order").appendChild(para);
 
-            checkOrder(uid,  function (response) {
-                var m = document.getElementById('Status_Stro_' + response.web_stroller_by_s_id.s_id).innerHTML;
-                if (m === "Not Yet")
-                {
-                    document.getElementById('Status_Stro_' + response.web_stroller_by_s_id.s_id).setAttribute('style','color:red; font-size:30px;');
-                    document.getElementById('Status_Stro_' + response.web_stroller_by_s_id.s_id).innerHTML = 'Ready!';
-                    alert("ready");
-                    }
-            });
+            // checkOrder(uid,  function (response) {
+            //     var m = document.getElementById('Status_Stro_' + response.web_stroller_by_s_id.s_id).innerHTML;
+            //     if (m === "Not Yet")
+            //     {
+            //         document.getElementById('Status_Stro_' + response.web_stroller_by_s_id.s_id).setAttribute('style','color:red; font-size:30px;');
+            //         document.getElementById('Status_Stro_' + response.web_stroller_by_s_id.s_id).innerHTML = 'Ready!';
+            //         alert("ready");
+            //         }
+            // });
         };
 
     }
