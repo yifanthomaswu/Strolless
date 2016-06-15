@@ -71,16 +71,7 @@
                 <div class="site-heading">
                     <h1>Find Strollers</h1>
                     <div class="standcontrol">
-                        <form>
-                            <div class="row control-group">
-                                <div class="form-group control">
-                                    <label style="color:white">Food</label>
-                                    <div>
-                                        <input type="text" class="input-box" id="food">
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+                        <label style="color:white">Strollers</label>
                         <div id="resultList">
                         </div>
                     </div>
@@ -169,7 +160,7 @@
 
             var listHTML = "";
             for (var i = 0; i < results.length; i++) {
-                var restaurant, stroller, pickup, deadline, address, s_id, postcode;
+                var restaurant, stroller, pickup, deadline, address, s_id, postcode, r_id;
                 var destPostCode = getPostCode(results[i].destination);
                 for (var j = 0; j < obj.resource.length; j++) {
                     if (obj.resource[j].web_address_by_a_id.postcode == destPostCode) {
@@ -181,6 +172,7 @@
                                   obj.resource[j].web_address_by_a_id.street_name;
                         postcode = obj.resource[j].web_address_by_a_id.postcode;
                         s_id = obj.resource[j].s_id;
+                        r_id = obj.resource[j].web_restaurant_by_r_id.r_id;
                     }
                 }
 
@@ -294,7 +286,8 @@
                 var el_spanClass = el_span.setAttribute('class', 'info');
                 var btn = document.createElement("BUTTON");
                 var att = document.createAttribute("value");
-                var btn_class = btn.setAttribute('class', 'button-info')
+                var btn_class = btn.setAttribute('class', 'button-info');
+                btn.setAttribute('id', r_id);
                 att.value = s_id;
                 btn.setAttributeNode(att);
                 btn.onclick = function() {
@@ -305,9 +298,14 @@
                     };
                     eraseCookie('sid_o');
                     createCookie('sid_o', this.value, 1);
-                    if (document.getElementById("food").value != "") {
-                        addOrder(validateOrder, uid, this.value, document.getElementById("food").value);
-                    };
+                    eraseCookie('rid_cookie');
+                    createCookie('rid_cookie', this.id, 1);
+                    //if (document.getElementById("food").value != "") {
+                    //    addOrder(validateOrder, uid, this.value, document.getElementById("food").value);
+                    //};
+                    window.location="menu.html";
+        }
+                    
 
                 };
                 var t = document.createTextNode("Order");
@@ -332,11 +330,8 @@
                 // listHTML += results[i].duration.text;
                 // listHTML +=
                 //     "<br /></p></a>";
-            }
+            
             // document.getElementById("resultList").innerHTML = listHTML;
-        }
-        function validateOrder(response) {
-            window.location="orderDetails.html";
         }
     </script>
 

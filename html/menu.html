@@ -95,6 +95,9 @@
                                 </ul>
                             </nav>
                             </div><!-- @end #content -->
+                            <form onsubmit="formOnSubmit(this); return false;" method="post" class="addresscon">
+								<input type="submit" style="color:white;" value="Submit" class="button button-go" data-ft="btnSearchArea">
+							</form>
                         </div><!-- @end #w -->
                     </div>
                 </div>
@@ -116,10 +119,13 @@
 
     <script>
     var uid = readCookie('uid');
-    //var rid = readCookie('rid');
-    var rid = 3;
+    var rid = readCookie('rid_cookie');
+    //var rid = 3;
     if (uid == null) {
         window.location="index.html";
+    };
+    if (rid == null) {
+        window.location="stroller_list.html";
     };
     
     function item(mid, name, num, price) {
@@ -309,6 +315,10 @@
 		$('#basket').empty();
 		drawBasket();
 	}
+	
+	function formOnSubmit(form) {
+        addAddress(validateAddress, uid, form.elements[0].value, form.elements[1].value, form.elements[2].value, form.elements[3].value);
+    }
 	
 	function nott () {}
 	//getItemsByCatalogFromRest(3, 'Wraps', ale);
