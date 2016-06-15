@@ -333,7 +333,7 @@ hr.small {
   position: relative;
   height: 100%;
   vertical-align: top;
-  padding-left: 70px;
+  padding-left: 60px;
   padding-top: 20px;
 }
 
@@ -343,6 +343,7 @@ hr.small {
   height: 100%;
   vertical-align: top;
   font-size: 16px;
+  padding-top: 20px;
 }
 
 .menuitem {
@@ -352,6 +353,12 @@ hr.small {
   position: relative;
   height: 100%;
   vertical-align: top;
+  padding-top: 20px;
+
+}
+
+.menuitem .info {
+  padding-left: 40px;
 }
 
 
