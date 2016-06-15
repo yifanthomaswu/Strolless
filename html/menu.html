@@ -96,7 +96,7 @@
                             </nav>
                             </div><!-- @end #content -->
                             <form onsubmit="formOnSubmit(this); return false;" method="post" class="addresscon">
-								<input type="submit" style="color:white;" value="Submit" class="button button-go" data-ft="btnSearchArea">
+								<input type="submit" style="color:white;" value="Place Order" class="button button-go" data-ft="btnSearchArea">
 							</form>
                         </div><!-- @end #w -->
                     </div>
@@ -316,9 +316,23 @@
 		drawBasket();
 	}
 	
+	function orderMade (response) {
+		alert("success");
+	}
+	
 	function formOnSubmit(form) {
-		alert('asdadsa');
+		//alert(basketToArray(basket).length);
+		addOrder(uid, 39, basketToArray(basket), orderMade);
     }
+    
+    function basketToArray (basket) {
+		var order = [basket[0]];
+		for (var i = 1; i < basket.length; i++) {
+			var items = [basket[i].mid, basket[i].amount];
+			order.push(items);
+		}
+		return order;
+	}
 	
 	function nott () {}
 	//getItemsByCatalogFromRest(3, 'Wraps', ale);
