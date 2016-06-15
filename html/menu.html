@@ -74,30 +74,34 @@
 
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header" style="background-image: url('img/blue-orange-p.png')">
+    <header class="intro-header" style="background-image: url('img/bg orange.jpg')">
         <div class="container" style="height: 2000px">
             <div class="row">
                 <div class="site-heading">
                     <h1>Create Order</h1>
-                    <div>
-						<h4 class="info">Basket</h4>
-						<section id="basket">
-                                <div class="inforow">
-                                <span class="info">Empty</span>
-                                </div>
-                        </section>
-					</div>
-                    <div class="standcontrol">
-                        <div id="w">
-                            <div id="content">
-                            <nav id="profiletabs">
-                                <ul class="clearfix nav navbar-nav profiletabs" id="catMenu">
-                                </ul>
-                            </nav>
-                            </div><!-- @end #content -->
-                        </div><!-- @end #w -->
-                    </div>
-                </div>
+                    <div class="infotable">
+                    	<div class="info menutabs">
+	                            <nav id="profiletabs">
+	                                <ul class="clearfix nav navbar-nav profiletabs" id="catMenu">
+	                                </ul>
+	                            </nav>
+	                    </div>
+                    	<div class="standcontrol info menuitem">
+	                        <div id="w">
+	                            <div id="content">
+	                            </div><!-- @end #content -->
+	                        </div><!-- @end #w -->
+	                    </div>
+	                    <div class="info basket">
+							<h4 class="info">Basket</h4>
+							<section id="basket">
+	                                <div class="inforow">
+	                                <span class="info">Empty</span>
+	                                </div>
+	                        </section>
+						</div>
+                	</div>
+            	</div>
             </div>
         </div>
     </header>
@@ -200,6 +204,8 @@
 	}
 	
 	function addChoice (div, m_id) {
+		var newDiv = document.createElement('div');
+		newDiv.setAttribute('class', 'info');
 		var newForm = document.createElement('form');
 		var newSelect = document.createElement('select');
 		newSelect.setAttribute('id','mySelect' + m_id);
@@ -217,7 +223,8 @@
 		newOption.appendChild(newChoice);
 		newSelect.appendChild(newOption);
 		newForm.appendChild(newSelect);
-		div.appendChild(newForm);
+		newDiv.appendChild(newForm)
+		div.appendChild(newDiv);
 	}
 	
 	var basket = [0.00];

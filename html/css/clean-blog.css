@@ -324,11 +324,41 @@ hr.small {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+.menutabs .profiletabs > li {
+  float: none;
+}
+
+.menutabs {
+  width: 10%;
+  position: relative;
+  height: 100%;
+  vertical-align: top;
+  padding-left: 70px;
+  padding-top: 20px;
+}
+
+.basket {
+  width: 25%;
+  position: relative;
+  height: 100%;
+  vertical-align: top;
+  font-size: 16px;
+}
+
+.menuitem {
+  width: 65%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  height: 100%;
+  vertical-align: top;
+}
+
+
 .infotable {
   display: table;
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   text-align: left;
-
 }
 
 .inforow {
