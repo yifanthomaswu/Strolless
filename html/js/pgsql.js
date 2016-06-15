@@ -260,7 +260,7 @@ function getStrollerByRestaurant(callback, r_id) {
   xmlHttp.send(null);
 }
 
-function addOrder(callback, u_id, s_id, food) {
+function addOrder(u_id, s_id, food, callback) {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() {
     console.log(xmlHttp.responseText);
@@ -268,8 +268,9 @@ function addOrder(callback, u_id, s_id, food) {
       callback(xmlHttp.responseText);
     }
   };
-  var resource = {u_id:u_id, s_id:s_id, food:food};
+  var resource = {u_id:u_id, s_id:s_id, food:JSON.stringify(food), rated:false};
   xmlHttp.open("POST", URL_API + "_table/web_order?" + URL_API_KEY, true);
+  //console.log(JSON.stringify({resource:resource}));
   xmlHttp.send(JSON.stringify({resource:resource}));
 }
 

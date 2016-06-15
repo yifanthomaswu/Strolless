@@ -447,6 +447,22 @@
     function validateStroll(response) {
         alert("Thanks for informing");
     }
+    
+    function func (el_div1, amount, response) {
+				var objr = JSON.parse(response);
+					var name = objr.name;
+					var newDiv = document.createElement('div');
+					var newSpan = document.createElement('span');
+					//var newSpanC = document.createElement('span');
+					newDiv.setAttribute('class','inforow');
+					newSpan.setAttribute('class','info');
+					var newItem = document.createTextNode(name + ' x' + amount);
+					//var total = basket[i].amount * basket[i].cost;
+					//var newPrice = document.createTextNode('£' + asP(total));
+					newSpan.appendChild(newItem);
+					newDiv.appendChild(newSpan);
+					el_div1.appendChild(newDiv);
+				}
 
     getOrderByUser(displayOrder, uid);
     function displayOrder(response) {
@@ -485,8 +501,9 @@
             var el_spanClass = el_span.setAttribute('class', 'info');
             var el_span1 = document.createElement('span');
             var el_spanClass1 = el_span1.setAttribute('class', 'info');
-            var t = document.createTextNode("Food");
-            var t1 = document.createTextNode(obj.resource[i].food);
+            var t = document.createTextNode("Cost");
+            var foodOrder = JSON.parse(obj.resource[i].food);
+            var t1 = document.createTextNode('£' + (foodOrder[0]/100));
             el_div1.appendChild(el_div);
             el_div.appendChild(el_span);
             el_span.appendChild(t);
@@ -569,6 +586,15 @@
             el_span.appendChild(t);
             el_span1.appendChild(t1);
             el_div.appendChild(el_span1);
+            
+            for (var i = 1; i < foodOrder.length; i++) {
+				var mid = foodOrder[i][0];
+				var amm = foodOrder[i][1];
+				getItemNPById (mid, function (response) {
+					var am = amm;
+					func (am, response);
+				});
+			}
 
             getAddressById(function(response) {
                 var obj = JSON.parse(response);

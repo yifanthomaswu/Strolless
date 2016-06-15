@@ -126,11 +126,15 @@
     <script>
     var uid = readCookie('uid');
     var rid = readCookie('rid_cookie');
+    var sid = readCookie('sid_o');
     //var rid = 3;
     if (uid == null) {
         window.location="index.html";
     };
     if (rid == null) {
+        window.location="stroller_list.html";
+    };
+    if (sid == null) {
         window.location="stroller_list.html";
     };
     
@@ -325,9 +329,23 @@
 		drawBasket();
 	}
 	
+	function orderMade (response) {
+		alert("Thanks for ordering");
+        window.location="user-profile.html";
+	}
+	
 	function formOnSubmit(form) {
-		alert('asdadsa');
+		addOrder(uid, sid, basketToArray(basket), orderMade);
     }
+    
+    function basketToArray (basket) {
+		var order = [basket[0]];
+		for (var i = 1; i < basket.length; i++) {
+			var items = [basket[i].mid, basket[i].amount];
+			order.push(items);
+		}
+		return order;
+	}
 	
 	function nott () {}
 	//getItemsByCatalogFromRest(3, 'Wraps', ale);
