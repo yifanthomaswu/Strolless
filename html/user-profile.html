@@ -217,6 +217,10 @@
     if (uid == null) {
         window.location="index.html";
     };
+    
+    function asP (price) {
+		return (price/100).toFixed(2);
+	}
 
     getUserDetail(displayInfo, uid);
     function displayInfo(response) {
@@ -448,22 +452,22 @@
         alert("Thanks for informing");
     }
     
-    function func (el_div1, amount, response) {
-				var objr = JSON.parse(response);
-					var name = objr.name;
-					var newDiv = document.createElement('div');
-					var newSpan = document.createElement('span');
-					//var newSpanC = document.createElement('span');
-					newDiv.setAttribute('class','inforow');
-					newSpan.setAttribute('class','info');
-					var newItem = document.createTextNode(name + ' x' + amount);
-					//var total = basket[i].amount * basket[i].cost;
-					//var newPrice = document.createTextNode('£' + asP(total));
-					newSpan.appendChild(newItem);
-					newDiv.appendChild(newSpan);
-					el_div1.appendChild(newDiv);
-				}
+    function func (divv, amount, response) {
+		alert(n);
+		var objr = JSON.parse(response);
+		var name = objr.name;
+		var newDiv = document.createElement('div');
+		var newSpan = document.createElement('span');
+		newDiv.setAttribute('class','inforow');
+		newSpan.setAttribute('class','info');
+		var newItem = document.createTextNode(name + ' x' + amount);
+		newSpan.appendChild(newItem);
+		newDiv.appendChild(newSpan);
+		divv.appendChild(newDiv);
+	}
 
+	var foodOrder;
+	var OrderL = [];
     getOrderByUser(displayOrder, uid);
     function displayOrder(response) {
         var obj = JSON.parse(response);
@@ -502,8 +506,8 @@
             var el_span1 = document.createElement('span');
             var el_spanClass1 = el_span1.setAttribute('class', 'info');
             var t = document.createTextNode("Cost");
-            var foodOrder = JSON.parse(obj.resource[i].food);
-            var t1 = document.createTextNode('£' + (foodOrder[0]/100));
+            foodOrder = JSON.parse(obj.resource[i].food);
+            var t1 = document.createTextNode('£' + asP(foodOrder[0]));
             el_div1.appendChild(el_div);
             el_div.appendChild(el_span);
             el_span.appendChild(t);
@@ -586,15 +590,32 @@
             el_span.appendChild(t);
             el_span1.appendChild(t1);
             el_div.appendChild(el_span1);
+            var ndiv = document.createElement('div');
+            ndiv.setAttribute('class', 'inforow');
+            var nspan = document.createElement('span');
+            nspan.setAttribute('class', 'info');
+            var t = document.createTextNode("Food Ordered");
+            nspan.appendChild(t);
+            ndiv.appendChild(nspan);
+            el_div1.appendChild(ndiv);
+            ndiv = document.createElement('div');
+            ndiv.setAttribute('class', 'inforow');
+            el_div1.appendChild(ndiv);
             
-            for (var i = 1; i < foodOrder.length; i++) {
-				var mid = foodOrder[i][0];
-				var amm = foodOrder[i][1];
-				getItemNPById (mid, function (response) {
-					var am = amm;
-					func (am, response);
-				});
+                        
+            for (var n = 1; n < foodOrder.length; n++) {
+				var newDiv = document.createElement('div');
+				var newSpan = document.createElement('span');
+				newDiv.setAttribute('class','inforow');
+				newSpan.setAttribute('class','info');
+				var id = foodOrder[0] + '' + obj.resource[i].s_id + '' + foodOrder[n][0];
+				newSpan.setAttribute('id', id);
+				newDiv.appendChild(newSpan);
+				ndiv.appendChild(newDiv);
+				OrderL.push({id:id, mid:foodOrder[n][0], amm:foodOrder[n][1]});
 			}
+            
+            /////////////////////////////////////////////////////////////////////////////////////
 
             getAddressById(function(response) {
                 var obj = JSON.parse(response);
@@ -687,8 +708,28 @@
             //         }
             // });
         };
+        
+        //////////////////////////////// END OF FOR
+        
+        
+        
+        for (var x = 0; x < OrderL.length; x++) {
+			func(OrderL[x].id, OrderL[x].mid, OrderL[x].amm);
+		}
+		
+		function func(id, mid, amm) {
+			getItemNPById (mid, function (response) {
+				var objr = JSON.parse(response);
+				var name = objr.name;
+				var newItem = document.createTextNode(name + ' x' + amm);
+				document.getElementById(id).appendChild(newItem);
+			});
+		}
 
     }
+    ////////////////////////////////////////////////////////////
+    		
+    
 
     function rateGood (response) {
         var obj = JSON.parse(response);
