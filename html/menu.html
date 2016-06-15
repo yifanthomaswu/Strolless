@@ -124,11 +124,15 @@
     <script>
     var uid = readCookie('uid');
     var rid = readCookie('rid_cookie');
+    var sid = readCookie('sid_o');
     //var rid = 3;
     if (uid == null) {
         window.location="index.html";
     };
     if (rid == null) {
+        window.location="stroller_list.html";
+    };
+    if (sid == null) {
         window.location="stroller_list.html";
     };
     
@@ -324,12 +328,12 @@
 	}
 	
 	function orderMade (response) {
-		alert("success");
+		alert("Thanks for ordering");
+        window.location="user-profile.html";
 	}
 	
 	function formOnSubmit(form) {
-		//alert(basketToArray(basket).length);
-		addOrder(uid, 39, basketToArray(basket), orderMade);
+		addOrder(uid, sid, basketToArray(basket), orderMade);
     }
     
     function basketToArray (basket) {
