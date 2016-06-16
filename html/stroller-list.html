@@ -139,8 +139,6 @@
 
     <script src="js/mapSource.js"></script>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFPZskQN3KvDgx3j333wyrDl5WnQdIznI&callback=init" async defer></script>
-
     <script>
         function getPostCode(address) {
             var postCode = address.substring(address.indexOf(" London ") + 8, address.indexOf(" London ") + 15);
@@ -150,7 +148,7 @@
             return postCode;
         }
 
-        window.onload = function() {
+        function init() {
             var results = localStorage.getItem("_results");
             if (!results) window.location="order.html";
             localStorage.removeItem("_results");
@@ -311,15 +309,16 @@
                 btn.setAttributeNode(att);
                 btn.onclick = function() {
                     var uid = readCookie('uid');
-                    if (uid == null) {
-                        createCookie('order', 1, 1);
-                        window.location="login.html";
-                    };
                     eraseCookie('sid_o');
                     createCookie('sid_o', this.value, 1);
                     eraseCookie('rid_cookie');
                     createCookie('rid_cookie', this.id, 1);
-                    window.location="menu.html";
+                    if (uid == null) {
+                        createCookie('order', 1, 1);
+                        window.location="login.html";
+                    } else {
+                        window.location="menu.html";
+                    }
 
                 };
                 var t = document.createTextNode("Select Stroller");
@@ -332,6 +331,8 @@
             }
         }
     </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFPZskQN3KvDgx3j333wyrDl5WnQdIznI&callback=init" async defer></script>
 
 </body>
 
