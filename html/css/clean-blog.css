@@ -292,8 +292,8 @@ hr.small {
   font-size: 11px;
   padding-left: 20px;
   padding-bottom: 0px;
-  padding-top: 3px;
-  margin-right: 5px;
+  padding-top: 4px;
+  margin-right: 4px;
 }
 
 .rememberMeCheckBox {
@@ -301,6 +301,7 @@ hr.small {
   font-size: 11px;
   padding-right: 10px;
   padding-bottom: 0px;
+  padding-top: 4px;
   float: left;
 }
 
