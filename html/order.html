@@ -163,14 +163,14 @@
 
         function validateFormOnSubmit(form) {
             var postcode = form.postcode.value;
+            if(uid == null) uid = 0;
             getAllStrollerNotReady(function(response) {
                 localStorage.setItem("_response", btoa(response));
                 var obj = JSON.parse(response);
                 var postcodes = [];
                 for (var i = 0; i < obj.resource.length; i++) {
                     postcodes.push(obj.resource[i].web_address_by_a_id.postcode
-                        /* + " " +
-                                                       obj.resource[i].web_address_by_a_id.street_name + " " +
+                        /* + " " + obj.resource[i].web_address_by_a_id.street_name + " " +
                                                        obj.resource[i].web_address_by_a_id.house_number*/
                     );
                 }
@@ -187,7 +187,7 @@
                 }
                 results.sort(function(a, b) {
                         return a.duration.value - b.duration.value;
-                    })
+                    });
                     /*for (var i = 0; i < results.length; i++) {
                         alert("Nr. "+i+" to "+results[i].destination+" takes "+results[i].duration.value+" seconds.");
                     }*/

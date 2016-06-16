@@ -124,38 +124,38 @@
     <script src="js/pgsql.js"></script>
 
     <script>
-    var uid = readCookie('uid');
-    var rid = readCookie('rid_cookie');
-    var sid = readCookie('sid_o');
+    var uid = readCookie("uid");
+    var rid = readCookie("rid_cookie");
+    var sid = readCookie("sid_o");
     //var rid = 3;
-    if (uid == null) {
+    /*if (uid == null) {
         window.location="index.html";
-    };
+    };*/
     if (rid == null) {
-        window.location="stroller_list.html";
+        window.location="stroller-list.html";
     };
     if (sid == null) {
-        window.location="stroller_list.html";
+        window.location="stroller-list.html";
     };
-    
+
     function item(mid, name, num, price) {
 		return {mid:mid, name:name, amount:num, cost:price};
 	}
-    
+
     function ale(response) {
 		alert(response);
 	}
-	
+
 	var menu;
 	var size;
 	var categories = [];
-	
+
 	function initMenu(response) {
 		obj = JSON.parse(response);
 		size = obj.resource.length;
 		var i = obj.resource.length;
 		while (i--) {
-			
+
 			if (categories.indexOf(obj.resource[i].catalog) === -1) {
 				categories.unshift(obj.resource[i].catalog);
 				}
@@ -165,11 +165,11 @@
 		for (var i = 1; i < categories.length; i++) {
 			createSection(categories[i], true);
 		}
-		
-		
+
+
     }
     getMenuByRestaurant(rid, initMenu);
-    
+
     function createSection(catalog, hidden) {
 		var newSection = document.createElement('section');
 		newSection.setAttribute('id', catalog.replace(/\s+/g, ''));
@@ -177,7 +177,7 @@
 			newSection.setAttribute('class','infotable hidden');
 		else
 			newSection.setAttribute('class','infotable');
-			
+
 		getItemsByCatalogFromRest(rid, catalog, function (response) {
 			obj = JSON.parse(response);
 			size = obj.resource.length;
@@ -200,7 +200,7 @@
 		});
 		document.getElementById('content').appendChild(newSection);
 	}
-	
+
 	function createMenu (cats) {
 		for (var i = 0; i < cats.length; i++) {
 			var newLi = document.createElement('li');
@@ -214,7 +214,7 @@
 			document.getElementById('catMenu').appendChild(newLi);
 		}
 	}
-	
+
 	function addChoice (div, m_id) {
 		var newDiv = document.createElement('div');
 		newDiv.setAttribute('class', 'info');
@@ -238,7 +238,7 @@
 		newDiv.appendChild(newForm)
 		div.appendChild(newDiv);
 	}
-	
+
 	var basket = [0.00];
 	function addToBasket (m_id) {
 		var num = document.getElementById('mySelect' + m_id).selectedIndex;
@@ -250,7 +250,7 @@
 			drawBasket();
 		});
 	}
-	
+
 	function modify (m_id, name, num, price) {
 		for (var i = 1; i < basket.length; i++) {
 			if (basket[i].mid == m_id)
@@ -259,7 +259,7 @@
 				var offset = num - basket[i].amount;
 				offset *= basket[i].cost;
 				basket[0] += offset;
-				
+
 				if (num === 0) {
 					//REMOVE ITEM
 					basket.splice(i,1);
@@ -275,7 +275,7 @@
 		basket[0] += price * num;
 		basket.push(item(m_id, name, num, price));
 	}
-	
+
 	function drawBasket () {
 		for (var i = 1; i < basket.length; i++) {
 			var newDiv = document.createElement('div');
@@ -316,11 +316,11 @@
 		newDiv.appendChild(newP);
 		document.getElementById('basket').appendChild(newDiv);
 	}
-	
+
 	function asP (price) {
 		return (price/100).toFixed(2);
 	}
-	
+
 	function removeFromBasketById(elemN) {
 		var mid = elemN.substring(5, elemN.length);
 		modify(mid, null, 0, null);
@@ -328,16 +328,16 @@
 		$('#basket').empty();
 		drawBasket();
 	}
-	
+
 	function orderMade (response) {
 		alert("Thanks for ordering");
         window.location="user-profile.html";
 	}
-	
+
 	function formOnSubmit(form) {
 		addOrder(uid, sid, basketToArray(basket), orderMade);
     }
-    
+
     function basketToArray (basket) {
 		var order = [basket[0]];
 		for (var i = 1; i < basket.length; i++) {
@@ -346,11 +346,11 @@
 		}
 		return order;
 	}
-	
+
 	function nott () {}
 	//getItemsByCatalogFromRest(3, 'Wraps', ale);
 	//setTimeout(createSection('Wraps', false), 2000);
-   
+
 
     $(function(){
       $(document).on('click', '#profiletabs ul li a', function(e){
