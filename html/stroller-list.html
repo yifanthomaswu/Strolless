@@ -137,6 +137,10 @@
 
     <script src="js/pgsql.js"></script>
 
+    <script src="js/mapSource.js"></script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFPZskQN3KvDgx3j333wyrDl5WnQdIznI&callback=init" async defer></script>
+
     <script>
         function getPostCode(address) {
             var postCode = address.substring(address.indexOf(" London ") + 8, address.indexOf(" London ") + 15);
@@ -175,9 +179,22 @@
                     }
                 }
 
+                /*var container = document.createElement('div');
+                var containerClass = container.setAttribute('class', 'container');
+                var row = document.createElement('div');
+                var rowClass = row.setAttribute('class','row');
+                var map_div = document.createElement('div');
+                var map_divClass = container.setAttribute('class','col-xs-9 col-md-6');
+                //container.setAttribute('id', 'map'+i);
+                var map = new google.maps.Map(map_div, {
+                  center: postcode,
+                  zoom: 15
+                });
+                showRoute(postcode, destPostCode, pickup, map);*/
+
 
                 var para = document.createElement("P");
-                var paraClass = para.setAttribute('class', 'infotable');
+                var paraClass = para.setAttribute('class', 'infotable col-xs-9 col-md-6');
                 var el_div1 = document.createElement('div');
                 var el_div1Class = el_div1.setAttribute('class','inforowspace');
                 var el_div = document.createElement('div');
@@ -188,6 +205,9 @@
                 var el_spanClass1 = el_span1.setAttribute('class', 'info');
                 var t = document.createTextNode("Restaurant");
                 var t1 = document.createTextNode(restaurant);
+                /*container.appendChild(row);
+                row.appendChild(para);
+                row.appendChild(container);*/
                 para.appendChild(el_div1);
                 el_div1.appendChild(el_div);
                 el_div.appendChild(el_span);
@@ -292,8 +312,8 @@
                 btn.onclick = function() {
                     var uid = readCookie('uid');
                     if (uid == null) {
-                        /*createCookie('order', 1, 1);
-                        window.location="login.html";*/
+                        createCookie('order', 1, 1);
+                        window.location="login.html";
                     };
                     eraseCookie('sid_o');
                     createCookie('sid_o', this.value, 1);
@@ -308,27 +328,8 @@
                 el_span.appendChild(btn);
                 btn.appendChild(t);
 
-                document.getElementById("resultList").appendChild(para);
-
-                // listHTML += "<a href=\"#\" class=\"list-group-item\">";
-                // listHTML += "<h4 class=\"list-group-item-heading\">";
-                // listHTML += restaurant;
-                // listHTML += "</h4><p class=\"list-group-item-text\">Stroller: ";
-                // listHTML +=
-                //     stroller;
-                // listHTML += "<br />Address: ";
-                // listHTML += results[i].destination;
-                // listHTML += "<br />Pickup: ";
-                // listHTML += pickup;
-                // listHTML += "<br />Duration  : ";
-                // listHTML += results[i].duration.text;
-                // listHTML +=
-                //     "<br /></p></a>";
+                document.getElementById("resultList").appendChild(/*container*/para);
             }
-            // document.getElementById("resultList").innerHTML = listHTML;
-        }
-        function validateOrder(response) {
-            window.location="orderDetails.html";
         }
     </script>
 

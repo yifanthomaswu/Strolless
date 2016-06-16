@@ -217,7 +217,7 @@
     if (uid == null) {
         window.location="index.html";
     };
-    
+
     function asP (price) {
 		return (price/100).toFixed(2);
 	}
@@ -451,7 +451,7 @@
     function validateStroll(response) {
         alert("Thanks for informing");
     }
-    
+
     function func (divv, amount, response) {
 		alert(n);
 		var objr = JSON.parse(response);
@@ -601,8 +601,8 @@
             ndiv = document.createElement('div');
             ndiv.setAttribute('class', 'inforow');
             el_div1.appendChild(ndiv);
-            
-                        
+
+
             for (var n = 1; n < foodOrder.length; n++) {
 				var newDiv = document.createElement('div');
 				var newSpan = document.createElement('span');
@@ -614,7 +614,7 @@
 				ndiv.appendChild(newDiv);
 				OrderL.push({id:id, mid:foodOrder[n][0], amm:foodOrder[n][1]});
 			}
-            
+
             /////////////////////////////////////////////////////////////////////////////////////
 
             getAddressById(function(response) {
@@ -708,15 +708,15 @@
             //         }
             // });
         };
-        
+
         //////////////////////////////// END OF FOR
-        
-        
-        
+
+
+
         for (var x = 0; x < OrderL.length; x++) {
 			func(OrderL[x].id, OrderL[x].mid, OrderL[x].amm);
 		}
-		
+
 		function func(id, mid, amm) {
 			getItemNPById (mid, function (response) {
 				var objr = JSON.parse(response);
@@ -728,8 +728,8 @@
 
     }
     ////////////////////////////////////////////////////////////
-    		
-    
+
+
 
     function rateGood (response) {
         var obj = JSON.parse(response);

@@ -9,7 +9,7 @@ function duration(origin, destinations, callback) {
     }, callback);
 }
 
-function showRoute(postCode1, postCode2, map) {
+function showRoute(postCode1, postCode2, arrive, map) {
     var directionsService = new google.maps.DirectionsService();
     var directionsRequest = {
         origin: postCode1,
