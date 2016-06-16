@@ -155,6 +155,7 @@
         window.location="index.html";
     }
 
+	
     getOrderByStroller(displayOrders, sid);
     function displayOrders(response) {
         document.getElementById("w").innerHTML = "";
@@ -162,26 +163,59 @@
         if (!obj.resource[0].web_stroller_by_s_id.ready && new Date(obj.resource[0].web_stroller_by_s_id.deadline) <= new Date()) {
             document.getElementById("Ready").disabled = false;
         };
+        var OrderL = [];
         for (var i = 0; i < obj.resource.length; i++) {
             var para = document.createElement("P");
-            var t = document.createTextNode("Name" + obj.resource[i].web_user_by_u_id.name);
+            var t = document.createTextNode("Name " + obj.resource[i].web_user_by_u_id.name);
             para.appendChild(t);
             document.getElementById("w").appendChild(para);
 
             var para = document.createElement("P");
-            var t = document.createTextNode("Phone" + obj.resource[i].web_user_by_u_id.phone);
+            var t = document.createTextNode("Phone " + obj.resource[i].web_user_by_u_id.phone);
             para.appendChild(t);
             document.getElementById("w").appendChild(para);
 
-            var para = document.createElement("P");
-            var t = document.createTextNode("Food" + obj.resource[i].food);
+            var para = document.createElement("h3");
+            var t = document.createTextNode("Food");
             para.appendChild(t);
             document.getElementById("w").appendChild(para);
+            
+            var foodOrder = JSON.parse(obj.resource[i].food);
+            
+            var newDivv = document.createElement("div");
+            newDivv.setAttribute('class','inforow');
+            document.getElementById("w").appendChild(newDivv);
+            for (var n = 1; n < foodOrder.length; n++) {
+				var newDiv = document.createElement('div');
+				var newSpan = document.createElement('span');
+				newDiv.setAttribute('class','inforow');
+				newSpan.setAttribute('class','info');
+				var id = foodOrder[0] + '' + obj.resource[i].s_id + '' + foodOrder[n][0];
+				newSpan.setAttribute('id', id);
+				newDiv.appendChild(newSpan);
+				newDivv.appendChild(newDiv);
+				OrderL.push({id:id, mid:foodOrder[n][0], amm:foodOrder[n][1]});
+			}
+			
+			
         };
+
+        for (var x = 0; x < OrderL.length; x++) {
+			func(OrderL[x].id, OrderL[x].mid, OrderL[x].amm);
+		}
+
+		function func(id, mid, amm) {
+			getItemNPById (mid, function (response) {
+				var objr = JSON.parse(response);
+				var name = objr.name;
+				var newItem = document.createTextNode(name + ' x' + amm);
+				document.getElementById(id).appendChild(newItem);
+			});
+		}
     }
     setInterval(function() {
       getOrderByStroller(displayOrders, sid);
-    }, 5000);
+    }, 5000000);
     </script>
 
 </body>
