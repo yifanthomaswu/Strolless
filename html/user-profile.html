@@ -698,15 +698,15 @@
 
             document.getElementById("order").appendChild(para);
 
-            // checkOrder(uid,  function (response) {
-            //     var m = document.getElementById('Status_Stro_' + response.web_stroller_by_s_id.s_id).innerHTML;
-            //     if (m === "Not Yet")
-            //     {
-            //         document.getElementById('Status_Stro_' + response.web_stroller_by_s_id.s_id).setAttribute('style','color:red; font-size:30px;');
-            //         document.getElementById('Status_Stro_' + response.web_stroller_by_s_id.s_id).innerHTML = 'Ready!';
-            //         alert("ready");
-            //         }
-            // });
+             checkOrder(uid,  function (response) {
+                 var m = document.getElementById('Status_Stro_' + response.web_stroller_by_s_id.s_id).innerHTML;
+                 if (m === "Not Yet")
+                 {
+                     document.getElementById('Status_Stro_' + response.web_stroller_by_s_id.s_id).setAttribute('style','color:red; font-size:35px;');
+                     document.getElementById('Status_Stro_' + response.web_stroller_by_s_id.s_id).innerHTML = 'Ready!';
+                     //alert("ready");
+                     }
+             });
         };
         
         //////////////////////////////// END OF FOR
