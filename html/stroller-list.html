@@ -71,9 +71,8 @@
                 <div class="site-heading">
                     <h1>Find Strollers</h1>
                     <div class="standcontrol">
-                        <h2 style="color:white">Strollers</h2>
-                        <div id="resultList">
-                        </div>
+						<h2 style="color:white">Strollers</h2>
+						<div id="resultList"></div>
                     </div>
                 </div>
             </div>
@@ -172,7 +171,7 @@
                                   obj.resource[j].web_address_by_a_id.street_name;
                         postcode = obj.resource[j].web_address_by_a_id.postcode;
                         s_id = obj.resource[j].s_id;
-                        r_id = obj.resource[j].web_restaurant_by_r_id.r_id;
+                        r_id = obj.resource[j].r_id;
                     }
                 }
 
@@ -300,15 +299,10 @@
                     createCookie('sid_o', this.value, 1);
                     eraseCookie('rid_cookie');
                     createCookie('rid_cookie', this.id, 1);
-                    //if (document.getElementById("food").value != "") {
-                    //    addOrder(validateOrder, uid, this.value, document.getElementById("food").value);
-                    //};
                     window.location="menu.html";
-        }
-                    
 
                 };
-                var t = document.createTextNode("Order");
+                var t = document.createTextNode("Select Stroller");
                 el_div1.appendChild(el_div);
                 el_div.appendChild(el_span);
                 el_span.appendChild(btn);
@@ -330,8 +324,11 @@
                 // listHTML += results[i].duration.text;
                 // listHTML +=
                 //     "<br /></p></a>";
-            
+            }
             // document.getElementById("resultList").innerHTML = listHTML;
+        }
+        function validateOrder(response) {
+            window.location="orderDetails.html";
         }
     </script>
 
