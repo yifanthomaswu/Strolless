@@ -220,8 +220,9 @@ hr.small {
 }
 
 .map {
-  width: 300px;
-  height: 300px;
+  width: 25vw;
+  height: 25vw;
+  float: right;
 }
 
 .button-login {
@@ -367,6 +368,7 @@ hr.small {
   display: table;
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   text-align: left;
+  float:left;
 }
 
 .inforow {
