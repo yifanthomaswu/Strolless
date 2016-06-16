@@ -437,6 +437,7 @@
                 btn.setAttributeNode(att);
                 btn.onclick = function() {
                     setStrollerReady(validateStroll, this.value);
+                    btn.setAttribute('class', 'button-info hidden');
                 };
                 var t = document.createTextNode("Ready");
                 el_div1.appendChild(el_div);
